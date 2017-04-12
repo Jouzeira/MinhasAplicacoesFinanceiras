@@ -56,7 +56,7 @@
 	}
 	if($cpf_existe|| $email_existe || $senha_confirmada) {
 		
-		$retorno_get = '';
+		$retorno_get = 'cpf='.$cpf.'&nome='.$nome.'&email='.$email.'&dtNascimento='.$dtNascimento.'&';
 		
 		if($cpf_existe){
 			$retorno_get.= "erro_cpf=1&";

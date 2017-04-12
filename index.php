@@ -73,17 +73,17 @@
 	            <li><a href="inscrevase.php">Inscrever-se</a></li>
 	            <li class="<?= $erro == 1 ? 'open' : '' ?>">
 	            	<a id="entrar" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entrar</a>
-					<ul class="dropdown-menu" aria-labelledby="entrar">
+					<ul class="dropdown-menu" aria-labelledby="entrar"  style="width: 300px;">
 						<div class="col-md-12">
 				    		<p>Você possui uma conta?</h3>
 				    		<br />
 							<form method="post" action="validar_acesso.php" id="formLogin">
 								<div class="form-group">
-									<input type="text" class="form-control" id="campo_usuario" name="usuario" placeholder="Usuário" required />
+									<input type="text" class="form-control" id="campo_usuario" name="usuario" placeholder="E-mail" required maxlength="60"/>
 								</div>
 								
 								<div class="form-group">
-									<input type="password" class="form-control red" id="campo_senha" name="senha" placeholder="Senha" />
+									<input type="password" class="form-control red" id="campo_senha" name="senha" placeholder="Senha" maxlength="32"/>
 								</div>
 								
 								<button type="buttom" class="btn btn-primary" id="btn_login">Entrar</button>
@@ -94,11 +94,12 @@
 
 							<?php
 								if ($erro == 1){
-									echo '<font color="#FF0000"> Usuário ou senha inválido(s)</font>';
+									echo '<font color="#FF0000"> E-mail ou senha inválido(s)</font>';
 								}
 							?>
 
 						<!--</form>-->
+						</div>
 				  	</ul>
 	            </li>
 	          </ul>
@@ -111,8 +112,8 @@
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
-	        <h1>Bem vindo ao twitter clone</h1>
-	        <p>Veja o que está acontecendo agora...</p>
+	        <h1>Bem vindo ao Minhas Aplicações Financeiras</h1>
+	        <p>Que tal gerenciar os seus invetimentos...</p>
 	      </div>
 
 	      <div class="clearfix"></div>

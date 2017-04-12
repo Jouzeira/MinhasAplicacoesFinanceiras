@@ -4,6 +4,11 @@ $erro_cpf		= isset($_GET['erro_cpf'])		? $_GET['erro_cpf'] 	: 0;
 $erro_email 	= isset($_GET['erro_email'])	? $_GET['erro_email']	: 0;
 $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
 
+$cpf 			= isset($_GET['cpf'])			? $_GET['cpf']			: "";
+$nome 			= isset($_GET['nome'])			? $_GET['nome']			: "";
+$email 			= isset($_GET['email'])			? $_GET['email']			: "";
+$dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
+
 ?>
 
 <!DOCTYPE HTML>
@@ -56,7 +61,8 @@ $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
 				<form method="post" action="registra_usuario.php" id="formCadastrarse">
 					<div class="form-group">
 						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" 
-								maxlength="14" required="requiored" onkeypress="formatar('###.###.###-##', this);" >
+								maxlength="14" required="requiored" onkeypress="formatar('###.###.###-##', this);" 
+								value="<?= $cpf ?>">
 						
 						<?php 
 						
@@ -68,11 +74,13 @@ $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
 						
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required="requiored">
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required="requiored"
+						value="<?= $nome ?>" maxlength="60">
 					</div>
 
 					<div class="form-group">
-						<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="requiored">
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="requiored"
+						value="<?= $email?>" maxlength="60">
 						
 						<?php 
 						
@@ -84,15 +92,16 @@ $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
 						
 					</div>
 					<div class="form-group">
-						<input type="date" class="form-control" id="dtNascimento" name="dtNascimento" placeholder="Data de Nascimento" required="requiored">
+						<input type="date" class="form-control" id="dtNascimento" name="dtNascimento" placeholder="Data de Nascimento" required="requiored"
+						value="<?= $dtNascimento?>">
 					</div>
 					
 					<div class="form-group">
-						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="requiored">
+						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="requiored" maxlength="32">
 					</div>
 					
 					<div class="form-group">
-						<input type="password" class="form-control" id="confirmSenha" name="confirmSenha" placeholder="Confirme a Senha" required="requiored">
+						<input type="password" class="form-control" id="confirmSenha" name="confirmSenha" placeholder="Confirme a Senha" required="requiored" maxlength="32">
 					
 						<?php 
 						
