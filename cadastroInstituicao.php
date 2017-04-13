@@ -1,13 +1,21 @@
-<?php 
+<?php
 
-$erro_cpf		= isset($_GET['erro_cpf'])		? $_GET['erro_cpf'] 	: 0;
+session_start();
+
+if(!isset($_SESSION['NOME_PESSOA'])){
+	header('Location: index.php?erro=1');
+}
+
+$erro_cnpj		= isset($_GET['erro_cpf'])		? $_GET['erro_cpf'] 	: 0;
 $erro_email 	= isset($_GET['erro_email'])	? $_GET['erro_email']	: 0;
 $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
 
-$cpf 			= isset($_GET['cpf'])			? $_GET['cpf']			: "";
-$nome 			= isset($_GET['nome'])			? $_GET['nome']			: "";
-$email 			= isset($_GET['email'])			? $_GET['email']			: "";
-$dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
+$cnpj			= isset($_GET['cpf'])			? $_GET['cpf']			: "";
+$nomeInstituicao = isset($_GET['nome'])			? $_GET['nome']			: "";
+$codigo			= isset($_GET['email'])			? $_GET['email']			: "";
+$nuAgencia		= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
+$nuConta		= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
+$vlTaxa			= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 
 ?>
 
@@ -43,7 +51,8 @@ $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="index.php">Voltar para Home</a></li>
+	            <li class="active"><a href="sair.php">Instituições Financeiras</a></li>
+	            <li><a href="sair.php">Sair</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
@@ -56,60 +65,46 @@ $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 
 	    	<div class="col-md-4"></div>
 	    	<div class="col-md-4">
-	    		<h3>Cadastre-se.</h3>
+	    		<h3>Instituição Financeira</h3>
 	    		<br />
-				<form method="post" action="registra_usuario.php" id="formCadastrarse">
+				<form method="post" action="registraInstituicao.php" id="formCadastroInstituicao">
 					<div class="form-group">
-						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" 
-								maxlength="14" required="requiored" onkeypress="formatar('###.###.###-##', this);" 
-								value="<?= $cpf ?>">
+						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" 
+								maxlength="18" required="requiored" onkeypress="formatar('##.###.###/####-##', this);" 
+								value="<?= $cnpj ?>"/>
 						
 						<?php 
 						
-							if ($erro_cpf){ // 1 é true e 0 é false
-								echo '<font style="color:#FF0000"> CPF já existe</font>';
+							if ($erro_cnpj){ // 1 é true e 0 é false
+								echo '<font style="color:#FF0000"> CNPJ já existe</font>';
 							}
 						
 						?>
 						
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required="requiored"
-						value="<?= $nome ?>" maxlength="60">
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da Instituição" required="requiored"
+						value="<?= $nomeInstituicao ?>" maxlength="100">
 					</div>
 
 					<div class="form-group">
-						<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="requiored"
-						value="<?= $email?>" maxlength="60">
-						
-						<?php 
-						
-						if ($erro_email){ // 1 é true e 0 é false
-							echo '<font style="color:#FF0000"> Email já existe</font>';
-							}
-						
-						?>
+						<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código da Instituição" required="requiored"
+						value="<?= $codigo?>" maxlength="10">
 						
 					</div>
 					<div class="form-group">
-						<input type="date" class="form-control" id="dtNascimento" name="dtNascimento" placeholder="Data de Nascimento" required="requiored"
-						value="<?= $dtNascimento?>">
+						<input type="text" class="form-control" id="nuAgencia" name="nuAgencia" placeholder="Número da Agência" required="requiored"
+						value="<?= $nuAgencia?>">
 					</div>
 					
 					<div class="form-group">
-						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="requiored" maxlength="32">
+						<input type="text" class="form-control" id="nuConta" name="nuConta" placeholder="Número da Conta" required="requiored" maxlength="32"
+						value="<?=$nuConta?>">
 					</div>
 					
 					<div class="form-group">
-						<input type="password" class="form-control" id="confirmSenha" name="confirmSenha" placeholder="Confirme a Senha" required="requiored" maxlength="32">
-					
-						<?php 
-						
-						if ($erro_senha){ // 1 é true e 0 é false
-							echo '<font style="color:#FF0000"> Confirmação de senha não confere</font>';
-							}
-						
-						?>
+						<input type="text" class="form-control" id="vlTaxa" name="vlTaxa" placeholder="Valor da taxa" required="requiored" maxlength="32"
+						value="<?=$vlTaxa?>">
 					
 					</div>
 					

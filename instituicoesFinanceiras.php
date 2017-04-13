@@ -40,7 +40,7 @@
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="instituicoesFinanceiras.php">Instituições Financeiras</a></li>
+	            <li class="active"><a href="sair.php">Instituições Financeiras</a></li>
 	            <li><a href="sair.php">Sair</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -54,12 +54,15 @@
 
 	    	<div class="col-md-4"></div>
 	    	<div class="col-md-4">
-	    		Usuário autenticado!!
+	    		Instituições Financeiras!!
 	    		<br />
 	    		<?= $_SESSION['NOME_PESSOA'] ?>
 	    		<br />
 	    		<?= $_SESSION['EMAIL_PESSOA'] ?>
-
+	    		<div>
+	    		<a class="btn btn-primary" href="cadastroInstituicao.php" role="button">Nova Instituição</a>
+	    		
+	    		</div>
 			</div>
 			<div class="col-md-4"></div>
 
