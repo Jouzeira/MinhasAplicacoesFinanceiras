@@ -6,16 +6,16 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
 }
 
-$erro_cnpj		= isset($_GET['erro_cpf'])		? $_GET['erro_cpf'] 	: 0;
-$erro_email 	= isset($_GET['erro_email'])	? $_GET['erro_email']	: 0;
-$erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
+$erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 
-$cnpj			= isset($_GET['cpf'])			? $_GET['cpf']			: "";
-$nomeInstituicao = isset($_GET['nome'])			? $_GET['nome']			: "";
-$codigo			= isset($_GET['email'])			? $_GET['email']			: "";
-$nuAgencia		= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
-$nuConta		= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
-$vlTaxa			= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
+$cnpj			= isset($_GET['cnpj'])			? $_GET['cnpj']				: "";
+$nomeInst		= isset($_GET['nomeInst'])		? $_GET['nomeInst']			: "";
+$codigo			= isset($_GET['codigo'])			? $_GET['codigo']			: "";
+$nuAgencia		= isset($_GET['nuAgencia'])		? $_GET['nuAgencia']		: "";
+$nuConta		= isset($_GET['nuConta'])		? $_GET['nuConta']			: "";
+$vlTaxa			= isset($_GET['vlTaxa'])		? $_GET['vlTaxa']			: "";
+$nuVerifAgencia	= isset($_GET['nuVerifAgencia'])	? $_GET['nuVerifAgencia']	: "";
+$nuVerifConta	= isset($_GET['nuVerifConta'])	? $_GET['nuVerifConta']		: "";
 
 ?>
 
@@ -83,27 +83,34 @@ $vlTaxa			= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 						
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da Instituição" required="requiored"
-						value="<?= $nomeInstituicao ?>" maxlength="100">
+						<input type="text" class="form-control" id="nomeInst" name="nomeInst" placeholder="Nome da Instituição" required="requiored"
+						value="<?= $nomeInst?>" maxlength="100">
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código da Instituição" required="requiored"
+						<input type="number" class="form-control" id="codigo" name="codigo" placeholder="Código do Banco/Instituição" required="requiored"
 						value="<?= $codigo?>" maxlength="10">
 						
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="nuAgencia" name="nuAgencia" placeholder="Número da Agência" required="requiored"
-						value="<?= $nuAgencia?>">
+					<div class="form-group col-md-9">
+						<input type="number" class="form-control" id="nuAgencia" name="nuAgencia" placeholder="Número da Agência" required="requiored"
+						value="<?= $nuAgencia?>" maxlength="11">
+					</div>
+					<div class="form-group col-md-3">
+						<input type="number" class="form-control" id="nuVerifAgencia" name="nuVerifAgencia" placeholder="Núm Verificador Agência" 
+						value="<?= $nuVerifAgencia?>" maxlength="2">
 					</div>
 					
-					<div class="form-group">
-						<input type="text" class="form-control" id="nuConta" name="nuConta" placeholder="Número da Conta" required="requiored" maxlength="32"
-						value="<?=$nuConta?>">
+					<div class="form-group col-md-9">
+						<input type="number" class="form-control" id="nuConta" name="nuConta" placeholder="Número da Conta" required="requiored" maxlength="11"
+						value="<?=$nuConta?>"> 
 					</div>
-					
+					<div class="form-group col-md-3">
+						<input type="number" class="form-control" id="nuVerifConta" name="nuVerifConta" placeholder="Núm Verificador Conta" 
+						value="<?= $nuVerifConta?>" maxlength="2">
+					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="vlTaxa" name="vlTaxa" placeholder="Valor da taxa" required="requiored" maxlength="32"
+						<input type="number" class="form-control" id="vlTaxa" name="vlTaxa" placeholder="Valor da taxa" required="requiored" maxlength="6"
 						value="<?=$vlTaxa?>">
 					
 					</div>
