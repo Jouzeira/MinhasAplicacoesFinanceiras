@@ -11,6 +11,7 @@
 	$nuConta= $_POST['nuConta'];
 	$nuVerifConta= $_POST['nuVerifConta'];
 	$vlTaxa= $_POST['vlTaxa'];
+	$seqInst=$_POST['seqInst'];
 
 	$verificar = array(".","/","-");
 	$substituir   = array("", "", "");
@@ -18,6 +19,36 @@
 
 	$objDB = new db();
 	$link = $objDB->conecta_mysql();
+	
+	$nuVerifAgencia = !is_null($nuVerifAgencia) && $nuVerifAgencia != ""? $nuVerifAgencia : null;
+	$nuVerifConta = !is_null($nuVerifConta) && $nuVerifConta != ""? $nuVerifConta: null;
+	$vlTaxa = !is_null($vlTaxa) && $vlTaxa != ""? $vlTaxa:0;
+	
+	if (!is_null($seqInst) && $seqInst != "" && $seqInst!=0){
+		$sql = " UPDATE maf.tb_instituicao_financeira
+		SET
+		NOME_INST_FINANCEIRA = '$nomeInst',
+		COD_INST_FINANCEIRA = $codigo,
+		AGENCIA_INST_FINANCEIRA = $nuAgencia,
+		CONTA_INST_FINANCEIRA = $nuConta,
+		TXMANUT_INST_FINANCEIRA = $vlTaxa";
+		if (!is_null($nuVerifAgencia)) {
+			$sql.=",COD_VERIF_AGEN_INST_FINANCEIRA = $nuVerifAgencia";
+		}
+		if (!is_null($nuVerifConta)) {
+			$sql.=",COD_VERIF_CONTA_INST_FINANCEIRA = $nuVerifConta";
+		}
+		$sql.=" WHERE `ID_INST_FINANCEIRA` = $seqInst";
+		
+		if (mysqli_query($link,$sql)){
+			header('Location: instituicoesFinanceiras.php?menuInst=1&msgAlterar=1&');
+			die(); //interrompe a execução do script
+		} else {
+			echo $sql;
+			echo '<br/> Erro ao registrar a instituição';
+			die(); //interrompe a execução do script
+		}
+	}
 	
 	$cnpj_existe = false;
 	
@@ -52,13 +83,11 @@
 			$retorno_get.= "erro_cnpj=1&";
 		}
 		
-		header('Location: cadastroInstituicao.php?'.$retorno_get);
+		header('Location: cadastroInstituicao.php?menuInst=1&'.$retorno_get);
 		die(); //interrompe a execução do script
 	}
 	
 	$ID_PESSOA = $_SESSION['ID_PESSOA'];
-	$nuVerifAgencia = !is_null($nuVerifAgencia) && $nuVerifAgencia != ""? $nuVerifAgencia : 0;
-	$nuVerifConta = !is_null($nuVerifConta) && $nuVerifConta != ""? $nuVerifConta: 0;
 	
 	echo $nuVerifAgencia."agencia <br/>";
 	
@@ -69,9 +98,16 @@
 			COD_INST_FINANCEIRA,
 			AGENCIA_INST_FINANCEIRA,
 			CONTA_INST_FINANCEIRA,
-			TXMANUT_INST_FINANCEIRA,
-			COD_VERIF_AGEN_INST_FINANCEIRA,
-			COD_VERIF_CONTA_INST_FINANCEIRA)
+			TXMANUT_INST_FINANCEIRA";
+			
+			if (!is_null($nuVerifAgencia)) {
+				$sql.=",COD_VERIF_AGEN_INST_FINANCEIRA";
+			}
+			if (!is_null($nuVerifConta)) {
+				$sql.=",COD_VERIF_CONTA_INST_FINANCEIRA";
+			}
+			
+			$sql.=")
 			VALUES
 			($ID_PESSOA,
 			'$nomeInst',
@@ -79,13 +115,22 @@
 			$codigo,
 			$nuAgencia,
 			$nuConta,
-			$vlTaxa,
-			$nuVerifAgencia,
-			$nuVerifConta)";
+			$vlTaxa";
+			
+			if (!is_null($nuVerifAgencia)) {
+				$sql.=",$nuVerifAgencia";
+			}
+			if (!is_null($nuVerifConta)) {
+				$sql.=",$nuVerifConta";
+			}
+			
+			$sql.=")";
+			
 
 	//executar a query => a função mysqli_query() espera 2 parâmetros: conexão e a query
 	if (mysqli_query($link,$sql)){
-		echo 'Instituição registrado com sucesso';
+		header('Location: instituicoesFinanceiras.php?menuInst=1&msgIncluir=1&');
+		die(); 
 	} else {
 		echo $sql;
 		echo '<br/> Erro ao registrar a instituição';

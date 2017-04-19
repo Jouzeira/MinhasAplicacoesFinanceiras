@@ -10,12 +10,13 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 
 $cnpj			= isset($_GET['cnpj'])			? $_GET['cnpj']				: "";
 $nomeInst		= isset($_GET['nomeInst'])		? $_GET['nomeInst']			: "";
-$codigo			= isset($_GET['codigo'])			? $_GET['codigo']			: "";
+$codigo			= isset($_GET['codigo'])		? $_GET['codigo']			: "";
 $nuAgencia		= isset($_GET['nuAgencia'])		? $_GET['nuAgencia']		: "";
 $nuConta		= isset($_GET['nuConta'])		? $_GET['nuConta']			: "";
 $vlTaxa			= isset($_GET['vlTaxa'])		? $_GET['vlTaxa']			: "";
 $nuVerifAgencia	= isset($_GET['nuVerifAgencia'])	? $_GET['nuVerifAgencia']	: "";
 $nuVerifConta	= isset($_GET['nuVerifConta'])	? $_GET['nuVerifConta']		: "";
+$seqInst		= isset($_GET['seqInst'])		? $_GET['seqInst']			: 0;
 
 ?>
 
@@ -37,26 +38,7 @@ $nuVerifConta	= isset($_GET['nuVerifConta'])	? $_GET['nuVerifConta']		: "";
 	<body>
 
 		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	           <img src="imagens/cifrao.png" height="40"/>
-	        </div>
-	        
-	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
-	            <li class="active"><a href="sair.php">Instituições Financeiras</a></li>
-	            <li><a href="sair.php">Sair</a></li>
-	          </ul>
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </nav>
+	    <?php include 'navegacao.php';?>
 
 
 	    <div class="container">
@@ -71,7 +53,7 @@ $nuVerifConta	= isset($_GET['nuVerifConta'])	? $_GET['nuVerifConta']		: "";
 					<div class="form-group">
 						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" 
 								maxlength="18" required="requiored" onkeypress="formatar('##.###.###/####-##', this);" 
-								value="<?= $cnpj ?>"/>
+								value="<?= $cnpj ?>" <?= $seqInst==0?"":" disabled"?>/>
 						
 						<?php 
 						
@@ -110,10 +92,11 @@ $nuVerifConta	= isset($_GET['nuVerifConta'])	? $_GET['nuVerifConta']		: "";
 						value="<?= $nuVerifConta?>" maxlength="2">
 					</div>
 					<div class="form-group">
-						<input type="number" class="form-control" id="vlTaxa" name="vlTaxa" placeholder="Valor da taxa" required="requiored" maxlength="6"
+						<input type="number" class="form-control" id="vlTaxa" name="vlTaxa" placeholder="Valor da taxa" maxlength="6"
 						value="<?=$vlTaxa?>">
 					
 					</div>
+						<input type="hidden" id=seqInst name="seqInst" value="<?=$seqInst?>">
 					
 					<button type="submit" class="btn btn-primary form-control">Cadastrar</button>
 				</form>
