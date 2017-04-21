@@ -1,5 +1,5 @@
 <?php
-class Pessoa {
+class PessoaBO {
 	
 	// Atributos
 	private $id;

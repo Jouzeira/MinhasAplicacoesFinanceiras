@@ -56,7 +56,7 @@ $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 
 	    	<div class="col-md-4"></div>
 	    	<div class="col-md-4">
-	    		<h3>Cadastre-se.</h3>
+	    		<h3>Cadastre-se</h3>
 	    		<br />
 				<form method="post" action="registra_usuario.php" id="formCadastrarse">
 					<div class="form-group">
