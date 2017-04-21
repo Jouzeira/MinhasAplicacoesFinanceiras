@@ -1,6 +1,6 @@
 <?php
 
-require_once('comuns/db.class.php');
+require_once('model/db.class.php');
 
 $codInst = isset($_GET['codInst'])		? $_GET['codInst'] 	: 0;
 

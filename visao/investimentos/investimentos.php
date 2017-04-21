@@ -5,7 +5,7 @@ session_start();
 if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
 }
-include '../consultaInstFinanceiras.php';
+include '../../consultaInstFinanceiras.php';
 
 $msgIncluir = isset($_GET['msgIncluir'])		? $_GET['msgIncluir'] 	: 0;
 $msgAlterar = isset($_GET['msgAlterar'])		? $_GET['msgAlterar'] 	: 0;
@@ -31,7 +31,7 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 	<body>
 
 		<!-- Static navbar -->
-	    <?php include '../navegacao.php';?>
+	    <?php include '../../navegacao.php';?>
 
 
 	    <div class="container">

@@ -2,7 +2,7 @@
 	
 	session_start(); //usar sempre como o primeiro comando 
 
-	require_once('comuns/db.class.php');
+	require_once('model/db.class.php');
 	
 	$email = $_POST['usuario'];
 	$senha = md5($_POST['senha']);

@@ -1,6 +1,6 @@
 <?php
 
-require_once('comuns/db.class.php');
+require_once('model/db.class.php');
 
 	$cpf = $_POST['cpf'];
 	$nome = $_POST['nome'];

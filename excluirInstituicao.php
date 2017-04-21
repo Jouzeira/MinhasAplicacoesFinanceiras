@@ -1,6 +1,6 @@
 <?php
 
-require_once('comuns/db.class.php');
+require_once('model/db.class.php');
 	session_start();
 	
 	$objDB = new db();

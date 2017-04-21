@@ -25,7 +25,7 @@ $menuUsuario= isset($_GET['menuUsuario'])			? $_GET['menuUsuario'] 	: 0;
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 	            <li <?php if($menubla==1) {?>class="active"<?php }?> ><a href="instituicoesFinanceiras.php?menubla=1">bla bla</a></li>
-	            <li <?php if($menuInvest==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
+	            <li <?php if($menuInvest==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/visao/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
 	            <li <?php if($menuInst==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/instituicoesFinanceiras.php?menuInst=1">Instituições Financeiras</a></li>
 	            <li <?php if($menuUsuario==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/perfilUsuario/usuario.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
 	            <li><a href="sair.php">Sair</a></li>
