@@ -1,13 +1,21 @@
 <?php 
 
+include_once 'controler/pessoa/preencheFormPessoa.php';
+
 $erro_cpf		= isset($_GET['erro_cpf'])		? $_GET['erro_cpf'] 	: 0;
 $erro_email 	= isset($_GET['erro_email'])	? $_GET['erro_email']	: 0;
 $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
 
-$cpf 			= isset($_GET['cpf'])			? $_GET['cpf']			: "";
-$nome 			= isset($_GET['nome'])			? $_GET['nome']			: "";
+$cpf 			= isset($_GET['cpf'])			? $_GET['cpf']				: "";
+$nome 			= isset($_GET['nome'])			? $_GET['nome']				: "";
 $email 			= isset($_GET['email'])			? $_GET['email']			: "";
 $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
+
+echo 		$pessoaBO->getId();
+echo '<br>'.$pessoaBO->getCpf();
+echo '<br>'.$pessoaBO->getNome();
+echo '<br>'.$pessoaBO->getEmail();
+echo '<br>'.$pessoaBO->getDtNascimento();
 
 ?>
 
