@@ -28,7 +28,7 @@ $menuUsuario= isset($_GET['menuUsuario'])			? $_GET['menuUsuario'] 	: 0;
 	            <li <?php if($menuInvest==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/visao/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
 	            <li <?php if($menuInst==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/instituicoesFinanceiras.php?menuInst=1">Instituições Financeiras</a></li>
 	            <li <?php if($menuUsuario==1) {?>class="active"<?php }?> ><a href="/MinhasAplicacoesFinanceiras/perfilUsuario/usuario.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
-	            <li><a href="sair.php">Sair</a></li>
+	            <li><a href="controler/sair.php">Sair</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
