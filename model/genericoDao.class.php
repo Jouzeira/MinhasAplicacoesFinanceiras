@@ -1,5 +1,5 @@
 <?php
-require_once('model/db.class.php');
+require_once('db.class.php');
 // include_once("usuariosVO.php");
 class genericoDAO extends db{
 // 	public function __construct(){}
@@ -51,7 +51,7 @@ class genericoDAO extends db{
 		if($resultado_id = mysqli_query($link, $sql)){
 			return $resultado_id;
 		}else {
-			echo 'Erro ao executar o select:<br/>'.$sql;
+			echo 'Erro ao executar o '.$tipoQuery.':<br/>'.$sql;
 			die();
 		}
 	}
