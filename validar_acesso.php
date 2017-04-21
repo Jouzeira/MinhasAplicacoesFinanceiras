@@ -2,7 +2,7 @@
 	
 	session_start(); //usar sempre como o primeiro comando 
 
-	require_once('db.class.php');
+	require_once('comuns/db.class.php');
 	
 	$email = $_POST['usuario'];
 	$senha = md5($_POST['senha']);
@@ -21,8 +21,10 @@
 
 		if(isset($dados_usuario['NOME_PESSOA'])){
 			//echo "usuário existe";
+			
+			$posicao = strpos($dados_usuario['NOME_PESSOA'], ' ');
 
-			$_SESSION['NOME_PESSOA'] = $dados_usuario['NOME_PESSOA'];
+			$_SESSION['NOME_PESSOA'] = substr($dados_usuario['NOME_PESSOA'], 0, $posicao);
 			$_SESSION['EMAIL_PESSOA'] = $dados_usuario['EMAIL_PESSOA'];
 			$_SESSION['ID_PESSOA'] = $dados_usuario['ID_PESSOA'];
 

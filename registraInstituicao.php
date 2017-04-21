@@ -1,6 +1,6 @@
 <?php
 
-	require_once('db.class.php');
+require_once('comuns/db.class.php');
 	session_start();
 
 	$cnpj= $_POST['cnpj'];

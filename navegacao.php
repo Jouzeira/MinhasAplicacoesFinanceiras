@@ -1,8 +1,9 @@
 <?php 
 
-$menubla= isset($_GET['menubla'])		? $_GET['menubla'] 	: 0;
-$menuble= isset($_GET['menuble'])		? $_GET['menuble'] 	: 0;
-$menuInst= isset($_GET['menuInst'])		? $_GET['menuInst'] 	: 0;
+$menubla= isset($_GET['menubla'])			? $_GET['menubla'] 	: 0;
+$menuInvest= isset($_GET['menuInvest'])		? $_GET['menuInvest'] 	: 0;
+$menuInst= isset($_GET['menuInst'])			? $_GET['menuInst'] 	: 0;
+$menuUsuario= isset($_GET['menuUsuario'])			? $_GET['menuUsuario'] 	: 0;
 
 ?>
 
@@ -24,8 +25,9 @@ $menuInst= isset($_GET['menuInst'])		? $_GET['menuInst'] 	: 0;
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
 	            <li <?php if($menubla==1) {?>class="active"<?php }?> ><a href="instituicoesFinanceiras.php?menubla=1">bla bla</a></li>
-	            <li <?php if($menuble==1) {?>class="active"<?php }?> ><a href="instituicoesFinanceiras.php?menuble=1">ble ble</a></li>
-	            <li <?php if($menuInst==1) {?>class="active"<?php }?> ><a href="instituicoesFinanceiras.php?menuInst=1">Instituições Financeiras</a></li>
+	            <li <?php if($menuInvest==1) {?>class="active"<?php }?> ><a href="/CursoPHP/MinhasAplicacoesFinanceiras/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
+	            <li <?php if($menuInst==1) {?>class="active"<?php }?> ><a href="/CursoPHP/MinhasAplicacoesFinanceiras/instituicoesFinanceiras.php?menuInst=1">Instituições Financeiras</a></li>
+	            <li <?php if($menuUsuario==1) {?>class="active"<?php }?> ><a href="/CursoPHP/MinhasAplicacoesFinanceiras/perfilUsuario/usuario.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
 	            <li><a href="sair.php">Sair</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->

@@ -18,7 +18,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<title>Twitter clone</title>
+		<title>M.A.F</title>
 		
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -39,11 +39,9 @@
 	    	<br /><br />
 
 	    	<div class="col-md-2">
-	    		Instituições Financeiras!!
 	    		<br />
 	    		<?= $_SESSION['NOME_PESSOA'] ?>
 	    		<br />
-	    		<?= $_SESSION['EMAIL_PESSOA'] ?>
 	    		<div>
 	    		<a class="btn btn-primary" href="cadastroInstituicao.php?menuInst=1&" role="button">Nova Instituição</a>
 	    		</div>
@@ -141,9 +139,6 @@
 
 		</div>
 
-
-	    </div>
-	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 
