@@ -50,7 +50,8 @@ class genericoDAO extends db{
 		if($resultado_id = mysqli_query($link, $sql)){
 			return $resultado_id;
 		}else {
-			echo 'Erro ao executar o '.$tipoQuery.':<br/>'.$sql;
+			
+			echo 'Erro ao executar o '.$tipoQuery.':<br/>'.$sql.'<br/>'.mysqli_error($link);;
 			die();
 		}
 	}
