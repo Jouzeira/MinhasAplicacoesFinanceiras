@@ -14,11 +14,19 @@ $pessoaBO->setSenha		(md5($_POST['senha']));
 
 $confirmaSenha = md5($_POST['confirmSenha']);
 
+//verifica confirmação de senha
 if (!$pessoaBO->isSenhaValida($confirmaSenha)){
 	header('Location: ../../inscrevase.php?'."erro_senha=1&");
 	die(); //interrompe a execução do script
 }
-	
+
+//verificar se o CPF já existe
+if ($pessoaDAO->CPFexiste($pessoaBO->getCPFsemMascara())){
+	header('Location: ../../inscrevase.php?'."erro_cpf=1&");
+	die(); //interrompe a execução do script
+}
+
+//Inserir dados da pessoa no banco	
 $inserirDadosPessoa = $pessoaDAO->inserirPessoa($pessoaBO);
 
 ?>

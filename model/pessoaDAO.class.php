@@ -15,15 +15,24 @@ class PessoaDAO {
 	}
 
 	public function inserirPessoa($pessoaBO){
-		
-		$this->genericoDAO->insert(	'tb_pessoa', 
+		$this->genericoDAO->insert	(	
+									'tb_pessoa', 
 									'CPF_PESSOA, NOME_PESSOA, EMAIL_PESSOA, DT_NAS_PESSOA, SENHA', 
 									 "'".$pessoaBO->getCPFsemMascara()."',
 									 '".$pessoaBO->getNome()."',
 									 '".$pessoaBO->getEmail()."',
 									 '".$pessoaBO->getDtNascimento()."',
-									 '".$pessoaBO->getSenha()."'
-									");
+									 '".$pessoaBO->getSenha()."'"
+									);
+	}
+	
+	public function CPFexiste($cpfConsulta){
+		$resultadoCpfExiste = $this->genericoDAO->select	(	
+										'tb_pessoa',
+									   	'CPF_PESSOA',
+										"CPF_PESSOA = '".$cpfConsulta."'"	
+									  	);
+		return mysqli_fetch_array($resultadoCpfExiste,MYSQLI_ASSOC);
 	}
 
 } // ========== / Class PessoaDAO ============
