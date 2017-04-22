@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+// session_start();
 
 require_once '../../model/tipoInvestimentoDAO.class.php';
 require_once '../../bo/tipoInvestimentoBO.class.php';
@@ -65,10 +65,6 @@ while ($linha = mysqli_fetch_array($resultInstFinanceira,MYSQLI_ASSOC)) {
 	$instFinanceira->setCodVerifAgencia($linha['COD_VERIF_AGEN_INST_FINANCEIRA']);
 	$instFinanceira->setCodVerifConta($linha['COD_VERIF_CONTA_INST_FINANCEIRA']);
 	$listInstFinanceira[]=$instFinanceira;
-}
-
-foreach ($listInstFinanceira as $tipo) {
-	echo "<br/>".$tipo->getNome();
 }
 
 ?>

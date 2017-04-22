@@ -43,7 +43,7 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 	    		<?= $_SESSION['NOME_PESSOA'] ?>
 	    		<br />
 	    		<div>
-	    		<a class="btn btn-primary" href="../../controler/investimento/preencheFormInvestimento.php" role="button">Novo Investimento</a>
+	    		<a class="btn btn-primary" href="cadastroInvestimentos.php?menuInvest=1&" role="button">Novo Investimento</a>
 <!-- 	    		<a class="btn btn-primary" href="cadastroInvestimentos.php?menuInvest=1&" role="button">Novo Investimento</a> -->
 	    		</div>
 	    	</div>

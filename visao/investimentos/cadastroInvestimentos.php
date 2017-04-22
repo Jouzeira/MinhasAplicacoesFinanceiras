@@ -1,22 +1,13 @@
 <?php
 
 session_start();
+include '../../controler/investimento/preencheFormInvestimento.php';
 
 if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
 }
 
 $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
-
-$cnpj			= isset($_GET['cnpj'])			? $_GET['cnpj']				: "";
-$nomeInst		= isset($_GET['nomeInst'])		? $_GET['nomeInst']			: "";
-$codigo			= isset($_GET['codigo'])		? $_GET['codigo']			: "";
-$nuAgencia		= isset($_GET['nuAgencia'])		? $_GET['nuAgencia']		: "";
-$nuConta		= isset($_GET['nuConta'])		? $_GET['nuConta']			: "";
-$vlTaxa			= isset($_GET['vlTaxa'])		? $_GET['vlTaxa']			: "";
-$nuVerifAgencia	= isset($_GET['nuVerifAgencia'])	? $_GET['nuVerifAgencia']	: "";
-$nuVerifConta	= isset($_GET['nuVerifConta'])	? $_GET['nuVerifConta']		: "";
-$seqInst		= isset($_GET['seqInst'])		? $_GET['seqInst']			: 0;
 
 ?>
 
@@ -51,22 +42,13 @@ $seqInst		= isset($_GET['seqInst'])		? $_GET['seqInst']			: 0;
 	    		<br />
 				<form method="post" action="../../controler/investimento/controleInvestimento.php" id="formCadastroInvestimento">
 					<div class="form-group">
-						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" 
-								maxlength="18" required="requiored" onkeypress="formatar('##.###.###/####-##', this);" 
-								value="<?= $cnpj ?>" <?= $seqInst==0?"":" disabled"?>/>
+						<select class="form-control" name="tipoCategoria" id="tipoCategoria">
 						
-						<?php 
+							<?php foreach ($listTipoCategoria as $tipoCategoria) {?>
+	  							<option value="<?= $tipoCategoria->getId()?>"><?= $tipoCategoria->getNomeTipoCategoria()?></option>
+	  						<?php }?>
+						</select>
 						
-							if ($erro_cnpj){ // 1 é true e 0 é false
-								echo '<font style="color:#FF0000"> CNPJ já existe</font>';
-							}
-						
-						?>
-						
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="nomeInst" name="nomeInst" placeholder="Nome da Instituição" required="requiored"
-						value="<?= $nomeInst?>" maxlength="100">
 					</div>
 
 					<div class="form-group">
