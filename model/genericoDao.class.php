@@ -29,7 +29,6 @@ class genericoDAO extends db{
 	public function insert($tabela,$fields,$params){
 		
 		$sql = "INSERT INTO $tabela ($fields) VALUES ($params)";
-		$t=$this->insertDB($sql,$params);
 		return $this->resultado ( $this->getlink(), $sql,"insert" );
 	}
 	

@@ -1,4 +1,7 @@
 <?php
+
+// ========================== REGRAS DE NEGÓCIO ============================
+
 class PessoaBO {
 	
 	// Atributos
@@ -45,6 +48,16 @@ class PessoaBO {
 	}
 	public function getSenha() {
 		return $this->senha;
+	}
+	
+	public function getCPFsemMascara(){
+		$verificar = array(".", "-");
+		$substituir   = array("", "");
+		return str_replace($verificar, $substituir, $this->cpf);
+	}
+	
+	public function isSenhaValida($confirmaSenha){
+		return $confirmaSenha == $this->senha;
 	}
 }
 

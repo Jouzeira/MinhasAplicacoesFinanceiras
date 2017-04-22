@@ -22,4 +22,5 @@ $pessoaBO->setDtNascimento($resultado['DT_NAS_PESSOA']);
 // echo '<br>'.$pessoaBO->getNome();
 // echo '<br>'.$pessoaBO->getEmail();
 // echo '<br>'.$pessoaBO->getDtNascimento();
+
 ?>

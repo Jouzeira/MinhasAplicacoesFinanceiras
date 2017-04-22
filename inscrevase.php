@@ -66,7 +66,7 @@ echo '<br>'.$pessoaBO->getDtNascimento();
 	    	<div class="col-md-4">
 	    		<h3>Cadastre-se</h3>
 	    		<br />
-				<form method="post" action="registra_usuario.php" id="formCadastrarse">
+				<form method="post" action="controler/pessoa/controleFormPessoa.php" id="formCadastrarse">
 					<div class="form-group">
 						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" 
 								maxlength="14" required="requiored" onkeypress="formatar('###.###.###-##', this);" 
