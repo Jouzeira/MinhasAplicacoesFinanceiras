@@ -71,7 +71,7 @@
 				<form method="post" action="../../controler/pessoa/controleAlteracaoPessoa.php">
 					<div class="form-group">
 						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required onkeypress="formatar('###.###.###-##',this);" 
-						value="<?= $pessoaBO->getCPFcomMascara($cpf) ?>" >
+						value="<?= $pessoaBO->getCPFcomMascara($cpf) ?>" readonly >
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" maxlength="60" required value="<?= $nome ?>">
@@ -89,7 +89,7 @@
 					</div>
 					<button type="submit" class="btn btn-warning form-control">ALTERAR DADOS</button>
 				</form>
-
+				<div class="page-header"></div>
 			</div>	<!--  / col-md-4 -->
 			<div class="col-md-4"></div>		
 		</div> <!--  / div row -->
@@ -98,8 +98,7 @@
 
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<br>
-				<br>
+
 				<?php if ($msgAlterarSenha == 1) { ?>
 				<div class="alert alert-info" role="alert">
 					<!-- ARIA - Accessible Rich Internet Applications (Usabilidade) -->
