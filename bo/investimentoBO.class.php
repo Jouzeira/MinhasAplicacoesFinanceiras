@@ -123,6 +123,12 @@ class investimentoBO {
 		$substituir   = array(",");
 		return str_replace($verificar, $substituir, $this->taxaCorretagem);
 	}
+	public function getDataAplicacaoFormatada() {
+		return substr($this->dataAplicacao, 8,2)."/".substr($this->dataAplicacao, 5,2)."/".substr($this->dataAplicacao, 0,4);
+	}
+	public function getValorAplicacaoFormatado() {
+		return "R$ ".$this->getValorAplicacaoPadraoTela();
+	}
 }
 
 ?>

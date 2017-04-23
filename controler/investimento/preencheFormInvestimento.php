@@ -10,6 +10,8 @@ require_once '../../model/tipoCategoriaDAO.class.php';
 require_once '../../bo/tipoCategoriaBO.class.php';
 require_once '../../model/instituicaoFinanceiraDAO.class.php';
 require_once '../../bo/instituicaoFinanceiraBO.class.php';
+require_once '../../model/investimentoDAO.class.php';
+require_once '../../bo/investimentoBO.class.php';
 
 $tipoInvestimentoDAO= new TipoInvestimentoDAO();
 $resultTipoInvestimento= $tipoInvestimentoDAO->consultaListaTipoInvestimento();
@@ -65,6 +67,26 @@ while ($linha = mysqli_fetch_array($resultInstFinanceira,MYSQLI_ASSOC)) {
 	$instFinanceira->setCodVerifAgencia($linha['COD_VERIF_AGEN_INST_FINANCEIRA']);
 	$instFinanceira->setCodVerifConta($linha['COD_VERIF_CONTA_INST_FINANCEIRA']);
 	$listInstFinanceira[]=$instFinanceira;
+}
+
+	$investimentoBO = new investimentoBO();
+if (isset($_GET['valor'])) {
+	$investimentoDAO = new InvestimentoDAO();
+	$resultInvestimento = $investimentoDAO->consultarPorId($_GET['valor']);
+	$investimentoBO->setId($resultInvestimento['ID_INVESTIMENTO']);
+	$investimentoBO->setIdTipo($resultInvestimento['ID_TIPO_INVESTIMENTO']);
+	$investimentoBO->setIdPessoa($resultInvestimento['ID_PESSOA']);
+	$investimentoBO->setIdTipoRenda($resultInvestimento['ID_TIPO_RENDA']);
+	$investimentoBO->setIdTipoCategoria($resultInvestimento['ID_TIPO_CATEGORIA']);
+	$investimentoBO->setIdInstFinanceira($resultInvestimento['ID_INST_FINANCEIRA']);
+	$investimentoBO->setNomeInvestimento($resultInvestimento['NOME_INVESTIMENTO']);
+	$investimentoBO->setDataAplicacao($resultInvestimento['DT_APLICACAO_INVESTIMENTO']);
+	$investimentoBO->setDataMinimaResgate($resultInvestimento['DT_MINIMA_RESGATE_INVESTIMENTO']);
+	$investimentoBO->setDataVencimento($resultInvestimento['DT_VENCIMENTO_INVESTIMENTO']);
+	$investimentoBO->setValorAplicacao($resultInvestimento['VL_APLICACAO_INVESTIMENTO']);
+	$investimentoBO->setTaxaContratada($resultInvestimento['TX_CONTRATADA_INVESTIMENTO']);
+	$investimentoBO->setTaxaCorretagem($resultInvestimento['TX_CORRETAGEM_INVESTIMENTO']);
+	
 }
 
 ?>

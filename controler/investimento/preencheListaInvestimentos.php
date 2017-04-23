@@ -16,6 +16,7 @@
 	$instituicaoFinanceiraDAO = new InstituicaoFinanceiraDAO();
 	
 	$listaInvestimentoBO = array();
+	$total = 0;
 	while ($linha = mysqli_fetch_array($resultado,MYSQLI_ASSOC)) {
 		$investimentoBO = new investimentoBO();
 		$investimentoBO->setId($linha['ID_INVESTIMENTO']);
@@ -31,6 +32,7 @@
 		$investimentoBO->setValorAplicacao($linha['VL_APLICACAO_INVESTIMENTO']);
 		$investimentoBO->setTaxaContratada($linha['TX_CONTRATADA_INVESTIMENTO']);
 		$investimentoBO->setTaxaCorretagem($linha['TX_CORRETAGEM_INVESTIMENTO']);
+		$total += $linha['VL_APLICACAO_INVESTIMENTO'];
 		$listaInvestimentoBO[]=$investimentoBO;
 	}
 

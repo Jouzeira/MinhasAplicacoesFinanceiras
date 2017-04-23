@@ -39,12 +39,9 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 	    	<br /><br />
 
 	    	<div class="col-md-2">
-	    		<br />
-	    		<?= $_SESSION['NOME_PESSOA'] ?>
-	    		<br />
+	    	<br /><br /><br /><br />
 	    		<div>
 	    		<a class="btn btn-primary" href="cadastroInvestimentos.php?menuInvest=1&" role="button">Novo Investimento</a>
-<!-- 	    		<a class="btn btn-primary" href="cadastroInvestimentos.php?menuInvest=1&" role="button">Novo Investimento</a> -->
 	    		</div>
 	    	</div>
 	    	<div class="col-md-10">
@@ -79,7 +76,7 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 	    	}
 	    	?>
 				<table class="table table-striped table-bordered table-hover table-responsive"> 
-					<caption>Investimentos</caption> 
+					<caption><h3>Investimentos</h3></caption> 
 					<thead> 
 						<tr> 
 							<th>Renda</th> 
@@ -98,10 +95,10 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 							<td><?=$investimentoBO->getIdTipo()?></td> 
 							<td><?=$investimentoBO->getIdInstFinanceira()?></td> 
 							<td><?=$investimentoBO->getNomeInvestimento()?></td> 
-							<td><?=$investimentoBO->getDataAplicacao()?></td> 
-							<td><?=$investimentoBO->getValorAplicacao()?></td> 
+							<td><?=$investimentoBO->getDataAplicacaoFormatada()?></td> 
+							<td><?=$investimentoBO->getValorAplicacaoFormatado()?></td> 
 							<td>
-								<a href="consultaInstFinanceiras.php?menuInst=1&codInst=<?= $linha['ID_INST_FINANCEIRA']?>">
+								<a href="cadastroInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 								</a>
 								<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" data-whatever="<?=$investimentoBO->getId()."|".$investimentoBO->getNomeInvestimento()?>">
@@ -110,6 +107,14 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 							</td> 
 						</tr> 
 					<?php }?>
+					<tr>
+						<th colspan="5">
+						Total
+						</th>
+						<th colspan="2">
+						<?="R$ ".$total?>
+						</th>
+					</tr>
 					</tbody> 
 				</table>
 	    	
@@ -154,7 +159,7 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 			  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 			  var modal = $(this)
 			  modal.find('.modal-title').text('Excluir o investimento ' + resultado[1] +"?")
-			  document.getElementById("btnExcluir").href="excluirInvestimento.php?excluir=" + resultado[0]
+			  document.getElementById("btnExcluir").href="../../controler/investimento/controleInvestimento.php?acao=excluir&valor=" + resultado[0]
 // 			  modal.find('.modal-footer a').href="cadastroInstituicao.php?menuInst=1&"
 			})
 

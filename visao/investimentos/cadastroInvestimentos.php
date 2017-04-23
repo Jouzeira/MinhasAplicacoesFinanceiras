@@ -49,13 +49,17 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 	    		<h3>Investimento</h3>
 	    		</div>
 	    		<br />
-				<form method="post" action="../../controler/investimento/controleInvestimento.php" id="formCadastroInvestimento">
+	    		<?php if($investimentoBO->getId()==null||$investimentoBO->getId()==""){?>
+				<form method="post" action="../../controler/investimento/controleInvestimento.php?acao=cadastrar" id="formCadastroInvestimento">
+				<?php }else {?>
+				<form method="post" action="../../controler/investimento/controleInvestimento.php?acao=alterar" id="formCadastroInvestimento">
+				<?php }?>
 					<div class="form-group col-md-4">
 						<select class="form-control" name="tipoCategoria" id="tipoCategoria" data-toggle="tooltip" data-placement="top" title="Tipo Categoria" required="required">
 						
 	  							<option value="">Tipo Categoria</option>
 							<?php foreach ($listTipoCategoria as $tipoCategoria) {?>
-	  							<option value="<?= $tipoCategoria->getId()?>"><?= $tipoCategoria->getNomeTipoCategoria()?></option>
+	  							<option value="<?= $tipoCategoria->getId()?>" <?php if($investimentoBO->getIdTipoCategoria()==$tipoCategoria->getId()){ ?> selected="selected" <?php } ?> ><?= $tipoCategoria->getNomeTipoCategoria()?></option>
 	  						<?php }?>
 						</select>
 						
@@ -65,7 +69,7 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 						
 	  							<option value="">Tipo Renda</option>
 							<?php foreach ($listTipoRenda as $tipoRenda) {?>
-	  							<option value="<?= $tipoRenda->getId()?>"><?= $tipoRenda->getNomeTipoRenda()?></option>
+	  							<option value="<?= $tipoRenda->getId()?>" <?php if($investimentoBO->getIdTipoRenda()==$tipoRenda->getId()){ ?> selected="selected" <?php } ?> ><?= $tipoRenda->getNomeTipoRenda()?></option>
 	  						<?php }?>
 						</select>
 						
@@ -75,7 +79,7 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 						
 	  							<option value="">Tipo Investimento</option>
 							<?php foreach ($listTipoInvestimento as $tipoInvestimento) {?>
-	  							<option value="<?= $tipoInvestimento->getId()?>"><?= $tipoInvestimento->getNomeTipoInvestimento()?></option>
+	  							<option value="<?= $tipoInvestimento->getId()?>" <?php if($investimentoBO->getIdTipo() ==$tipoInvestimento->getId()){ ?> selected="selected" <?php } ?> ><?= $tipoInvestimento->getNomeTipoInvestimento()?></option>
 	  						<?php }?>
 						</select>
 						
@@ -85,7 +89,7 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 						
 	  							<option value="">Instituição Financeira</option>
 							<?php foreach ($listInstFinanceira as $instituicao) {?>
-	  							<option value="<?= $instituicao->getId()?>"><?= $instituicao->getNome()?></option>
+	  							<option value="<?= $instituicao->getId()?>" <?php if($investimentoBO->getIdInstFinanceira() ==$instituicao->getId()){ ?> selected="selected" <?php } ?> ><?= $instituicao->getNome()?></option>
 	  						<?php }?>
 						</select>
 						
@@ -93,46 +97,51 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 
 					<div class="form-group col-md-12">
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome do Investimento Financeira" required="required"
-						value="" maxlength="100" data-toggle="tooltip" data-placement="top" title="Nome do Investimento Financeira">
+						value="<?=$investimentoBO->getNomeInvestimento()?>" maxlength="100" data-toggle="tooltip" data-placement="top" title="Nome do Investimento Financeira">
 					</div>
 					<div class="form-group col-md-4">
 						<input type="date" class="form-control" id="dataAplicacao" name="dataAplicacao" placeholder="Data Aplicação" required="required"
-						value="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Data Aplicação">
+						value="<?=$investimentoBO->getDataAplicacao()?>" maxlength="10" data-toggle="tooltip" data-placement="top" title="Data Aplicação">
 					</div>
 					<div class="form-group col-md-4">
 						<input type="date" class="form-control" id="dataResgate" name="dataResgate" placeholder="Data Min. Resgate" 
-						value="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Data Min. Resgate">
+						value="<?=$investimentoBO->getDataMinimaResgate()?>" maxlength="10" data-toggle="tooltip" data-placement="top" title="Data Min. Resgate">
 					</div>
 					<div class="form-group col-md-4">
 						<input type="date" class="form-control" id="dataVencimento" name="dataVencimento" placeholder="Data Vencimento"  
-						value="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Data Vencimento"> 
+						value="<?=$investimentoBO->getDataVencimento()?>" maxlength="10" data-toggle="tooltip" data-placement="top" title="Data Vencimento"> 
 					</div>
-					<div class="form-group col-md-12">
+					<div class="form-group col-md-4">
 						<div class="input-group">
 						<div class="input-group-addon">R$</div>
 						<input type="text" class="form-control" id="valorAplicado" name="valorAplicado" placeholder="Valor aplicado" required="required" 
-						value="" maxlength="15" pattern="[0-9]{1,9},[0-9]{2}$" data-toggle="tooltip" data-placement="top" title="Valor aplicado">
+						value="<?=$investimentoBO->getValorAplicacaoPadraoTela()?>" maxlength="15" pattern="[0-9]{1,9},[0-9]{2}$" data-toggle="tooltip" data-placement="top" title="Valor aplicado">
 						<div class="input-group-addon">0,00</div>
 						</div>
 					</div>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-4">
 						<div class="input-group">
-						<div class="input-group-addon">R$</div>
+						<div class="input-group-addon">%</div>
 						<input type="text" class="form-control" id="taxaContratada" name="taxaContratada" placeholder="Taxa Contratada"  
-						value="" maxlength="6" pattern="[0-9]{1,9},[0-9]{2}$" data-toggle="tooltip" data-placement="top" title="Taxa Contratada">
+						value="<?=$investimentoBO->getTaxaContratadaPadraoTela()?>" maxlength="6" pattern="[0-9]{1,9},[0-9]{2}$" data-toggle="tooltip" data-placement="top" title="Taxa Contratada">
 						<div class="input-group-addon">0,00</div>
 						</div>
 					</div>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-4">
 						<div class="input-group">
 						<div class="input-group-addon">R$</div>
 						<input type="text" class="form-control" id="taxaCorretagem" name="taxaCorretagem" placeholder="Taxa Corretagem"  
-						value="" maxlength="6" pattern="[0-9]{1,9},[0-9]{2}$" data-toggle="tooltip" data-placement="top" title="Taxa Corretagem">
+						value="<?=$investimentoBO->getTaxaCorretagemPadraoTela()?>" maxlength="6" pattern="[0-9]{1,9},[0-9]{2}$" data-toggle="tooltip" data-placement="top" title="Taxa Corretagem">
 						<div class="input-group-addon">0,00</div>
 						</div>
 					</div>
 					<div class="form-group col-md-12">
-					<button type="submit" class="btn btn-primary form-control">Cadastrar</button>
+						<?php if($investimentoBO->getId()==null||$investimentoBO->getId()==""){?>
+						<button type="submit" class="btn btn-primary form-control">Cadastrar</button>
+						<?php }else {?>
+						<input type="hidden" name="idInvestimento" id="idInvestimento" value="<?=$investimentoBO->getId()?>"/>
+						<button type="submit" class="btn btn-warning form-control">Alterar</button>
+						<?php }?>
 					</div>
 				</form>
 			</div>
