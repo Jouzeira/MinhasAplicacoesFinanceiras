@@ -4,6 +4,7 @@ $menuInvest 	= isset ( $_GET ['menuInvest'] ) 	? $_GET ['menuInvest'] 	: 0;
 $menuInst 		= isset ( $_GET ['menuInst'] ) 		? $_GET ['menuInst'] 	: 0;
 $menuUsuario 	= isset ( $_GET ['menuUsuario'] ) 	? $_GET ['menuUsuario'] : 0;
 
+//echo 'Nome pessoa sessão:'.$_SESSION['NOME_PESSOA']
 ?>
 
 <!-- Static navbar -->
@@ -31,8 +32,8 @@ $menuUsuario 	= isset ( $_GET ['menuUsuario'] ) 	? $_GET ['menuUsuario'] : 0;
 					href="/MinhasAplicacoesFinanceiras/instituicoesFinanceiras.php?menuInst=1">Instituições
 						Financeiras</a></li>
 				<li <?php if($menuUsuario==1) {?> class="active" <?php }?>><a
-					href="/MinhasAplicacoesFinanceiras/inscrevase.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
-				<li><a href="controler/sair.php">Sair</a></li>
+					href="/MinhasAplicacoesFinanceiras/visao/pessoa/alteraUsuario.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
+				<li><a href="/MinhasAplicacoesFinanceiras/controler/sair.php">Sair</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

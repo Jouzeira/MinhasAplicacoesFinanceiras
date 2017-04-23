@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-
+	
 	if(!isset($_SESSION['NOME_PESSOA'])){
 		header('Location: index.php?erro=1');
 	}
@@ -35,7 +35,9 @@
 
 	    	<div class="col-md-4"></div>
 	    	<div class="col-md-4">
-	    		Usuário autenticado!!
+	    		Usuário autenticado!
+	    		<br />
+	    		<?= $_SESSION['ID_PESSOA'] ?>
 	    		<br />
 	    		<?= $_SESSION['NOME_PESSOA'] ?>
 	    		<br />

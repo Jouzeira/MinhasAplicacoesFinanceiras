@@ -23,10 +23,10 @@
 			//echo "usuário existe";
 			
 			$posicao = strpos($dados_usuario['NOME_PESSOA'], ' ');
-
-			$_SESSION['NOME_PESSOA'] = substr($dados_usuario['NOME_PESSOA'], 0, $posicao);
-			$_SESSION['EMAIL_PESSOA'] = $dados_usuario['EMAIL_PESSOA'];
-			$_SESSION['ID_PESSOA'] = $dados_usuario['ID_PESSOA'];
+			
+			$_SESSION['NOME_PESSOA'] 	= ($posicao==null||$posicao==0||$posicao=="")?$dados_usuario['NOME_PESSOA']:substr($dados_usuario['NOME_PESSOA'], 0, $posicao);
+			$_SESSION['EMAIL_PESSOA'] 	= $dados_usuario['EMAIL_PESSOA'];
+			$_SESSION['ID_PESSOA'] 		= $dados_usuario['ID_PESSOA'];
 
 			header('Location: home.php');
 		} else {

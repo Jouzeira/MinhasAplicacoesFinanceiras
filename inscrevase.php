@@ -1,7 +1,5 @@
 <?php 
 
-include_once 'controler/pessoa/preencheFormPessoa.php';
-
 $erro_cpf		= isset($_GET['erro_cpf'])		? $_GET['erro_cpf'] 	: 0;
 $erro_email 	= isset($_GET['erro_email'])	? $_GET['erro_email']	: 0;
 $erro_senha 	= isset($_GET['erro_senha']) 	? $_GET['erro_senha']	: 0;
@@ -11,11 +9,11 @@ $nome 			= isset($_GET['nome'])			? $_GET['nome']				: "";
 $email 			= isset($_GET['email'])			? $_GET['email']			: "";
 $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 
-echo 		$pessoaBO->getId();
-echo '<br>'.$pessoaBO->getCpf();
-echo '<br>'.$pessoaBO->getNome();
-echo '<br>'.$pessoaBO->getEmail();
-echo '<br>'.$pessoaBO->getDtNascimento();
+// echo '<br>'.$pessoaBO->getId();
+// echo '<br>'.$pessoaBO->getCpf();
+// echo '<br>'.$pessoaBO->getNome();
+// echo '<br>'.$pessoaBO->getEmail();
+// echo '<br>'.$pessoaBO->getDtNascimento();
 
 ?>
 
@@ -26,6 +24,11 @@ echo '<br>'.$pessoaBO->getDtNascimento();
 
 		<title>Minhas Aplicações Financeiras</title>
 		
+		<!-- Tag de compatibilidade do HTML5 para IE menor que 9-->
+		<!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+		<![endif]-->
+			
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -93,7 +96,7 @@ echo '<br>'.$pessoaBO->getDtNascimento();
 						<?php 
 						
 						if ($erro_email){ // 1 é true e 0 é false
-							echo '<font style="color:#FF0000"> Email já existe</font>';
+							echo '<font style="color:#FF0000"> E-mail já existe</font>';
 							}
 						
 						?>
