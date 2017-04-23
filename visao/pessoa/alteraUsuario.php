@@ -10,18 +10,26 @@
 	$dtNascimento 	= $pessoaBO->getDtNascimento();
 	
 	$erro_email_outro = isset($_GET['erro_email_outro']) ? $_GET['erro_email_outro'] : 0;
+	$msgAlterar = isset($_GET['msgAlterar']) ? $_GET['msgAlterar'] : 0;
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<title>Altere seus dados</title>
+	
 	<meta charset="utf-8">
+	 
+	 <!-- Tag de compatibilidade com o Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Tag de compatibilidade do HTML5 para IE menor que 9-->
 	<!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
 	<![endif]-->
-	
+
+    <!-- viewport é toda a área de visualização do seu browser, então se você reduzir o tamanho da sua tela, você tem uma área de visualização, o seu viewport menor. Então essa é a tag para criação de design responsivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 	<!-- jquery - link cdn -->
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -48,11 +56,20 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
+				<?php if ($msgAlterar == 1) { ?>
+					<div class="alert alert-info" role="alert">
+						<!-- ARIA - Accessible Rich Internet Applications (Usabilidade) -->
+				        <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+						Dados alterados com sucesso!
+					</div>
+				<?php } ?>
 				
 				<form method="post" action="../../controler/pessoa/controleAlteracaoPessoa.php">
 					<div class="form-group">
 						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required onkeypress="formatar('###.###.###-##',this);" 
-						value="<?= $pessoaBO->getCPFcomMascara($cpf) ?>" disabled>
+						value="<?= $pessoaBO->getCPFcomMascara($cpf) ?>" >
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" maxlength="60" required value="<?= $nome ?>">
@@ -80,6 +97,15 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<br>
+				<br>
+				<div class="alert alert-info" role="alert">
+					<!-- ARIA - Accessible Rich Internet Applications (Usabilidade) -->
+			        <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+					Senha alterada com sucesso!
+				</div>
+			
 				<form method="post" action="">
 					<div class="form-group">
 						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" maxlength="32" required">

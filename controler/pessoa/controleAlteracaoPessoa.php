@@ -8,6 +8,9 @@ require_once '../../model/pessoaDAO.class.php';
 $pessoaBO 	= new PessoaBO();
 $pessoaDAO 	= new PessoaDAO();
 
+// echo $_POST['cpf'];
+// die();
+
 $pessoaBO->setCpf			($_POST['cpf']);
 $pessoaBO->setNome			($_POST['nome']);
 $pessoaBO->setEmail			($_POST['email']);
@@ -30,7 +33,9 @@ if ($pessoaDAO->EmailExisteOutro($pessoaBO->getEmail(),$_SESSION['ID_PESSOA'])){
 	header('Location: ../../visao/pessoa/alteraUsuario.php?'.$retorno_get);
 	die();
 } else {
-	$pessoaDAO->alterarPessoa($pessoaBO);
+	if($pessoaDAO->alterarPessoa($pessoaBO)){
+		header('Location: ../../visao/pessoa/alteraUsuario.php?msgAlterar=1');
+	}
 }
 
 ?>

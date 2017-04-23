@@ -60,14 +60,15 @@ class PessoaDAO {
 	
 	public function alterarPessoa($pessoaBO){
 		
-		$resultadoAlteracaoPessoa = $this->genericoDAO->update(
+		return $this->genericoDAO->update(
 			'tb_pessoa', 
-			"CPF_PESSOA = '".$pessoaBO->getCpf().
+			"CPF_PESSOA = '".$pessoaBO->getCPFsemMascara().
 			"', NOME_PESSOA = '".$pessoaBO->getNome().
 			"', EMAIL_PESSOA = '".$pessoaBO->getEmail().
 			"', DT_NAS_PESSOA = '".$pessoaBO->getDtNascimento()."'"
 			,"ID_PESSOA = ".$pessoaBO->getId()
 			);
+		
 	}
 
 } // ========== / Class PessoaDAO ============
