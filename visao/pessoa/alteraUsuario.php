@@ -8,6 +8,8 @@
 	$nome 			= $pessoaBO->getNome();
 	$email			= $pessoaBO->getEmail();
 	$dtNascimento 	= $pessoaBO->getDtNascimento();
+	
+	$erro_email_outro = isset($_GET['erro_email_outro']) ? $_GET['erro_email_outro'] : 0;
 ?>
 
 <!DOCTYPE html>
@@ -47,15 +49,21 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				
-				<form method="post" action="../../controler/pessoa/controleFormPessoa.php">
+				<form method="post" action="../../controler/pessoa/controleAlteracaoPessoa.php">
 					<div class="form-group">
-						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required onkeypress="formatar('###.###.###-##',this);" value="<?= $cpf ?>">
+						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required onkeypress="formatar('###.###.###-##',this);" 
+						value="<?= $pessoaBO->getCPFcomMascara($cpf) ?>" disabled>
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" maxlength="60" required value="<?= $nome ?>">
 					</div>
 					<div class="form-group">
 						<input type="email" class="form-control" id="email" name="email" placeholder="E-mail" maxlength="60" required" value="<?= $email ?>">
+						<?php 
+						if ($erro_email_outro){ // 1 é true e 0 é false
+							echo '<font style="color:#FF0000"> E-mail já existente.</font>';
+							}
+						?>
 					</div>
 					<div class="form-group">
 						<input type="date" class="form-control" id="dtNascimento" name="dtNascimento" placeholder="Data de Nascimento" maxlength="60" required value="<?= $dtNascimento ?>">
