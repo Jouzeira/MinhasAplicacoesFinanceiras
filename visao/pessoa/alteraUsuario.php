@@ -51,7 +51,8 @@
 				
 				<form method="post" action="../../controler/pessoa/controleAlteracaoPessoa.php">
 					<div class="form-group">
-						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required onkeypress="formatar('###.###.###-##',this);" value="<?= $cpf ?>">
+						<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required onkeypress="formatar('###.###.###-##',this);" 
+						value="<?= $pessoaBO->getCPFcomMascara($cpf) ?>" disabled>
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" maxlength="60" required value="<?= $nome ?>">

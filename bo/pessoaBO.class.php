@@ -56,6 +56,10 @@ class PessoaBO {
 		return str_replace($verificar, $substituir, $this->cpf);
 	}
 	
+	public function getCPFcomMascara($cpf){
+		return substr($cpf, 0,3).".".substr($cpf, 3,3).".".substr($cpf, 6,3)."-".substr($cpf, 9,2);
+	}
+	
 	public function isSenhaValida($confirmaSenha){
 		return $confirmaSenha == $this->senha;
 	}
