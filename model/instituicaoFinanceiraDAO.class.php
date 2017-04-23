@@ -13,6 +13,10 @@ class InstituicaoFinanceiraDAO {
 	function consultaInstituicaoFinanceira($idPessoa) {
 		return $this->genericoDAO->select("tb_instituicao_financeira","*","ID_PESSOA = $idPessoa");
 	}
+	
+	public function consultaPorId($id) {
+		return $this->genericoDAO->select("tb_instituicao_financeira","*","ID_INST_FINANCEIRA = ".$id);
+	}
 }
 
 ?>

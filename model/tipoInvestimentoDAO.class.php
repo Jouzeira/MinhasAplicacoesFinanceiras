@@ -13,6 +13,10 @@ require_once 'genericoDao.class.php';
 		function consultaListaTipoInvestimento() {
 			return $this->genericoDAO->select("tb_tipo_investimento","*",null);
 		}
+		
+		public function consultaPorId($id) {
+			return $this->genericoDAO->select("tb_tipo_investimento","*","ID_TIPO_INVESTIMENTO = ".$id);
+		}
 	}
 
 ?>

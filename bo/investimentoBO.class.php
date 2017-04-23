@@ -82,16 +82,46 @@ class investimentoBO {
 		return $this->valorAplicacao;
 	}
 	public function setTaxaContratada($taxaContratada) {
-		$this->taxaContratada = $taxaContratada;
+		$this->taxaContratada = ($taxaContratada==null || $taxaContratada=="")?0:$taxaContratada;
 	}
 	public function getTaxaContratada() {
 		return $this->taxaContratada;
 	}
 	public function setTaxaCorretagem($taxaCorretagem) {
-		$this->taxaCorretagem = $taxaCorretagem;
+		$this->taxaCorretagem = ($taxaCorretagem==null || $taxaCorretagem=="")?0:$taxaCorretagem;
 	}
 	public function getTaxaCorretagem() {
 		return $this->taxaCorretagem;
+	}
+	public function getValorAplicacaoPadraoBD() {
+		$verificar = array(",");
+		$substituir   = array(".");
+		return str_replace($verificar, $substituir, $this->valorAplicacao);
+	}
+	public function getTaxaContratadaPadraoBD() {
+		$verificar = array(",");
+		$substituir   = array(".");
+		return str_replace($verificar, $substituir, $this->taxaContratada);
+	}
+	public function getTaxaCorretagemPadraoBD() {
+		$verificar = array(",");
+		$substituir   = array(".");
+		return str_replace($verificar, $substituir, $this->taxaCorretagem);
+	}
+	public function getValorAplicacaoPadraoTela() {
+		$verificar = array(".");
+		$substituir   = array(",");
+		return str_replace($verificar, $substituir, $this->valorAplicacao);
+	}
+	public function getTaxaContratadaPadraoTela() {
+		$verificar = array(".");
+		$substituir   = array(",");
+		return str_replace($verificar, $substituir, $this->taxaContratada);
+	}
+	public function getTaxaCorretagemPadraoTela() {
+		$verificar = array(".");
+		$substituir   = array(",");
+		return str_replace($verificar, $substituir, $this->taxaCorretagem);
 	}
 }
 

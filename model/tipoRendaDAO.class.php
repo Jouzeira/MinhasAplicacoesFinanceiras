@@ -13,6 +13,10 @@ class TipoRendaDAO {
 	function consultaListaTipoRenda() {
 		return $this->genericoDAO->select("tb_tipo_renda","*",null);
 	}
+	
+	public function consultaPorId($id) {
+		return $this->genericoDAO->select("tb_tipo_renda","*","ID_TIPO_RENDA = ".$id);
+	}
 }
 
 ?>
