@@ -8,9 +8,6 @@ require_once '../../model/pessoaDAO.class.php';
 $pessoaBO 	= new PessoaBO();
 $pessoaDAO 	= new PessoaDAO();
 
-// echo $_POST['cpf'];
-// die();
-
 $pessoaBO->setCpf			($_POST['cpf']);
 $pessoaBO->setNome			($_POST['nome']);
 $pessoaBO->setEmail			($_POST['email']);
@@ -19,12 +16,8 @@ $pessoaBO->setDtNascimento	($_POST['dtNascimento']);
 $email_existe_outro = false;
 
 //Buscar ID_PESSOA
-
 // $id = $pessoaDAO->consultarIdPessoa($pessoaBO->getEmail());
 $pessoaBO->setId($_SESSION['ID_PESSOA']);
-
-// $pessoaBO->setSenha		(md5($_POST['senha']));
-// $confirmaSenha = md5($_POST['confirmSenha']);
 
 //verificar se o e-mail já existe, exceto o dele mesmo
 if ($pessoaDAO->EmailExisteOutro($pessoaBO->getEmail(),$_SESSION['ID_PESSOA'])){

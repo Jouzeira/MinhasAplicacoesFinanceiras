@@ -68,7 +68,10 @@ class PessoaDAO {
 			"', DT_NAS_PESSOA = '".$pessoaBO->getDtNascimento()."'"
 			,"ID_PESSOA = ".$pessoaBO->getId()
 			);
-		
+	}
+	
+	public function alterarSenha($pessoaBO){
+		return $this->genericoDAO->update('tb_pessoa', "SENHA = '".$pessoaBO->getSenha()."'", "ID_PESSOA = ".$pessoaBO->getId());
 	}
 
 } // ========== / Class PessoaDAO ============

@@ -11,6 +11,8 @@
 	
 	$erro_email_outro = isset($_GET['erro_email_outro']) ? $_GET['erro_email_outro'] : 0;
 	$msgAlterar = isset($_GET['msgAlterar']) ? $_GET['msgAlterar'] : 0;
+	$erro_senha = isset($_GET['erro_senha']) ? $_GET['erro_senha'] : 0;
+	$msgAlterarSenha = isset($_GET['msgAlterarSenha']) ? $_GET['msgAlterarSenha'] : 0;
 ?>
 
 <!DOCTYPE html>
@@ -98,6 +100,7 @@
 			<div class="col-md-4">
 				<br>
 				<br>
+				<?php if ($msgAlterarSenha == 1) { ?>
 				<div class="alert alert-info" role="alert">
 					<!-- ARIA - Accessible Rich Internet Applications (Usabilidade) -->
 			        <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
@@ -105,14 +108,21 @@
 			        </button>
 					Senha alterada com sucesso!
 				</div>
+				<?php } ?>
 			
-				<form method="post" action="">
+				<form method="post" action="../../controler/pessoa/controleAlteracaoSenha.php">
 					<div class="form-group">
-						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" maxlength="32" required">
+						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" maxlength="32" required>
 					</div>					
 					<div class="form-group">
-						<input type="password" class="form-control" id="confirmSenha" name="confirmSenha" placeholder="Confirme a Senha" maxlength="32" required">
+						<input type="password" class="form-control" id="confirmSenha" name="confirmSenha" placeholder="Confirme a Senha" maxlength="32" required>
+						<?php 
+						if ($erro_senha){ // 1 é true e 0 é false
+								echo '<font style="color:#FF0000"> As senhas informadas não são iguais.</font>';
+								}
+						?>
 					</div>
+					
 					<button type="submit" class="btn btn-warning form-control">ALTERAR SENHA</button>
 				</form>
 
