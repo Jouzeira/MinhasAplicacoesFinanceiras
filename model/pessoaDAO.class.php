@@ -48,6 +48,27 @@ class PessoaDAO {
 				);
 		return mysqli_fetch_array($resultadoEmailExiste,MYSQLI_ASSOC);
 	}
+	
+	public function EmailExisteOutro($email,$id){
+		$resultadoEmailExisteOutro = $this->genericoDAO->select	(
+				'tb_pessoa',
+				'EMAIL_PESSOA',
+				"EMAIL_PESSOA = '".$email."' AND EMAIL_PESSOA <> (SELECT EMAIL_PESSOA FROM tb_pessoa WHERE ID_PESSOA = ".$id.")" 
+				);
+		return mysqli_fetch_array($resultadoEmailExisteOutro,MYSQLI_ASSOC);
+	}
+	
+	public function alterarPessoa($pessoaBO){
+		
+		$resultadoAlteracaoPessoa = $this->genericoDAO->update(
+			'tb_pessoa', 
+			"CPF_PESSOA = '".$pessoaBO->getCpf().
+			"', NOME_PESSOA = '".$pessoaBO->getNome().
+			"', EMAIL_PESSOA = '".$pessoaBO->getEmail().
+			"', DT_NAS_PESSOA = '".$pessoaBO->getDtNascimento()."'"
+			,"ID_PESSOA = ".$pessoaBO->getId()
+			);
+	}
 
 } // ========== / Class PessoaDAO ============
 
