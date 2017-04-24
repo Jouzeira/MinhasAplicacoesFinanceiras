@@ -104,6 +104,9 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 								<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" data-whatever="<?=$investimentoBO->getId()."|".$investimentoBO->getNomeInvestimento()?>">
 								<span class="glyphicon glyphicon-trash" ></span>
 								</button>
+								<a href="atualizarHistoricoInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
+								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+								</a>
 							</td> 
 						</tr> 
 					<?php }?>
