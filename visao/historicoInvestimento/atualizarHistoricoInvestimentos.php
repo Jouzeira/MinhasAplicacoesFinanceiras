@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include '../../controler/investimento/preencheAtualizaHistoricoInvest.php';
+include '../../controler/historicoInvestimento/preencheAtualizaHistoricoInvest.php';
 
 if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
@@ -51,34 +51,38 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 	    	<div class="col-md-3">
 	    		<label class="control-label " for="">Tipo Investimento</label>
 	    	<h5><?=$investimentoBO->getIdTipo()?></h5></div>
-	    	<div class="col-md-3">
+	    	<div class="col-md-2">
 	    		<label class="control-label " for="">Data da Aplicação</label>
 	    	<h5><?=$investimentoBO->getDataAplicacaoFormatada()?></h5></div>
-	    	<div class="col-md-3">
+	    	<div class="col-md-2">
 	    		<label class="control-label " for="">Valor Aplicado</label>
 	    	<h5><?=$investimentoBO->getValorAplicacaoFormatado()?></h5></div>
+	    	<div class="col-md-2">
+	    		<label class="control-label " for="">Saldo Líquido</label>
+	    	<h5><?=$valorLiquido?></h5></div>
 		</div>
 	    <div class="col-md-12 page-header">
 	    		<div class="col-md-12">
 	    		<h3>Atualizar rentabilidade</h3>
 	    		</div>
 	    		<br />
-				<form method="post" action="../../controler/investimento/controleInvestimento.php?acao=cadastrar" id="formCadastroInvestimento">
+				<form method="post" action="../../controler/investimento/controleHistoricoInvest.php?acao=cadastrar" id="formCadastroInvestimento">
 
 					<div class="form-group col-md-3">
 			    		<label class="control-label " for="dtAtualizacao">Data Atualização</label>
 						<input type="date" class="form-control" id="dtAtualizacao" name="dtAtualizacao" placeholder="Data Atualização" required="required"
-						value="<?=$investimentoBO->getNomeInvestimento()?>" maxlength="10" >
+						value="" maxlength="10" >
 					</div>
 					<div class="form-group col-md-4">
-			    		<label class="control-label " for="valorLiquido">Valor líquido</label>
+			    		<label class="control-label " for="valorLiquido">Valor líquido atual</label>
 						<div class="input-group">
 						<div class="input-group-addon">R$</div>
 						<input type="text" class="form-control" id="valorLiquido" name="valorLiquido" placeholder="Valor líquido" required="required" 
-						value="<?=$investimentoBO->getValorAplicacaoPadraoTela()?>" maxlength="15" pattern="[0-9]{1,9},[0-9]{2}$" >
+						value="" maxlength="15" pattern="[0-9]{1,9},[0-9]{2}$" >
 						<div class="input-group-addon">0,00</div>
 						</div>
 					</div>
+					<input type="hidden" id="idInvestimento" name="idInvestimento" value="<?=$investimentoBO->getId()?>"/>
 					<div class="form-group col-md-3">
 			    		<label class="control-label " for="botao"></label>
 						<button type="submit" class="btn btn-primary form-control">Registrar</button>
@@ -87,11 +91,27 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 					</div>
 				</form>
 		</div>
-			<div class="clearfix"></div>
-			<br />
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<table class="table table-striped table-bordered table-hover table-responsive"> 
+					<caption><h3>Histórico</h3></caption> 
+					<thead> 
+						<tr> 
+							<th>Data Atualização</th> 
+							<th>Valor líquido</th> 
+						</tr> 
+					</thead> 
+					<tbody> 
+					<?php foreach ($listaInvestimentoBO as $investimentoBO) {?>
+						<tr> 
+							<td></td> 
+							<td></td> 
+						</tr> 
+					<?php }?>
+					</tbody> 
+				</table>
+			</div>
+			<div class="col-md-1"></div>
 
 		</div>
 

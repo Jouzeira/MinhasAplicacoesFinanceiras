@@ -6,6 +6,8 @@
 	require_once '../../model/tipoRendaDAO.class.php';
 	require_once '../../model/tipoCategoriaDAO.class.php';
 	require_once '../../model/instituicaoFinanceiraDAO.class.php';
+	require_once '../../model/historicoInvestimentoDAO.class.php';
+	require_once '../../bo/historicoInvestimentoBO.class.php';
 	
 	$tipoInvestimentoDAO = new TipoInvestimentoDAO();
 	$tipoRendaDAO = new TipoRendaDAO();
@@ -28,5 +30,11 @@
 	$investimentoBO->setValorAplicacao($resultInvestimento['VL_APLICACAO_INVESTIMENTO']);
 	$investimentoBO->setTaxaContratada($resultInvestimento['TX_CONTRATADA_INVESTIMENTO']);
 	$investimentoBO->setTaxaCorretagem($resultInvestimento['TX_CORRETAGEM_INVESTIMENTO']);
+	
+	$historicoInvestimentoDAO = new HistoricoInvestimentoDAO();
+	$valorLiquido = mysqli_fetch_array($historicoInvestimentoDAO->consultarSaldoUltimaAtualizacao($_GET['valor']),MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO'];
+	if ($valorLiquido == null || $valorLiquido=="") {
+		$valorLiquido=$investimentoBO->getValorAplicacaoFormatado();
+	}
 
 ?>
