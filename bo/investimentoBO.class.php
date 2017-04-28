@@ -14,6 +14,7 @@ class investimentoBO {
 	private $valorAplicacao;
 	private $taxaContratada;
 	private $taxaCorretagem;
+	private $valorSaldoLiquido;
 	
 	public function setId($id) {
 		$this->id = $id;
@@ -93,6 +94,12 @@ class investimentoBO {
 	public function getTaxaCorretagem() {
 		return $this->taxaCorretagem;
 	}
+	public function setValorSaldoLiquido($valorSaldoLiquido){
+		$this->valorSaldoLiquido=$valorSaldoLiquido;
+	}
+	public function getValorSaldoLiquido(){
+		return $this->valorSaldoLiquido;
+	}
 	public function getValorAplicacaoPadraoBD() {
 		$verificar = array(",");
 		$substituir   = array(".");
@@ -107,6 +114,11 @@ class investimentoBO {
 		$verificar = array(",");
 		$substituir   = array(".");
 		return str_replace($verificar, $substituir, $this->taxaCorretagem);
+	}
+	public function getValorSaldoLiquidoPadraoBD() {
+		$verificar = array(",");
+		$substituir   = array(".");
+		return str_replace($verificar, $substituir, $this->valorSaldoLiquido);
 	}
 	public function getValorAplicacaoPadraoTela() {
 		$verificar = array(".");
@@ -123,11 +135,19 @@ class investimentoBO {
 		$substituir   = array(",");
 		return str_replace($verificar, $substituir, $this->taxaCorretagem);
 	}
+	public function getValorSaldoLiquidoPadraoTela() {
+		$verificar = array(".");
+		$substituir   = array(",");
+		return str_replace($verificar, $substituir, $this->valorSaldoLiquido);
+	}
 	public function getDataAplicacaoFormatada() {
 		return substr($this->dataAplicacao, 8,2)."/".substr($this->dataAplicacao, 5,2)."/".substr($this->dataAplicacao, 0,4);
 	}
 	public function getValorAplicacaoFormatado() {
 		return "R$ ".$this->getValorAplicacaoPadraoTela();
+	}
+	public function getValorSaldoLiquidoFormatado() {
+		return "R$ ".$this->getValorSaldoLiquidoPadraoTela();
 	}
 }
 

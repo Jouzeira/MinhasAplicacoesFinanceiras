@@ -42,6 +42,20 @@ class HistoricoInvestimentoBO {
 	public function getValorLiquido() {
 		return $this->valorLiquido;
 	}
+	
+	public function getValorLiquidoPadraoBD() {
+		$verificar = array(",");
+		$substituir   = array(".");
+		return str_replace($verificar, $substituir, $this->valorLiquido);
+	}
+	public function getValorLiquidoPadraoTela() {
+		$verificar = array(".");
+		$substituir   = array(",");
+		return str_replace($verificar, $substituir, $this->valorLiquido);
+	}
+	public function getValorLiquidoFormatado() {
+		return "R$ ".$this->getValorLiquidoPadraoTela();
+	}
 }
 
 ?>

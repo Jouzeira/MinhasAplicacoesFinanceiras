@@ -15,7 +15,7 @@ class HistoricoInvestimentoDAO {
 											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO", 
 				$historicoInvestimentoBO->getIdInvestimento()
 				.",'".$historicoInvestimentoBO->getDtAtualizacao()."'"
-				.",".$historicoInvestimentoBO->getValorLiquido());
+				.",".$historicoInvestimentoBO->getValorLiquidoPadraoBD());
 	}
 	
 	public function consultarSaldoUltimaAtualizacao($idInvestimento) {
@@ -24,6 +24,14 @@ class HistoricoInvestimentoDAO {
 				"ID_INVESTIMENTO = ".$idInvestimento);
 	}
 	
+	public function consultarDataAtualizacao($historicoInvestimentoBO) {
+		
+		
+		return $this->genericoDAO->select("tb_historico_investimento", "DT_ATUALIZACAO_HISTINVESTIMENTO", 
+				"DT_ATUALIZACAO_HISTINVESTIMENTO = '".$historicoInvestimentoBO->getDtAtualizacao()
+				."' AND ID_INVESTIMENTO = ".$historicoInvestimentoBO->getIdInvestimento());
+		
+	}
 	
 }
 

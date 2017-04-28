@@ -30,11 +30,12 @@
 	$investimentoBO->setValorAplicacao($resultInvestimento['VL_APLICACAO_INVESTIMENTO']);
 	$investimentoBO->setTaxaContratada($resultInvestimento['TX_CONTRATADA_INVESTIMENTO']);
 	$investimentoBO->setTaxaCorretagem($resultInvestimento['TX_CORRETAGEM_INVESTIMENTO']);
+	$investimentoBO->setValorSaldoLiquido($resultInvestimento['VL_SALDO_LIQUIDO_INVESTIMENTO']);
 	
-	$historicoInvestimentoDAO = new HistoricoInvestimentoDAO();
-	$valorLiquido = mysqli_fetch_array($historicoInvestimentoDAO->consultarSaldoUltimaAtualizacao($_GET['valor']),MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO'];
-	if ($valorLiquido == null || $valorLiquido=="") {
-		$valorLiquido=$investimentoBO->getValorAplicacaoFormatado();
-	}
+// 	$historicoInvestimentoDAO = new HistoricoInvestimentoDAO();
+// 	$valorLiquido = mysqli_fetch_array($historicoInvestimentoDAO->consultarSaldoUltimaAtualizacao($_GET['valor']),MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO'];
+// 	if ($valorLiquido == null || $valorLiquido=="") {
+// 		$valorLiquido=$investimentoBO->getValorAplicacaoFormatado();
+// 	}
 
 ?>

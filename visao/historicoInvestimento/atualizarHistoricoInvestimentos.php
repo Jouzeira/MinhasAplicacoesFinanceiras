@@ -7,7 +7,8 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
 }
 
-$erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
+$msgErroValorMenor= isset($_GET['msgErroValorMenor'])		? $_GET['msgErroValorMenor'] 	: 0;
+$msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 
 ?>
 
@@ -59,14 +60,38 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 	    	<h5><?=$investimentoBO->getValorAplicacaoFormatado()?></h5></div>
 	    	<div class="col-md-2">
 	    		<label class="control-label " for="">Saldo Líquido</label>
-	    	<h5><?=$valorLiquido?></h5></div>
+	    	<h5><?=$investimentoBO->getValorSaldoLiquidoFormatado()?></h5></div>
 		</div>
 	    <div class="col-md-12 page-header">
-	    		<div class="col-md-12">
-	    		<h3>Atualizar rentabilidade</h3>
+	    	<?php 
+	    	if ($msgErroValorMenor) {
+	    	?>
+	    		<div class="alert alert-danger alert-dismissible fade in" role="alert"> 
+	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    				<span aria-hidden="true">×</span>
+	    			</button> 
+	    			<strong>O Valor líquido atual não pode ser menor que o valor do Saldo Líquido!</strong> 
 	    		</div>
-	    		<br />
-				<form method="post" action="../../controler/investimento/controleHistoricoInvest.php?acao=cadastrar" id="formCadastroInvestimento">
+	    	<?php 
+	    	}
+	    	?>
+	    	<?php 
+	    	if ($msgErroData) {
+	    	?>
+	    		<div class="alert alert-danger alert-dismissible fade in" role="alert"> 
+	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    				<span aria-hidden="true">×</span>
+	    			</button> 
+	    			<strong>Já existe atualização para a data informada!</strong> 
+	    		</div>
+	    	<?php 
+	    	}
+	    	?>
+	    		<div class="col-md-12">
+	    		
+	    		<h3>Atualizar Saldo Líquido</h3>
+	    		</div>
+				<form method="post" action="../../controler/historicoInvestimento/controleHistoricoInvest.php?acao=cadastrar" id="formCadastroInvestimento">
 
 					<div class="form-group col-md-3">
 			    		<label class="control-label " for="dtAtualizacao">Data Atualização</label>
@@ -83,6 +108,7 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 						</div>
 					</div>
 					<input type="hidden" id="idInvestimento" name="idInvestimento" value="<?=$investimentoBO->getId()?>"/>
+					<input type="hidden" id="saldoLiquido" name="saldoLiquido" value="<?=$investimentoBO->getValorSaldoLiquidoPadraoTela()?>"/>
 					<div class="form-group col-md-3">
 			    		<label class="control-label " for="botao"></label>
 						<button type="submit" class="btn btn-primary form-control">Registrar</button>
