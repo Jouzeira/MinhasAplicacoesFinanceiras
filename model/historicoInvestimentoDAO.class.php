@@ -33,6 +33,12 @@ class HistoricoInvestimentoDAO {
 		
 	}
 	
+	public function consultarHistoricoPorIdInvestimento($idInvestimento) {
+		return $this->genericoDAO->select("tb_historico_investimento",
+											"*",
+											"ID_INVESTIMENTO = ".$idInvestimento." order by DT_ATUALIZACAO_HISTINVESTIMENTO desc");
+	}
+	
 }
 
 ?>

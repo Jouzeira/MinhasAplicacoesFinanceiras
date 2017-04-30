@@ -56,6 +56,9 @@ class HistoricoInvestimentoBO {
 	public function getValorLiquidoFormatado() {
 		return "R$ ".$this->getValorLiquidoPadraoTela();
 	}
+	public function getDtAtualizacaoFormatado(){
+		return substr($this->dtAtualizacao, 8,2)."/".substr($this->dtAtualizacao, 5,2)."/".substr($this->dtAtualizacao, 0,4);
+	}
 }
 
 ?>

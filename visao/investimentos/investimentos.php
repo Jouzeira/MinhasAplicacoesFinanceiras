@@ -79,24 +79,26 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 					<caption><h3>Investimentos</h3></caption> 
 					<thead> 
 						<tr> 
-							<th>Renda</th> 
+							<!-- <th>Renda</th>  -->
 							<th>Tipo Invest.</th> 
 							<th>Instituição</th> 
 							<th>Nome Invest.</th> 
 							<th>Dt. Aplicação</th> 
 							<th>Valor Aplicado</th> 
+							<th>Valor Líquido</th> 
 							<th></th> 
 						</tr> 
 					</thead> 
 					<tbody> 
 					<?php foreach ($listaInvestimentoBO as $investimentoBO) {?>
 						<tr> 
-							<td><?=$investimentoBO->getIdTipoRenda()?></td> 
+							<!-- <td>//<?=$investimentoBO->getIdTipoRenda()?></td> -->
 							<td><?=$investimentoBO->getIdTipo()?></td> 
 							<td><?=$investimentoBO->getIdInstFinanceira()?></td> 
 							<td><?=$investimentoBO->getNomeInvestimento()?></td> 
 							<td><?=$investimentoBO->getDataAplicacaoFormatada()?></td> 
 							<td><?=$investimentoBO->getValorAplicacaoFormatado()?></td> 
+							<td><?=$investimentoBO->getValorSaldoLiquido()?></td> 
 							<td>
 								<a href="cadastroInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -111,11 +113,14 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 						</tr> 
 					<?php }?>
 					<tr>
-						<th colspan="5">
+						<th colspan="4">
 						Total
 						</th>
+						<th >
+						<?="R$ ".$totalAplicado?>
+						</th>
 						<th colspan="2">
-						<?="R$ ".$total?>
+						<?="R$ ".$totalLiquido?>
 						</th>
 					</tr>
 					</tbody> 

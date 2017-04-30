@@ -117,28 +117,27 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 					</div>
 				</form>
 		</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<table class="table table-striped table-bordered table-hover table-responsive"> 
-					<caption><h3>Histórico</h3></caption> 
-					<thead> 
-						<tr> 
-							<th>Data Atualização</th> 
-							<th>Valor líquido</th> 
-						</tr> 
-					</thead> 
-					<tbody> 
-					<?php foreach ($listaInvestimentoBO as $investimentoBO) {?>
-						<tr> 
-							<td></td> 
-							<td></td> 
-						</tr> 
-					<?php }?>
-					</tbody> 
-				</table>
+			<div class="col-md-12">
+				<div class="col-md-12">
+					<table class="table table-striped table-bordered table-hover table-responsive"> 
+						<caption><h3>Histórico</h3></caption> 
+						<thead> 
+							<tr> 
+								<th>Data Atualização</th> 
+								<th>Valor líquido</th> 
+							</tr> 
+						</thead> 
+						<tbody> 
+						<?php foreach ($listaHistorico as $historicoInvestimentoBO) {?>
+							<tr> 
+								<td><?=$historicoInvestimentoBO->getDtAtualizacaoFormatado()?></td> 
+								<td><?=$historicoInvestimentoBO->getValorLiquidoFormatado()?></td> 
+							</tr> 
+						<?php }?>
+						</tbody> 
+					</table>
+				</div>
 			</div>
-			<div class="col-md-1"></div>
-
 		</div>
 
 
