@@ -16,6 +16,9 @@ class investimentoBO {
 	private $taxaCorretagem;
 	private $valorSaldoLiquido;
 	
+	private $somaSaldoLiquido;
+	private $nomeTipoInvestimento;
+	
 	public function setId($id) {
 		$this->id = $id;
 	}
@@ -148,6 +151,20 @@ class investimentoBO {
 	}
 	public function getValorSaldoLiquidoFormatado() {
 		return "R$ ".$this->getValorSaldoLiquidoPadraoTela();
+	}
+	
+	public function setSomaSaldoLiquido($somaSaldoLiquido) {
+		$this->somaSaldoLiquido = $somaSaldoLiquido;
+	}
+	public function getSomaSaldoLiquido() {
+		return $this->somaSaldoLiquido;
+	}
+	
+	public function setNomeTipoInvestimento($nomeTipoInvestimento) {
+		$this->nomeTipoInvestimento = $nomeTipoInvestimento;
+	}
+	public function getNomeTipoInvestimento() {
+		return $this->nomeTipoInvestimento;
 	}
 }
 

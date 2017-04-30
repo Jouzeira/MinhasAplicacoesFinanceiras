@@ -88,6 +88,21 @@ class InvestimentoDAO {
 											"VL_SALDO_LIQUIDO_INVESTIMENTO = ".$valor,
 											"ID_INVESTIMENTO = ".$id);
 	}
+	
+	public function consultaSaldoLiquidoPorTipoInvestimento($idPessoa) {
+		
+		$sql = "
+			Select 
+				sum(invest.VL_SALDO_LIQUIDO_INVESTIMENTO) as SOMA_SALDO_LIQUIDO
+				, invest.ID_TIPO_INVESTIMENTO 
+			    , tipoInvest.NOME_TIPO_INVESTIMENTO
+			from maf.tb_investimento as invest, maf.tb_tipo_investimento as tipoInvest
+			where 	invest.ID_PESSOA = ".$idPessoa." and
+					invest.ID_TIPO_INVESTIMENTO = tipoInvest.ID_TIPO_INVESTIMENTO
+			group by invest.ID_TIPO_INVESTIMENTO";
+		
+		return $this->genericoDAO->sqlDireto($sql, "select");
+	}
 }
 
 ?>

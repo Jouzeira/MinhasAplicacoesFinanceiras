@@ -46,6 +46,10 @@ class genericoDAO extends db{
 		return $this->resultado ( $this->getlink(), $sql,"delete" );
 	}
 	
+	public function sqlDireto($sql,$tipoQuery) {
+		return $this->resultado ( $this->getlink(), $sql, $tipoQuery);
+	}
+	
 	private function resultado($link, $sql,$tipoQuery) {
 		if($resultado_id = mysqli_query($link, $sql)){
 			return $resultado_id;
