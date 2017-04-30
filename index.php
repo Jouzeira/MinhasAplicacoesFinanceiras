@@ -113,7 +113,7 @@
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
 	        <h1>Bem vindo ao Minhas Aplicações Financeiras</h1>
-	        <p>Que tal gerenciar os seus invetimentos...</p>
+	        <p>Que tal gerenciar os seus invetimentos?</p>
 	      </div>
 
 	      <div class="clearfix"></div>
