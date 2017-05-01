@@ -1,6 +1,7 @@
 <?php
 
 require_once 'genericoDao.class.php';
+require_once 'investimentoDAO.class.php';
 
 class HistoricoInvestimentoDAO {
 	
@@ -12,11 +13,10 @@ class HistoricoInvestimentoDAO {
 	
 	public function cadastrarHistorico($historicoInvestimentoBO) {
 		return $this->genericoDAO->insert("tb_historico_investimento",
-											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO,VL_RENDIMENTO_DIARIO", 
+											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO", 
 				$historicoInvestimentoBO->getIdInvestimento()
 				.",'".$historicoInvestimentoBO->getDtAtualizacao()."'"
-				.",".$historicoInvestimentoBO->getValorLiquidoPadraoBD()
-				.",".$historicoInvestimentoBO->getValorRendimentoDiario());
+				.",".$historicoInvestimentoBO->getValorLiquidoPadraoBD());
 	}
 	
 	public function consultarSaldoUltimaAtualizacao($idInvestimento) {
@@ -42,9 +42,33 @@ class HistoricoInvestimentoDAO {
 	}
 	
 	public function consultarHistoricoPorIdInvestimento($idInvestimento) {
-		return $this->genericoDAO->select("tb_historico_investimento",
-											"*",
-											"ID_INVESTIMENTO = ".$idInvestimento." order by DT_ATUALIZACAO_HISTINVESTIMENTO desc");
+		return $this->genericoDAO->sqlDireto(
+				"SELECT * 
+					FROM (
+							select 
+								hi.ID_HISTORICO_INVESTIMENTO,
+								hi.ID_INVESTIMENTO,
+								hi.DT_ATUALIZACAO_HISTINVESTIMENTO,
+								hi.VLLIQUIDO_HISTINVESTIMENTO,
+								cast(( CAST((hi.VLLIQUIDO_HISTINVESTIMENTO - @valor) AS decimal(10,2)) / (datediff(hi.DT_ATUALIZACAO_HISTINVESTIMENTO, @data1))  ) AS decimal(10,2) ) as VL_RENDIMENTO_DIARIO,
+								@valor := hi.VLLIQUIDO_HISTINVESTIMENTO as valorVar,
+								@data1 := hi.DT_ATUALIZACAO_HISTINVESTIMENTO as dataVar
+							from maf.tb_historico_investimento hi,  
+							( select @valor := (SELECT 	VL_APLICACAO_INVESTIMENTO FROM maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t2,
+							( select @data1 := (SELECT  DT_APLICACAO_INVESTIMENTO FROM maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t3
+							where hi.ID_INVESTIMENTO = ".$idInvestimento." 
+						) tabCalc
+					ORDER BY tabCalc.DT_ATUALIZACAO_HISTINVESTIMENTO DESC "
+				, "select");
+	}
+	
+	public function excluirHistoricoPorId($idHistorico,$idInvestimento) {
+		$this->genericoDAO->delete("tb_historico_investimento",
+									"ID_HISTORICO_INVESTIMENTO = ".$idHistorico);
+		$result = $this->consultarHistoricoPorIdInvestimento($idInvestimento);
+		$investimentoDAO = new InvestimentoDAO();
+		return $investimentoDAO->alterarValorSaldoLiquido($idInvestimento, mysqli_fetch_array($result,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO']);
+		
 	}
 	
 }

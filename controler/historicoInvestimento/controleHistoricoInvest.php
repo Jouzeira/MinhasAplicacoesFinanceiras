@@ -8,9 +8,7 @@ require_once '../../bo/investimentoBO.class.php';
 switch ( $_GET['acao']) {
 	case "cadastrar":
 		
-		if ($_POST['saldoLiquido']<=$_POST['valorLiquido']) {
-			
-			
+		if ($_POST['saldoLiquido']<=$_POST['valorLiquido'] && $_POST['dataAplicacao'] < $_POST['dtAtualizacao']) {
 			
 			$historicoInvestimentoBO = new HistoricoInvestimentoBO();
 			$historicoInvestimentoBO->setIdInvestimento($_POST['idInvestimento']);
@@ -22,29 +20,6 @@ switch ( $_GET['acao']) {
 				header('Location: ../../visao/historicoInvestimento/atualizarHistoricoInvestimentos.php?valor='.$_POST['idInvestimento'].'&msgErroData=1');
 				die();
 			}
-			
-			$resultSaldoUltimaAtualizacao = $historicoInvestimentoDAO->consultarSaldoUltimaAtualizacao($historicoInvestimentoBO->getIdInvestimento());
-			$saldoUltimaAtualizacao = mysqli_fetch_array($resultSaldoUltimaAtualizacao,MYSQLI_ASSOC);
-			if ($saldoUltimaAtualizacao['VLLIQUIDO_HISTINVESTIMENTO'] != null && $saldoUltimaAtualizacao['VLLIQUIDO_HISTINVESTIMENTO'] != "") {
-				$valorLiquido = $saldoUltimaAtualizacao['VLLIQUIDO_HISTINVESTIMENTO'];
-				$data = $saldoUltimaAtualizacao['DT_ATUALIZACAO_HISTINVESTIMENTO'];
-			}else {
-				$valorLiquido = $_POST['saldoLiquido'];
-				$data = $_POST['dataAplicacao'];
-			}
-			
-			
-			$data1 = new DateTime( $_POST['dtAtualizacao']);
-			$data2 = new DateTime( $data);
-			
-			$intervalo = $data1->diff( $data2 );
-			
-			$diffValor = $_POST['valorLiquido'] - $valorLiquido;
-			
-			$historicoInvestimentoBO->setValorRendimentoDiario($diffValor/$intervalo->days);
-			
-// 			echo $intervalo->days;
-// 			." Intervalo é de {$intervalo->y} anos, {$intervalo->m} meses e {$intervalo->d} dias"; 
 			
 			if ($historicoInvestimentoDAO->cadastrarHistorico($historicoInvestimentoBO)) {
 				
@@ -69,6 +44,12 @@ switch ( $_GET['acao']) {
 	case "alterar":
 		break;
 	case "excluir":
+		
+		$historicoInvestimentoDAO = new HistoricoInvestimentoDAO();
+		if ($historicoInvestimentoDAO->excluirHistoricoPorId($_GET['valor1'],$_GET['valor2'])) {
+			header('Location: ../../visao/historicoInvestimento/atualizarHistoricoInvestimentos.php?valor='.$_GET['valor2']);
+		}
+		
 		break;
 		
 	default:

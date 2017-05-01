@@ -70,7 +70,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    				<span aria-hidden="true">×</span>
 	    			</button> 
-	    			<strong>O Valor líquido atual não pode ser menor que o valor do Saldo Líquido!</strong> 
+	    			<strong>O Valor líquido atual ou a data de atualização  não pode ser menor que o valor do Saldo Líquido ou menor que a data da aplicação respectivamente!</strong> 
 	    		</div>
 	    	<?php 
 	    	}
@@ -127,6 +127,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 								<th>Data Atualização</th> 
 								<th>Valor líquido</th> 
 								<th>Média rendimento diário</th> 
+								<th></th> 
 							</tr> 
 						</thead> 
 						<tbody> 
@@ -135,10 +136,33 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 								<td><?=$historicoInvestimentoBO->getDtAtualizacaoFormatado()?></td> 
 								<td><?=$historicoInvestimentoBO->getValorLiquidoFormatado()?></td> 
 								<td><?=$historicoInvestimentoBO->getValorRendimentoDiarioFormatado()?></td> 
+								<td>
+									<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" data-whatever="<?=$historicoInvestimentoBO->getDtAtualizacaoFormatado()."|".$historicoInvestimentoBO->getId()."|".$investimentoBO->getId()?>">
+									<span class="glyphicon glyphicon-remove" style="color:red" ></span>
+								</td> 
 							</tr> 
 						<?php }?>
 						</tbody> 
 					</table>
+					
+					<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel"></h4>
+						      </div>
+						      <div class="modal-body">
+						        Ao excluir esta atualização não poderá ser mais recuperado.
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						        <a class="btn btn-primary" id="btnExcluir" href="#" role="button">Excluir</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -158,6 +182,22 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 		$(function () {
 			  $('[data-toggle="tooltip"]').tooltip()
 			})
+		</script>
+		
+		<script type="text/javascript">
+
+		$('#myModal').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget) // Button that triggered the modal
+			  var recipient =  button.data('whatever') 
+			  var resultado = recipient.split("|") // Extract info from data-* attributes
+			  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+			  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			  var modal = $(this)
+			  modal.find('.modal-title').text('Excluir a atualização do dia ' + resultado[0] +"?")
+			  document.getElementById("btnExcluir").href="../../controler/historicoInvestimento/controleHistoricoInvest.php?acao=excluir&valor1=" + resultado[1]+"&valor2=" + resultado[2]
+// 			  modal.find('.modal-footer a').href="cadastroInstituicao.php?menuInst=1&"
+			})
+
 		</script>
 	
 	</body>

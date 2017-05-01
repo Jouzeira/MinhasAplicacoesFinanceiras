@@ -101,13 +101,13 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 							<td><?=$investimentoBO->getValorSaldoLiquido()?></td> 
 							<td>
 								<a href="cadastroInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-pencil" style="color:green"></span>
 								</a>
 								<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" data-whatever="<?=$investimentoBO->getId()."|".$investimentoBO->getNomeInvestimento()?>">
-								<span class="glyphicon glyphicon-trash" ></span>
+								<span class="glyphicon glyphicon-trash" style="color:red" ></span>
 								</button>
 								<a href="../historicoInvestimento/atualizarHistoricoInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
-								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-refresh" style="color:blue"></span>
 								</a>
 							</td> 
 						</tr> 

@@ -11,7 +11,7 @@ switch ( $_GET['acao']) {
 		if ($investimentoDAO->excluirInvestimento($_GET['valor'])) {
 			header('Location: ../../visao/investimentos/investimentos.php?msgExcluir=1');
 		}else {
-			echo "Erro ao cadastrar o Investimento.";
+			echo "Erro ao excluir o Investimento.";
 			die();;
 		}
 	break;
