@@ -12,20 +12,28 @@ class HistoricoInvestimentoDAO {
 	
 	public function cadastrarHistorico($historicoInvestimentoBO) {
 		return $this->genericoDAO->insert("tb_historico_investimento",
-											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO", 
+											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO,VL_RENDIMENTO_DIARIO", 
 				$historicoInvestimentoBO->getIdInvestimento()
 				.",'".$historicoInvestimentoBO->getDtAtualizacao()."'"
-				.",".$historicoInvestimentoBO->getValorLiquidoPadraoBD());
+				.",".$historicoInvestimentoBO->getValorLiquidoPadraoBD()
+				.",".$historicoInvestimentoBO->getValorRendimentoDiario());
 	}
 	
 	public function consultarSaldoUltimaAtualizacao($idInvestimento) {
-		return $this->genericoDAO->select("tb_historico_investimento",
-											"max(DT_ATUALIZACAO_HISTINVESTIMENTO),VLLIQUIDO_HISTINVESTIMENTO",
-				"ID_INVESTIMENTO = ".$idInvestimento);
+		
+		$sql = "SELECT 
+	DT_ATUALIZACAO_HISTINVESTIMENTO 
+    ,VLLIQUIDO_HISTINVESTIMENTO 
+    FROM maf.tb_historico_investimento 
+    where ID_INVESTIMENTO = ".$idInvestimento." and
+    DT_ATUALIZACAO_HISTINVESTIMENTO = (select  max(DT_ATUALIZACAO_HISTINVESTIMENTO)
+											FROM maf.tb_historico_investimento 
+											where ID_INVESTIMENTO = ".$idInvestimento." ) ";
+		
+		return $this->genericoDAO->sqlDireto($sql, "select");
 	}
 	
 	public function consultarDataAtualizacao($historicoInvestimentoBO) {
-		
 		
 		return $this->genericoDAO->select("tb_historico_investimento", "DT_ATUALIZACAO_HISTINVESTIMENTO", 
 				"DT_ATUALIZACAO_HISTINVESTIMENTO = '".$historicoInvestimentoBO->getDtAtualizacao()

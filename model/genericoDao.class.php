@@ -16,12 +16,9 @@ class genericoDAO extends db{
 // 	}
 	
 	public function select($tabela,$fields="*",$where=""){
-// 		$objDB = new db();
-// 		$link = $objDB->conecta_mysql();
 		
 		if(strlen($where)>0) $where= " where ".$where;
 		$sql = "SELECT $fields FROM $tabela$where";
-		
 		return $this->resultado ( $this->getlink(), $sql,"select" );
 		
 	}

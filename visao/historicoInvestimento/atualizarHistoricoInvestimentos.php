@@ -109,6 +109,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 					</div>
 					<input type="hidden" id="idInvestimento" name="idInvestimento" value="<?=$investimentoBO->getId()?>"/>
 					<input type="hidden" id="saldoLiquido" name="saldoLiquido" value="<?=$investimentoBO->getValorSaldoLiquidoPadraoTela()?>"/>
+					<input type="hidden" id="dataAplicacao" name="dataAplicacao" value="<?=$investimentoBO->getDataAplicacao()?>"/>
 					<div class="form-group col-md-3">
 			    		<label class="control-label " for="botao"></label>
 						<button type="submit" class="btn btn-primary form-control">Registrar</button>
@@ -125,6 +126,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 							<tr> 
 								<th>Data Atualização</th> 
 								<th>Valor líquido</th> 
+								<th>Média rendimento diário</th> 
 							</tr> 
 						</thead> 
 						<tbody> 
@@ -132,6 +134,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 							<tr> 
 								<td><?=$historicoInvestimentoBO->getDtAtualizacaoFormatado()?></td> 
 								<td><?=$historicoInvestimentoBO->getValorLiquidoFormatado()?></td> 
+								<td><?=$historicoInvestimentoBO->getValorRendimentoDiarioFormatado()?></td> 
 							</tr> 
 						<?php }?>
 						</tbody> 

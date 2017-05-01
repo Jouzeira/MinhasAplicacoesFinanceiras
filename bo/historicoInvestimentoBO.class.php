@@ -7,6 +7,7 @@ class HistoricoInvestimentoBO {
 	private $dtAtualizacao;
 	private $valorBruto;
 	private $valorLiquido;
+	private $valorRendimentoDiario;
 	
 	public function setId($id) {
 		$this->id = $id;
@@ -43,6 +44,13 @@ class HistoricoInvestimentoBO {
 		return $this->valorLiquido;
 	}
 	
+	public function setValorRendimentoDiario($valorRendimentoDiario){
+		$this->valorRendimentoDiario = $valorRendimentoDiario;
+	}
+	public function getValorRendimentoDiario() {
+		return $this->valorRendimentoDiario;
+	}
+	
 	public function getValorLiquidoPadraoBD() {
 		$verificar = array(",");
 		$substituir   = array(".");
@@ -58,6 +66,15 @@ class HistoricoInvestimentoBO {
 	}
 	public function getDtAtualizacaoFormatado(){
 		return substr($this->dtAtualizacao, 8,2)."/".substr($this->dtAtualizacao, 5,2)."/".substr($this->dtAtualizacao, 0,4);
+	}
+	
+	public function getValorRendimentoDiarioPadraoTela() {
+		$verificar = array(".");
+		$substituir   = array(",");
+		return str_replace($verificar, $substituir, $this->valorRendimentoDiario);
+	}
+	public function getValorRendimentoDiarioFormatado() {
+		return "R$ ".$this->getValorRendimentoDiarioPadraoTela();
 	}
 }
 

@@ -41,6 +41,7 @@
 		$historicoInvestimentoBO->setIdInvestimento($linha['ID_INVESTIMENTO']);
 		$historicoInvestimentoBO->setDtAtualizacao($linha['DT_ATUALIZACAO_HISTINVESTIMENTO']);
 		$historicoInvestimentoBO->setValorLiquido($linha['VLLIQUIDO_HISTINVESTIMENTO']);
+		$historicoInvestimentoBO->setValorRendimentoDiario($linha['VL_RENDIMENTO_DIARIO']);
 		$listaHistorico[] = $historicoInvestimentoBO;
 	}
 	

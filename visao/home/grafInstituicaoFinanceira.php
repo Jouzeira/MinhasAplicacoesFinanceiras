@@ -10,7 +10,7 @@ Highcharts.chart('grafPizzaInstituicao', {
 				        text: 'Percentual por Instituição Financeira'
 				    },
 				    tooltip: {
-				        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/> Valor: <b>R$ {point.y:.1f}</b>'
+				        pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b><br/> Valor: <b>R$ {point.y:.2f}</b>'
 				    },
 				    plotOptions: {
 				        pie: {
@@ -18,7 +18,7 @@ Highcharts.chart('grafPizzaInstituicao', {
 				            cursor: 'pointer',
 				            dataLabels: {
 				                enabled: true,
-				                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+				                format: '<b>{point.name}</b>: {point.percentage:.2f} %',
 				                style: {
 				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 				                },
