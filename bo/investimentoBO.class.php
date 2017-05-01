@@ -18,6 +18,7 @@ class investimentoBO {
 	
 	private $somaSaldoLiquido;
 	private $nomeTipoInvestimento;
+	private $nomeInstituicao;
 	
 	public function setId($id) {
 		$this->id = $id;
@@ -165,6 +166,13 @@ class investimentoBO {
 	}
 	public function getNomeTipoInvestimento() {
 		return $this->nomeTipoInvestimento;
+	}
+
+	public function setNomeInstituicao($nomeInstituicao) {
+		$this->nomeInstituicao= $nomeInstituicao;
+	}
+	public function getNomeInstituicao() {
+		return $this->nomeInstituicao;
 	}
 }
 

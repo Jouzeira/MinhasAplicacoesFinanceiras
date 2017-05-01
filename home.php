@@ -39,23 +39,16 @@
 		    	<div class="col-md-6">
 		    		<div id="grafPizzaTipoInvestimento" ></div>
 		    	</div>
-		    	<div class="col-md-6"></div>
+		    	<div class="col-md-6">
+		    		<div id="grafPizzaInstituicao" ></div>
+		    	</div>
 			</div>
+			<br>
 			<div class="row">
-		    	<div class="col-md-4"></div>
-		    	<div class="col-md-4">
-		    		Usuário autenticado!
-		    		<br />
-		    		<?= $_SESSION['ID_PESSOA'] ?>
-		    		<br />
-		    		<?= $_SESSION['NOME_PESSOA'] ?>
-		    		<br />
-		    		<?= $_SESSION['EMAIL_PESSOA'] ?>
-	
-				</div>
-				<div class="col-md-4"></div>
+		    	<div class="col-md-12">
+		    		<div id="capitalSaldoLiquido"></div>
+		    	</div>
 			</div>
-
 			<div class="clearfix"></div>
 			<br />
 			
@@ -65,9 +58,8 @@
 	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
-		<!-- monta gráfico pizza highcharts do tipo investimento -->
 			<script>
-				// Radialize the colors
+				Radialize the colors
 				Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
 				    return {
 				        radialGradient: {
@@ -81,46 +73,16 @@
 				        ]
 				    };
 				});
-				
-				// Build the chart
-				Highcharts.chart('grafPizzaTipoInvestimento', {
-				    chart: {
-				        plotBackgroundColor: null,
-				        plotBorderWidth: null,
-				        plotShadow: false,
-				        type: 'pie'
-				    },
-				    title: {
-				        text: 'Percentual por Tipo de Investimento'
-				    },
-				    tooltip: {
-				        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/> Valor: <b>R$ {point.y:.1f}</b>'
-				    },
-				    plotOptions: {
-				        pie: {
-				            allowPointSelect: true,
-				            cursor: 'pointer',
-				            dataLabels: {
-				                enabled: true,
-				                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-				                style: {
-				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-				                },
-				                connectorColor: 'silver'
-				            }
-				        }
-				    },
-				    series: [{
-				        name: 'Percentual',
-				        data: [
-					        <?php foreach ($listaInvestimentoPorTipo as $investimentoBO){?>
-				            { name: '<?=$investimentoBO->getNomeTipoInvestimento()?>',
-					          y: <?=$investimentoBO->getSomaSaldoLiquido()?> },
-				            <?php }?>
-				        ]
-				    }]
-				});
-	
 	</script>	
+				
+<!-- monta gráfico pizza highcharts do tipo investimento -->
+		<?php require_once 'visao/home/grafTipoInvestimento.php';?>
+
+<!-- Percentual por Instituição Financeira -->
+		<?php require_once 'visao/home/grafInstituicaoFinanceira.php';?>
+				
+<!-- Capital Aplicado x Saldo Líquido Atual --> 
+		<?php require_once 'visao/home/grafCapitalSaldoLiquido.php';?>
+	
 	</body>
 </html>

@@ -103,6 +103,27 @@ class InvestimentoDAO {
 		
 		return $this->genericoDAO->sqlDireto($sql, "select");
 	}
+	
+	public function consultaSaldoLiquidoPorInstituicao($idPessoa) {
+		
+		$sql = "
+			Select 
+				sum(invest.VL_SALDO_LIQUIDO_INVESTIMENTO) as SOMA_SALDO_LIQUIDO
+			    , instituicao.NOME_INST_FINANCEIRA
+			from maf.tb_investimento as invest, maf.tb_instituicao_financeira as instituicao
+			where 	invest.ID_PESSOA = ".$idPessoa." and
+					invest.ID_INST_FINANCEIRA = instituicao.ID_INST_FINANCEIRA
+			group by invest.ID_INST_FINANCEIRA";
+		return $this->genericoDAO->sqlDireto($sql, "select");
+	}
+	public function consultaCapitalSaldoLiquidoPorPessoa($idPessoa) {
+		
+		$sql = "
+			select NOME_INVESTIMENTO,VL_APLICACAO_INVESTIMENTO,VL_SALDO_LIQUIDO_INVESTIMENTO
+			from maf.tb_investimento
+			where ID_PESSOA = ".$idPessoa;
+		return $this->genericoDAO->sqlDireto($sql, "select");
+	}
 }
 
 ?>
