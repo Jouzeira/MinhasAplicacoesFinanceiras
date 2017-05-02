@@ -2,6 +2,7 @@
 
 require_once 'genericoDao.class.php';
 require_once 'investimentoDAO.class.php';
+require_once 'rentabilidadeMensalDAO.class.php';
 
 class HistoricoInvestimentoDAO {
 	
@@ -11,12 +12,20 @@ class HistoricoInvestimentoDAO {
 		$this->genericoDAO = new genericoDAO();
 	}
 	
-	public function cadastrarHistorico($historicoInvestimentoBO) {
-		return $this->genericoDAO->insert("tb_historico_investimento",
+	public function cadastrarHistorico($historicoInvestimentoBO,$valorAplicado,$dataAplicacao) {
+		$this->genericoDAO->insert("tb_historico_investimento",
 											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO", 
 				$historicoInvestimentoBO->getIdInvestimento()
 				.",'".$historicoInvestimentoBO->getDtAtualizacao()."'"
 				.",".$historicoInvestimentoBO->getValorLiquidoPadraoBD());
+		
+		$resultMaxDataAtualizacao = $this->consultarSaldoUltimaAtualizacao($historicoInvestimentoBO->getIdInvestimento());
+		
+		$investimentoDao = new InvestimentoDAO();
+		$investimentoDao->alterarValorSaldoLiquido($historicoInvestimentoBO->getIdInvestimento(), mysqli_fetch_array($resultMaxDataAtualizacao,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO']);
+		
+		$rentabilidadeMensalDAO = new RentabilidadeMensalDAO();
+		return $rentabilidadeMensalDAO->atualizarRentabilidadeMensal($historicoInvestimentoBO,$valorAplicado,$dataAplicacao);
 	}
 	
 	public function consultarSaldoUltimaAtualizacao($idInvestimento) {
@@ -56,7 +65,8 @@ class HistoricoInvestimentoDAO {
 							from maf.tb_historico_investimento hi,  
 							( select @valor := (SELECT 	VL_APLICACAO_INVESTIMENTO FROM maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t2,
 							( select @data1 := (SELECT  DT_APLICACAO_INVESTIMENTO FROM maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t3
-							where hi.ID_INVESTIMENTO = ".$idInvestimento." 
+							where hi.ID_INVESTIMENTO = ".$idInvestimento."
+							order by hi.DT_ATUALIZACAO_HISTINVESTIMENTO asc 
 						) tabCalc
 					ORDER BY tabCalc.DT_ATUALIZACAO_HISTINVESTIMENTO DESC "
 				, "select");

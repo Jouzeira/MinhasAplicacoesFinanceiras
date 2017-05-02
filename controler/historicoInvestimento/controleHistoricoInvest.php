@@ -8,7 +8,7 @@ require_once '../../bo/investimentoBO.class.php';
 switch ( $_GET['acao']) {
 	case "cadastrar":
 		
-		if ($_POST['saldoLiquido']<=$_POST['valorLiquido'] && $_POST['dataAplicacao'] < $_POST['dtAtualizacao']) {
+		if ($_POST['valorAplicado']<=$_POST['valorLiquido'] && $_POST['dataAplicacao'] < $_POST['dtAtualizacao']) {
 			
 			$historicoInvestimentoBO = new HistoricoInvestimentoBO();
 			$historicoInvestimentoBO->setIdInvestimento($_POST['idInvestimento']);
@@ -21,15 +21,9 @@ switch ( $_GET['acao']) {
 				die();
 			}
 			
-			if ($historicoInvestimentoDAO->cadastrarHistorico($historicoInvestimentoBO)) {
+			if ($historicoInvestimentoDAO->cadastrarHistorico($historicoInvestimentoBO,$_POST['valorAplicado'],$_POST['dataAplicacao'])) {
 				
-				$investimentoDAO = new InvestimentoDAO();
-				if ($investimentoDAO->alterarValorSaldoLiquido($historicoInvestimentoBO->getIdInvestimento(),$historicoInvestimentoBO->getValorLiquidoPadraoBD())) {
 					header('Location: ../../visao/historicoInvestimento/atualizarHistoricoInvestimentos.php?valor='.$historicoInvestimentoBO->getIdInvestimento().'&msgIncluir=1');
-				}else {
-					echo "Erro a alterar o valor do saldo liquido do investimento.";
-					die();
-				}
 				
 			}else {
 				echo "Erro a cadastrar Hstórico de Investimento.";

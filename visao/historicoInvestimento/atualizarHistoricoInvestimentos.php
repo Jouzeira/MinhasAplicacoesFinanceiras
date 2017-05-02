@@ -110,6 +110,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 					<input type="hidden" id="idInvestimento" name="idInvestimento" value="<?=$investimentoBO->getId()?>"/>
 					<input type="hidden" id="saldoLiquido" name="saldoLiquido" value="<?=$investimentoBO->getValorSaldoLiquidoPadraoTela()?>"/>
 					<input type="hidden" id="dataAplicacao" name="dataAplicacao" value="<?=$investimentoBO->getDataAplicacao()?>"/>
+					<input type="hidden" id="valorAplicado" name="valorAplicado" value="<?=$investimentoBO->getValorAplicacaoPadraoTela()?>"/>
 					<div class="form-group col-md-3">
 			    		<label class="control-label " for="botao"></label>
 						<button type="submit" class="btn btn-primary form-control">Registrar</button>
