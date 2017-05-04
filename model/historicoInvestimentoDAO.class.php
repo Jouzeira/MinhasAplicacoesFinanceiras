@@ -73,12 +73,31 @@ class HistoricoInvestimentoDAO {
 	}
 	
 	public function excluirHistoricoPorId($idHistorico,$idInvestimento) {
+		
+		$resultHistorico = $this->consultarHistoricoPorId($idHistorico);
+		$historicoBO = new HistoricoInvestimentoBO();
+		while ($linha = mysqli_fetch_array($resultHistorico,MYSQLI_ASSOC)) {
+			$historicoBO->setId($linha['ID_HISTORICO_INVESTIMENTO']);
+			$historicoBO->setIdInvestimento($linha['ID_INVESTIMENTO']);
+			$historicoBO->setDtAtualizacao($linha['DT_ATUALIZACAO_HISTINVESTIMENTO']);
+			$historicoBO->setValorLiquido($linha['VLLIQUIDO_HISTINVESTIMENTO']);
+		}
+		
+		$investimentoDAO = new InvestimentoDAO();
+		$arrayInvestimento = $investimentoDAO->consultarPorId($idInvestimento);
+		
 		$this->genericoDAO->delete("tb_historico_investimento",
 									"ID_HISTORICO_INVESTIMENTO = ".$idHistorico);
 		$result = $this->consultarHistoricoPorIdInvestimento($idInvestimento);
 		$investimentoDAO = new InvestimentoDAO();
-		return $investimentoDAO->alterarValorSaldoLiquido($idInvestimento, mysqli_fetch_array($result,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO']);
+		$investimentoDAO->alterarValorSaldoLiquido($idInvestimento, mysqli_fetch_array($result,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO']);
+		$rentabilidadeMensalDAO = new RentabilidadeMensalDAO();
+		return $rentabilidadeMensalDAO->atualizarRentabilidadeMensal($historicoBO,$arrayInvestimento['VL_APLICACAO_INVESTIMENTO'],$arrayInvestimento['DT_APLICACAO_INVESTIMENTO']);
 		
+	}
+	
+	public function consultarHistoricoPorId($idHistorico) {
+		return $this->genericoDAO->select("tb_historico_investimento","*","ID_HISTORICO_INVESTIMENTO = ".$idHistorico);
 	}
 	
 }
