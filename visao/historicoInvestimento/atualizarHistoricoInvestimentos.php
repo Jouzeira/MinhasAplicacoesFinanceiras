@@ -37,7 +37,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 	<body>
 
 		<!-- Static navbar -->
-	    <?php include '../../navegacao.php';?>
+	    <?php include '../home/navegacao.php';?>
 
 
 	    <div class="container">

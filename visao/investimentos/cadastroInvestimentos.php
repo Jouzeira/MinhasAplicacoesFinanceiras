@@ -36,7 +36,7 @@ $erro_cnpj		= isset($_GET['erro_cnpj'])		? $_GET['erro_cnpj'] 	: 0;
 	<body>
 
 		<!-- Static navbar -->
-	    <?php include '../../navegacao.php';?>
+	    <?php include '../home/navegacao.php';?>
 
 
 	    <div class="container">
