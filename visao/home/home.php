@@ -1,9 +1,9 @@
 <?php
 
 	session_start();
-	require_once 'controler/home/preencheHome.php';
+	require_once '../../controler/home/preencheHome.php';
 	if(!isset($_SESSION['NOME_PESSOA'])){
-		header('Location: index.php?erro=1');
+		header('Location: ../../index.php?erro=1');
 	}
 
 ?>
@@ -35,23 +35,22 @@
 
 	    <div class="container">
 	    	
-			<div class="row">
-		    	<div class="col-md-6">
-		    		<div id="grafPizzaTipoInvestimento" ></div>
-		    	</div>
-		    	<div class="col-md-6">
-		    		<div id="grafPizzaInstituicao" ></div>
-		    	</div>
-			</div>
-			<br>
-			<div class="row">
-		    	<div class="col-md-12">
-		    		<div id="capitalSaldoLiquido"></div>
-		    	</div>
-			</div>
-			<div class="clearfix"></div>
-			<br />
-			
+				<div class="row">
+			    	<div class="col-md-6">
+			    		<div id="grafPizzaTipoInvestimento" ></div>
+			    	</div>
+			    	<div class="col-md-6">
+			    		<div id="grafPizzaInstituicao" ></div>
+			    	</div>
+				</div>
+				<br>
+				<div class="row">
+			    	<div class="col-md-12">
+			    		<div id="capitalSaldoLiquido"></div>
+			    	</div>
+				</div> 
+				<div class="clearfix"></div>
+				<br />
 		</div><!-- /container -->
 
 
@@ -76,13 +75,13 @@
 	</script>	
 				
 <!-- monta gráfico pizza highcharts do tipo investimento -->
-		<?php require_once 'visao/home/grafTipoInvestimento.php';?>
+		<?php require_once '../../visao/relatorios/grafTipoInvestimento.php';?>
 
 <!-- Percentual por Instituição Financeira -->
-		<?php require_once 'visao/home/grafInstituicaoFinanceira.php';?>
+		<?php require_once '../../visao/relatorios/grafInstituicaoFinanceira.php';?>
 				
 <!-- Capital Aplicado x Saldo Líquido Atual --> 
-		<?php require_once 'visao/home/grafCapitalSaldoLiquido.php';?>
+		<?php require_once '../../visao/relatorios/grafCapitalSaldoLiquido.php';?>
 	
 	</body>
 </html>

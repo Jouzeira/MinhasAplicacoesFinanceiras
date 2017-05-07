@@ -31,7 +31,7 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 	<body>
 
 		<!-- Static navbar -->
-	    <?php include '../../navegacao.php';?>
+	    <?php include '../home/navegacao.php';?>
 
 
 	    <div class="container">

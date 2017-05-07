@@ -31,7 +31,7 @@
 	<body>
 
 		<!-- Static navbar -->
-	    <?php include 'navegacao.php';?>
+	    <?php include '/visao/home/navegacao.php';?>
 
 
 	    <div class="container">

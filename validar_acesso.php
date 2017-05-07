@@ -28,7 +28,7 @@
 			$_SESSION['EMAIL_PESSOA'] 	= $dados_usuario['EMAIL_PESSOA'];
 			$_SESSION['ID_PESSOA'] 		= $dados_usuario['ID_PESSOA'];
 
-			header('Location: home.php');
+			header('Location: /MinhasAplicacoesFinanceiras/visao/home/home.php');
 		} else {
 			//echo 'usuário não existe';
 			header('Location: index.php?erro=1');

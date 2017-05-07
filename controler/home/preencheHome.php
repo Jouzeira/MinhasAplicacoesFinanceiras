@@ -1,7 +1,7 @@
 <?php
 
-	require_once 'model/investimentoDAO.class.php';
-	require_once 'bo/investimentoBO.class.php';
+	require_once '../../model/investimentoDAO.class.php';
+	require_once '../../bo/investimentoBO.class.php';
 	
 	$investimentoDAO = new InvestimentoDAO();
 	$resultSomaSaldo = $investimentoDAO->consultaSaldoLiquidoPorTipoInvestimento($_SESSION['ID_PESSOA']);
