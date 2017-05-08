@@ -100,6 +100,31 @@ class HistoricoInvestimentoDAO {
 		return $this->genericoDAO->select("tb_historico_investimento","*","ID_HISTORICO_INVESTIMENTO = ".$idHistorico);
 	}
 	
+	public function consultarRelHistoricoInvestimento($idPessoa) {
+		
+		$sql = "select * FROM
+				(
+				SELECT 
+				hi.ID_INVESTIMENTO as ID_INVESTIMENTO,
+				hi.DT_ATUALIZACAO_HISTINVESTIMENTO AS DATA_1,
+				hi.VLLIQUIDO_HISTINVESTIMENTO AS VALOR,
+				i.NOME_INVESTIMENTO AS NOME
+				FROM maf.tb_historico_investimento hi, maf.tb_investimento i
+				where hi.ID_INVESTIMENTO = i.ID_INVESTIMENTO
+				and i.ID_PESSOA = ".$idPessoa."
+				union
+				select 
+				ID_INVESTIMENTO AS ID_INVESTIMENTO,
+				DT_APLICACAO_INVESTIMENTO AS DATA_1,
+				VL_APLICACAO_INVESTIMENTO AS VALOR,
+				NOME_INVESTIMENTO AS NOME
+				from maf.tb_investimento
+				where ID_PESSOA = ".$idPessoa.") TB_UNIAO
+				order by TB_UNIAO.ID_INVESTIMENTO, DATA_1";
+		
+		return $this->genericoDAO->sqlDireto($sql, "SELECT");
+	}
+	
 }
 
 ?>

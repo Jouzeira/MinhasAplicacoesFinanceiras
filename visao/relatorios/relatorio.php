@@ -36,21 +36,16 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	    <div class="container">
 	    <div class="row">
 	    	<div class="col-md-3">
-	    		<!-- <div class="btn-group-vertical" role="group" aria-label="Não sei para que serve">
-  					<button type="button" class="btn btn-primary">Percentual por Tipo de Investimento</button>
-  					<button type="button" class="btn btn-primary">Percentual por Instituição Financeira</button>
-  					<button type="button" class="btn btn-primary">Capital Aplicado x Saldo Líquido Atual</button>
-				</div>
-				<br><br> -->
 				<ul class="nav nav-pills nav-stacked">
-				  <li role="presentation" class="active"><a href="#tpInvest" aria-controls="tpInvest" role="tab" data-toggle="tab">Percentual por Tipo de Investimento</a></li>
+				  <li role="presentation"><a href="#tpInvest" aria-controls="tpInvest" role="tab" data-toggle="tab">Percentual por Tipo de Investimento</a></li>
 				  <li role="presentation"><a href="#instFin" aria-controls="instFin" role="tab" data-toggle="tab">Percentual por Instituição Financeira</a></li>
 				  <li role="presentation"><a href="#capAplSaldLiq" aria-controls="capAplSaldLiq" role="tab" data-toggle="tab">Capital Aplicado x Saldo Líquido Atual</a></li>
+				  <li role="presentation" class="active"><a href="#histEvolucao" aria-controls="histEvolucao" role="tab" data-toggle="tab">Evolução do Saldo Líquido das Aplicações</a></li>
 				</ul>
 	    	</div>
 	    	<div class="col-md-9">
 	    		<div class="tab-content">
-				    <div role="tabpanel" class="tab-pane active" id="tpInvest">
+				    <div role="tabpanel" class="tab-pane" id="tpInvest">
 			    		<div id="grafPizzaTipoInvestimento" ></div>
 				    </div>
 				    <div role="tabpanel" class="tab-pane" id="instFin">
@@ -59,23 +54,11 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 				    <div role="tabpanel" class="tab-pane" id="capAplSaldLiq">
 			    		<div id="capitalSaldoLiquido"></div>
 				    </div>
+				    <div role="tabpanel" class="tab-pane active" id="histEvolucao">
+			    		<div id="grafHistoricoEvolucao"></div>
+				    </div>
 				</div>
 	    	
-	    	
-				<!-- <div class="row">
-			    	<div class="col-md-6">
-			    		<div id="grafPizzaTipoInvestimento" ></div>
-			    	</div>
-			    	<div class="col-md-6">
-			    		<div id="grafPizzaInstituicao" ></div>
-			    	</div>
-				</div>
-				<br>
-				<div class="row">
-			    	<div class="col-md-12">
-			    		<div id="capitalSaldoLiquido"></div>
-			    	</div>
-				</div> -->
 				<div class="clearfix"></div>
 				<br />
 	    	</div>
@@ -111,6 +94,9 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 				
 <!-- Capital Aplicado x Saldo Líquido Atual --> 
 		<?php require_once '../../visao/relatorios/grafCapitalSaldoLiquido.php';?>
+
+<!-- Capital Aplicado x Saldo Líquido Atual -->
+		<?php require_once '../../visao/relatorios/grafHistoricoEvolucao.php';?> 
 	
 	</body>
 </html>
