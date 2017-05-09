@@ -27,7 +27,7 @@ Highcharts.chart('grafHistoricoEvolucao', {
 	},
 	tooltip: {
 		headerFormat: '<b>{series.name}</b><br>',
-		pointFormat: '{point.x:%e. %b}: {point.y:.2f} R$'
+		pointFormat: '{point.x:%e. %b}:  R$ {point.y:.2f}'
 	},
 	
 	plotOptions: {

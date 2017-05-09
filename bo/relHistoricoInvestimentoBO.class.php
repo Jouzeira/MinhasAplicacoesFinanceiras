@@ -2,27 +2,10 @@
 
 	class RelHistoricoInvestimentoBO {
 		
-		private $listIdInvestimentos = array();
-		private $listHistoricoInvestimentos = array();
-		
 		private $idInvestimento;
 		private $data;
 		private $valor;
 		private $nome;
-		
-		function setListIdInvestimentos($listIdInvestimentos) {
-			$this->listIdInvestimentos = $listIdInvestimentos;
-		}
-		function getListIdInvestimentos() {
-			return $this->listIdInvestimentos;
-		}
-		
-		function setListHistoricoInvestimentos($listHistoricoInvestimentos) {
-			$this->listHistoricoInvestimentos = $listHistoricoInvestimentos;
-		}
-		function getListHistoricoInvestimentos() {
-			return $this->listHistoricoInvestimentos;
-		}
 		
 		function setIdInvestimento($idInvestimento) {
 			$this->idInvestimento = $idInvestimento;
