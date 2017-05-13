@@ -6,6 +6,7 @@
 	require_once '../../model/tipoRendaDAO.class.php';
 // 	require_once '../../model/tipoCategoriaDAO.class.php';
 	require_once '../../model/instituicaoFinanceiraDAO.class.php';
+	require_once '../../model/historicoInvestimentoDAO.class.php';
 	
 	$investimentoDAO = new InvestimentoDAO();
 	$resultado = $investimentoDAO->consultaListaInvestimento($_SESSION['ID_PESSOA']);
@@ -14,6 +15,7 @@
 	$tipoRendaDAO = new TipoRendaDAO();
 // 	$tipoCategoriaDAO = new TipoCategoriaDAO();
 	$instituicaoFinanceiraDAO = new InstituicaoFinanceiraDAO();
+	$historicoInvestimentoDAO = new HistoricoInvestimentoDAO();
 	
 	$listaInvestimentoBO = array();
 	$totalAplicado = 0;
@@ -34,6 +36,7 @@
 		$investimentoBO->setTaxaContratada($linha['TX_CONTRATADA_INVESTIMENTO']);
 		$investimentoBO->setTaxaCorretagem($linha['TX_CORRETAGEM_INVESTIMENTO']);
 		$investimentoBO->setValorSaldoLiquido($linha['VL_SALDO_LIQUIDO_INVESTIMENTO']);
+		$investimentoBO->setPossuiAtualizcoes(mysqli_fetch_array($historicoInvestimentoDAO->consultarHistoricoPorIdInvestimento($linha['ID_INVESTIMENTO']))==null?0:1);
 		$totalAplicado += $linha['VL_APLICACAO_INVESTIMENTO'];
 		$totalLiquido += $linha['VL_SALDO_LIQUIDO_INVESTIMENTO'];
 		$listaInvestimentoBO[]=$investimentoBO;

@@ -66,9 +66,7 @@
 		}
 		
 	}
-	if (count($listaRelHistoricoInvestimentoBO)==1) {
-			$listaDaLista[]=$listaRelHistoricoInvestimentoBO;
-	}
+	$listaDaLista[]=$listaRelHistoricoInvestimentoBO;
 	
 	$resultListaInvestimentos = $investimentoDAO->consultaListaInvestimento($_SESSION['ID_PESSOA']);
 	$listaInvestimentos = array();
@@ -92,67 +90,54 @@
 			$codigoInvestimento = $linha['ID_INVESTIMENTO'];
 			$anoMesControle = $linha['ANO_MES'];
 		}
-		echo $anoMesControle." 1 <br>";
 		if ($anoMesControle == $linha['ANO_MES']) {
-		echo $anoMesControle." 2 <br>";
 			$rentabilidadeMensalBO = new RentabilidadeMensalBO();
 			$rentabilidadeMensalBO->setIdInvestimento($linha['ID_INVESTIMENTO']);
 			$rentabilidadeMensalBO->setAnoMes($linha['ANO_MES']);
 			$rentabilidadeMensalBO->setValorRendimentoMensal($linha['VL_RENDIMENTO_MENSAL']);
 			
 			if ($linha['ID_INVESTIMENTO'] == $codigoInvestimento) {
-				echo $anoMesControle." 3 <br>";
 				$listaRentMensal[]= $rentabilidadeMensalBO;
 				$anoMesControle = aumentaAnoMes($anoMesControle);
-				$rentabilidadeMensalBOControle = $rentabilidadeMensalBO;
+				$rentabilidadeMensalBOControle = populaNovoRentabilidadeMensalBO($rentabilidadeMensalBO);
 				
 			}else {
-				echo $anoMesControle." 4 <br>";
 				$listaDaListaRentMensal[]=$listaRentMensal;
 				unset($listaRentMensal);
 				$codigoInvestimento = $linha['ID_INVESTIMENTO'];
 				$listaRentMensal[]= $rentabilidadeMensalBO;
 				$anoMesControle = aumentaAnoMes($rentabilidadeMensalBO->getAnoMes());
-				$rentabilidadeMensalBOControle = $rentabilidadeMensalBO;
+				$rentabilidadeMensalBOControle = populaNovoRentabilidadeMensalBO($rentabilidadeMensalBO);
 				
 			}
 		}else {
-			echo $anoMesControle." 5 <br>";
 			$rentabilidadeMensalBO = new RentabilidadeMensalBO();
 			$rentabilidadeMensalBO->setIdInvestimento($linha['ID_INVESTIMENTO']);
 			$rentabilidadeMensalBO->setAnoMes($linha['ANO_MES']);
 			$rentabilidadeMensalBO->setValorRendimentoMensal($linha['VL_RENDIMENTO_MENSAL']);
 			if ($linha['ID_INVESTIMENTO'] == $codigoInvestimento) {
-				echo $anoMesControle." 6 <br>";
 				$rentabilidadeMensalBOControle->setValorRendimentoMensal(($rentabilidadeMensalBOControle->getValorRendimentoMensal()+$rentabilidadeMensalBO->getValorRendimentoMensal())/2);
 				while ($anoMesControle != $linha['ANO_MES']) {
-					echo $anoMesControle." 7 <br>";
-					echo $linha['ANO_MES']." 77 <br>";
 					$rentabilidadeMensalBOControle->setAnoMes($anoMesControle);
 					$listaRentMensal[] = $rentabilidadeMensalBOControle;
 					$anoMesControle = aumentaAnoMes($anoMesControle);
 				}
-				echo $anoMesControle." 10 <br>";
 				$listaRentMensal[] = $rentabilidadeMensalBO;
 				$anoMesControle = aumentaAnoMes($anoMesControle);
-				$rentabilidadeMensalBOControle = $rentabilidadeMensalBO;
+				$rentabilidadeMensalBOControle = populaNovoRentabilidadeMensalBO($rentabilidadeMensalBO);
 			}else {
-				echo $anoMesControle." 8 <br>";
 				$listaDaListaRentMensal[]=$listaRentMensal;
 				unset($listaRentMensal);
 				$codigoInvestimento = $linha['ID_INVESTIMENTO'];
 				$listaRentMensal[]= $rentabilidadeMensalBO;
 				$anoMesControle = aumentaAnoMes($rentabilidadeMensalBO->getAnoMes());
-				$rentabilidadeMensalBOControle = $rentabilidadeMensalBO;
+				$rentabilidadeMensalBOControle = populaNovoRentabilidadeMensalBO($rentabilidadeMensalBO);
 			}
 			
 		}
 		
 	}
-	if (count($listaRentMensal)==1) {
-		echo $anoMesControle." 9 <br>";
 		$listaDaListaRentMensal[]=$listaRentMensal;
-	}
 	
 	
 	function aumentaAnoMes($anoMesControle) {
@@ -164,11 +149,14 @@
 		return $anoMesControle;
 	}
 	
-	foreach ($listaDaListaRentMensal as $listaRentMensal) {
-		foreach ($listaRentMensal as $value) {
-			echo $value->getIdInvestimento()." - ". $value->getAnoMes()." - ".$value->getValorRendimentoMensal()."<br>";
-		}
+	function populaNovoRentabilidadeMensalBO($param) {
+		$rentabilidadeMensalBO = new RentabilidadeMensalBO();
+		$rentabilidadeMensalBO->setIdInvestimento($param->getIdInvestimento());
+		$rentabilidadeMensalBO->setAnoMes($param->getAnoMes());
+		$rentabilidadeMensalBO->setValorRendimentoMensal($param->getValorRendimentoMensal());
+		return $rentabilidadeMensalBO;
 	}
-	die();
+	
+	
 	
 ?>

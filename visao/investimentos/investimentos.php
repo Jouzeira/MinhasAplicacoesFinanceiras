@@ -25,10 +25,21 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<style type="text/css">
+		
+		 .not-active {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
+		
+		</style>
+
 	
 	</head>
 
 	<body>
+
 
 		<!-- Static navbar -->
 	    <?php include '../home/navegacao.php';?>
@@ -100,15 +111,23 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 							<td><?=$investimentoBO->getValorAplicacaoFormatado()?></td> 
 							<td><?=$investimentoBO->getValorSaldoLiquido()?></td> 
 							<td>
-								<a href="cadastroInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
-								<span class="glyphicon glyphicon-pencil" style="color:green"></span>
-								</a>
-								<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" data-whatever="<?=$investimentoBO->getId()."|".$investimentoBO->getNomeInvestimento()?>">
-								<span class="glyphicon glyphicon-trash" style="color:red" ></span>
-								</button>
-								<a href="../historicoInvestimento/atualizarHistoricoInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
-								<span class="glyphicon glyphicon-refresh" style="color:blue"></span>
-								</a>
+										<a href="cadastroInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId() ?>" 
+										<?php if ($investimentoBO->getPossuiAtualizcoes()==1) {?>
+											class="not-active"
+											<?php }?>
+										>
+										<span class="glyphicon glyphicon-pencil disabled" style="color:green"></span>
+										</a>
+										<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" data-whatever="<?=$investimentoBO->getId()."|".$investimentoBO->getNomeInvestimento()?>"
+												<?php if ($investimentoBO->getPossuiAtualizcoes()==1) {?>
+												disabled="disabled"
+												<?php }?>
+												>
+										<span class="glyphicon glyphicon-trash" style="color:red" ></span>
+										</button>
+										<a href="../historicoInvestimento/atualizarHistoricoInvestimentos.php?menuInvest=1&valor=<?=$investimentoBO->getId()?>">
+										<span class="glyphicon glyphicon-refresh" style="color:blue"></span>
+										</a>
 							</td> 
 						</tr> 
 					<?php }?>
@@ -150,9 +169,9 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 
 			<div class="clearfix"></div>
 			<br />
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
 
 		</div>
 
@@ -172,6 +191,6 @@ $msgExcluir = isset($_GET['msgExcluir'])		? $_GET['msgExcluir'] 	: 0;
 			})
 
 		</script>
-	
+		
 	</body>
 </html>
