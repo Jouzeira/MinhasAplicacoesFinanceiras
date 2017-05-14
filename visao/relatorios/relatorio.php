@@ -26,7 +26,7 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css">
-<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+<!-- 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css"><!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --> -->
 	
 	</head>
 
