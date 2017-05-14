@@ -43,7 +43,9 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 				  <li role="presentation"><a href="#tpInvest" aria-controls="tpInvest" role="tab" data-toggle="tab">Percentual por Tipo de Investimento</a></li>
 				  <li role="presentation"><a href="#instFin" aria-controls="instFin" role="tab" data-toggle="tab">Percentual por Instituição Financeira</a></li>
 				  <li role="presentation"><a href="#capAplSaldLiq" aria-controls="capAplSaldLiq" role="tab" data-toggle="tab">Capital Aplicado x Saldo Líquido Atual</a></li>
-				  <li role="presentation" class="active"><a href="#histEvolucao" aria-controls="histEvolucao" role="tab" data-toggle="tab">Evolução do Saldo Líquido das Aplicações</a></li>
+				  <li role="presentation"><a href="#histEvolucao" aria-controls="histEvolucao" role="tab" data-toggle="tab">Evolução do Saldo Líquido das Aplicações</a></li>
+				  <li role="presentation" class="active"><a href="#medRentMensTipInvest" aria-controls="histEvolucao" role="tab" data-toggle="tab">Média de rentabilidade Mensal por Tipo de Investimento</a></li>
+				  
 				</ul>
 	    	</div>
 	    	<div class="col-md-9">
@@ -57,8 +59,11 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 				    <div role="tabpanel" class="tab-pane" id="capAplSaldLiq">
 			    		<div id="capitalSaldoLiquido"></div>
 				    </div>
-				    <div role="tabpanel" class="tab-pane active" id="histEvolucao">
+				    <div role="tabpanel" class="tab-pane" id="histEvolucao">
 			    		<div id="grafHistoricoEvolucao"></div>
+				    </div>
+				    <div role="tabpanel" class="tab-pane active" id="medRentMensTipInvest">
+			    		<div id="grafMedRentMensTipInvest"></div>
 				    </div>
 				</div>
 	    	
@@ -99,6 +104,9 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 
 <!-- Capital Aplicado x Saldo Líquido Atual -->
 		<?php require_once '../../visao/relatorios/grafHistoricoEvolucao.php';?> 
+
+<!-- Média de rentabilidade Mensal por Tipo de Investimento -->
+		<?php require_once '../../visao/relatorios/grafMedRentMensTipInvest.php';?> 
 	
 	</body>
 </html>

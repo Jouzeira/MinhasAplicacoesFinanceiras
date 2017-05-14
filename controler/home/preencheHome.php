@@ -164,6 +164,47 @@
 		return $rentabilidadeMensalBO;
 	}
 	
+	$listaAnoMes= array();
+	foreach ($listaDaListaRentMensal as $listaRentMensal){
+		foreach ($listaRentMensal as $rentabilidadeMensalBO){
+			$listaAnoMes[] = $rentabilidadeMensalBO->getAnoMes();
+		}
+	}
+	$listaAnoMes = array_unique($listaAnoMes);
+	asort($listaAnoMes);
+	
+	foreach ($listaAnoMes as $anoMes) {
+		foreach ($listaDaListaRentMensal as $listaRentMensal){
+			foreach ($listaRentMensal as $rentabilidadeMensalBO){
+				if ($anoMes == $rentabilidadeMensalBO->getAnoMes()) {
+					
+					
+					
+					$rentabilidadeMensalBO2 = new RentabilidadeMensalBO();
+					$rentabilidadeMensalBO2->setIdInvestimento($rentabilidadeMensalBO->getIdInvestimento());
+					$rentabilidadeMensalBO2->setAnoMes($anoMes);
+					$rentabilidadeMensalBO2->setValorRendimentoMensal(0);
+					$listaRentMensal[] = $rentabilidadeMensalBO2;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 ?>
