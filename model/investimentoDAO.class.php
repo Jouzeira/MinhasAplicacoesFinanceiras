@@ -70,7 +70,7 @@ class InvestimentoDAO {
 					.", VL_APLICACAO_INVESTIMENTO = ".$investimentoBO->getValorAplicacaoPadraoBD()
 					.", TX_CONTRATADA_INVESTIMENTO = ".$investimentoBO->getTaxaContratadaPadraoBD()
 					.", TX_CORRETAGEM_INVESTIMENTO = ".$investimentoBO->getTaxaCorretagemPadraoBD()
-					.", VL_SALDO_LIQUIDO_INVESTIMENTO = ".$investimentoBO->getValorSaldoLiquidoPadraoBD();
+					.", VL_SALDO_LIQUIDO_INVESTIMENTO = ".$investimentoBO->getValorAplicacaoPadraoBD();
 		if ($investimentoBO->getDataMinimaResgate()!=null && $investimentoBO->getDataMinimaResgate()!=""){
 			$campos.=", DT_MINIMA_RESGATE_INVESTIMENTO = '".$investimentoBO->getDataMinimaResgate()."'";
 		}
