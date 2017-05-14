@@ -1,5 +1,6 @@
 <?php
 
+
 	require_once '../../model/investimentoDAO.class.php';
 	require_once '../../bo/investimentoBO.class.php';
 	require_once '../../model/historicoInvestimentoDAO.class.php';
@@ -7,6 +8,7 @@
 	require_once '../../model/rentabilidadeMensalDAO.class.php';
 	require_once '../../bo/rentabilidadeMensalBO.class.php';
 	
+// Percentual por tipo de investimento
 	$investimentoDAO = new InvestimentoDAO();
 	$resultSomaSaldo = $investimentoDAO->consultaSaldoLiquidoPorTipoInvestimento($_SESSION['ID_PESSOA']);
 	$listaInvestimentoPorTipo = array();
@@ -16,7 +18,8 @@
 		$investimentoBO->setSomaSaldoLiquido($linha['SOMA_SALDO_LIQUIDO']);
 		$listaInvestimentoPorTipo[] = $investimentoBO;
 	}
-
+	
+// Percentual por instituicao financeira
 	$resultSomaSaldo = $investimentoDAO->consultaSaldoLiquidoPorInstituicao($_SESSION['ID_PESSOA']);
 	$listaInvestimentoPorInstituicao = array();
 	while ($linha = mysqli_fetch_array($resultSomaSaldo,MYSQLI_ASSOC)) {
@@ -25,7 +28,8 @@
 		$investimentoBO->setSomaSaldoLiquido($linha['SOMA_SALDO_LIQUIDO']);
 		$listaInvestimentoPorInstituicao[] = $investimentoBO;
 	}
-
+	
+// Capital aplicado x Saldo Líquido Atual
 	$resultCapitalSaldo = $investimentoDAO->consultaCapitalSaldoLiquidoPorPessoa($_SESSION['ID_PESSOA']);
 	$listaCapitalSaldo = array();
 	while ($linha = mysqli_fetch_array($resultCapitalSaldo,MYSQLI_ASSOC)) {
@@ -36,6 +40,7 @@
 		$listaCapitalSaldo[] = $investimentoBO;
 	}
 	
+	//Evolução do Saldo Líquido das Aplicações.
 	$historicoInvestimentoDAO = new HistoricoInvestimentoDAO();
 	$resultHistorico = $historicoInvestimentoDAO->consultarRelHistoricoInvestimento($_SESSION['ID_PESSOA']);
 	
@@ -68,6 +73,8 @@
 	}
 	$listaDaLista[]=$listaRelHistoricoInvestimentoBO;
 	
+	
+	//Rentabilidade Mensal
 	$resultListaInvestimentos = $investimentoDAO->consultaListaInvestimento($_SESSION['ID_PESSOA']);
 	$listaInvestimentos = array();
 	while ($linha = mysqli_fetch_array($resultListaInvestimentos,MYSQLI_ASSOC)) {
