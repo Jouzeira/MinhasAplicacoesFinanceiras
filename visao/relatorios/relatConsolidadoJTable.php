@@ -4,7 +4,6 @@ session_start();
 if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
 }
-require_once '../../controler/relatorios/controleConsolidadoJTable.php';
 
 ?>
 
@@ -14,15 +13,6 @@ require_once '../../controler/relatorios/controleConsolidadoJTable.php';
 		<meta charset="UTF-8">
 
 		<title>M.A.F</title>
-		
-		<!-- jquery - link cdn -->
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		
-		<!-- highcharts - link cdn -->
-		<script src="../../utils/highcharts/code/highcharts.js"></script>
-		<script src="../../utils/highcharts/code/modules/exporting.js"></script>
-		<!-- 		<script src="https://code.highcharts.com/highcharts.js"></script> -->
-		<!-- 		<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
 
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css">
@@ -32,8 +22,8 @@ require_once '../../controler/relatorios/controleConsolidadoJTable.php';
 	    <link href="../../utils/jTable/themes/redmond/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" />
 		<link href="../../utils/jTable/scripts/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css" />
 		<!-- jTable script file -->
-		<script src="../../utils/jTable/scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
-	<!-- 	<script src="../../utils/jTable/scripts/jquery-1.6.4.min.js" type="text/javascript"></script> -->
+<!-- 		<script src="../../utils/jTable/scripts/jquery-1.11.3.min.js" type="text/javascript"></script> -->
+		<script src="../../utils/jTable/scripts/jquery-1.6.4.min.js" type="text/javascript"></script> 
 	    <script src="../../utils/jTable/scripts/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 	    <script src="../../utils/jTable/scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
 	
@@ -68,7 +58,7 @@ require_once '../../controler/relatorios/controleConsolidadoJTable.php';
 				$('#consolidadoJTable').jtable({
 					title: 'Consolidado de Rentabilidade Mensal',
 					paging: true,
-					pageSize: 20,
+					pageSize: 5,
 					sorting: true,
 					defaultSorting: 'ID_INVESTIMENTO ASC',
 					actions: {
