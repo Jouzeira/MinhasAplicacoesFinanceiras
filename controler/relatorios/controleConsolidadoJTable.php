@@ -12,9 +12,12 @@ try
 	if($_GET["action"] == "list")
 	{
 			
-		$jtSorting = $_GET["jtSorting"];
-		$jtStartIndex = $_GET["jtStartIndex"];
-		$jtPageSize = $_GET["jtPageSize"];
+		$jtSorting 			= $_GET["jtSorting"];
+		$jtStartIndex 		= $_GET["jtStartIndex"];
+		$jtPageSize 		= $_GET["jtPageSize"];
+		
+		$nomeInvestimento	= $_POST["nomeInvestimento"];
+// 		$data				= $_POST["data"];
 		
 		$queryGeral = "SELECT
 							I.NOME_INVESTIMENTO,
@@ -26,7 +29,16 @@ try
 						FROM maf.tb_rentabilidade_mensal AS RM
 						JOIN MAF.tb_investimento AS I
 							ON RM.ID_INVESTIMENTO = I.ID_INVESTIMENTO
-						WHERE RM.ID_INVESTIMENTO in ( SELECT	I.ID_INVESTIMENTO FROM MAF.tb_investimento AS I	WHERE I.ID_PESSOA = ".$_SESSION['ID_PESSOA']." )";
+						WHERE RM.ID_INVESTIMENTO in ( SELECT I.ID_INVESTIMENTO FROM MAF.tb_investimento AS I	WHERE I.ID_PESSOA = ".$_SESSION['ID_PESSOA']." )";
+		
+		if (!is_null($nomeInvestimento) && $nomeInvestimento!= ""){
+			$queryGeral.= " AND I.NOME_INVESTIMENTO LIKE '%" .$nomeInvestimento."%'";
+		}
+		
+// 		if (!is_null($data) && $data!= ""){
+// 			$queryGeral.= " AND R.DATA ='" .$data."'";
+// 		}
+		
 		// echo $queryGeral;
 		// echo "<br>";
 		
@@ -38,13 +50,11 @@ try
 		$queryFilter = $queryGeral;
 		$queryFilter .= " ORDER BY $jtSorting LIMIT $jtStartIndex , $jtPageSize ;";
 		
-		//$result = $rentabilidadeMensalDAO->consultarRentabilidadeJTable($queryCount);
 		$result = mysqli_query($con, $queryCount);
 		$row = mysqli_fetch_array($result);
 		$recordCount = $row['RecordCount'];
 		
-		//		//Get records from database
-		// $result = $rentabilidadeMensalDAO->consultarRentabilidadeJTable($queryFilter);
+		//Get records from database
 		$result = mysqli_query($con, $queryFilter);
 		
 		//Add all records to an array
@@ -54,7 +64,7 @@ try
 			$rows[] = $row;
 		}
 		//
-		//		//Return result to jTable
+		//Return result to jTable
 		$jTableResult = array();
 		$jTableResult['Result'] = "OK";
 		$jTableResult['TotalRecordCount'] = $recordCount;
@@ -64,8 +74,6 @@ try
 } // ============== /try ==================
 catch(Exception $ex)
 {
-	//echo "Teste";
-	// 	echo("<script>console.log('PHP: ".$origem."');</script>");
 	//Return error message
 	$jTableResult = array();
 	$jTableResult['Result'] = "ERROR";

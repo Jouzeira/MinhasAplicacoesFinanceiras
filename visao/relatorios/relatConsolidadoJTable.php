@@ -35,6 +35,26 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	    <?php include '../home/navegacao.php';?>
 
 	    <div class="container">
+		   <div class="row">
+		  		<div class="col-md-12">
+					<form>
+						<div class="form-group col-md-4">
+							<input type="text" name="data" id="data" class="form-control" placeholder="Mês/Ano">
+<!-- 							<div class="input-group"> -->
+<!-- 								<div class="input-group-addon">Mês/Ano</div> -->
+<!-- 								<input type="date" name="data" id="data" class="form-control" placeholder="Mês/Ano"> -->
+<!-- 							</div> -->
+						</div>
+						<div class="form-group col-md-4">
+							<input type="text" name="nomeInvestimento" id="nomeInvestimento" class="form-control" placeholder="Nome Investimento">
+						</div>
+						<div class="form-group col-md-4">
+							<button type="submit" id="btFiltro" class="btn btn-primary form-control">Filtrar</button>
+						</div>
+					</form>
+				</div>
+			</div><!-- /div row -->
+	    
 		    <div class="row">
 		    	<div class="col-md-12">
 		    		<div id="consolidadoJTable"></div>
@@ -118,24 +138,25 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 				});
 	
 		        //Re-load records when user click 'load records' button.
-// 		        $('#btFiltro').click(function (e) {
-// 		            e.preventDefault();
-// 					var valorOrigem 	= $('#origem').val();
-// 					var valorData 		= $('#data').val();
-// 					//alert(valorData);
-// 					//document.write(valorOrigem); 	
-// 					console.log(valorOrigem + " " + valorData);
-// 		            $('#PeopleTableContainer').jtable('load', {
-// 			            origem: 	valorOrigem,
-// 			            data:		valorData
-// 			         });
-// 		        });
+		        $('#btFiltro').click(function (e) {
+		            e.preventDefault();
+					var valorNomeInvestimento 	= $('#nomeInvestimento').val();
+// 					var valorData 				= $('#data').val();
+					//alert(valorData);
+					//document.write(valorOrigem); 	
+// 					console.log(valorNomeInvestimento + " " + valorData);
+					console.log(valorNomeInvestimento);
+		            $('#consolidadoJTable').jtable('load', {
+		            	nomeInvestimento: 	valorNomeInvestimento
+// 			            data:				valorData
+			         });
+		        });
 		 
-		        //Load all records when page is first shown
-// 		        $('#btFiltro').click();
+// 		        Load all records when page is first shown
+		        $('#btFiltro').click();
 
-				//Load person list from server
-				$('#consolidadoJTable').jtable('load');
+// 				//Load person list from server
+// 				$('#consolidadoJTable').jtable('load');
 				
 			});
 
