@@ -89,10 +89,14 @@ class HistoricoInvestimentoDAO {
 		$this->genericoDAO->delete("tb_historico_investimento",
 									"ID_HISTORICO_INVESTIMENTO = ".$idHistorico);
 		$result = $this->consultarHistoricoPorIdInvestimento($idInvestimento);
+		$valor = mysqli_fetch_array($result,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO'];
+		if ($valor == null) {
+			$valor = $arrayInvestimento['VL_APLICACAO_INVESTIMENTO'];
+		}
 		$investimentoDAO = new InvestimentoDAO();
-		$investimentoDAO->alterarValorSaldoLiquido($idInvestimento, mysqli_fetch_array($result,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO']);
+		$investimentoDAO->alterarValorSaldoLiquido($idInvestimento, $valor);
 		$rentabilidadeMensalDAO = new RentabilidadeMensalDAO();
-		return $rentabilidadeMensalDAO->atualizarRentabilidadeMensal($historicoBO,$arrayInvestimento['VL_APLICACAO_INVESTIMENTO'],$arrayInvestimento['DT_APLICACAO_INVESTIMENTO']);
+		return $rentabilidadeMensalDAO->atualizarRentabilidadeMensal($historicoBO,$valor,$arrayInvestimento['DT_APLICACAO_INVESTIMENTO']);
 		
 	}
 	
