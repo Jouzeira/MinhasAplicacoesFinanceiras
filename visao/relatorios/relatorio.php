@@ -21,12 +21,12 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 		<!-- highcharts - link cdn -->
 		<script src="../../utils/highcharts/code/highcharts.js"></script>
 		<script src="../../utils/highcharts/code/modules/exporting.js"></script>
-<!-- 		<script src="https://code.highcharts.com/highcharts.js"></script> -->
-<!-- 		<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+		<!-- 		<script src="https://code.highcharts.com/highcharts.js"></script> -->
+		<!-- 		<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
 
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css">
-<!-- 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css"><!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --> -->
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --> 
 	
 	</head>
 

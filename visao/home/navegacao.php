@@ -18,8 +18,7 @@ $menuUsuario 	= isset ( $_GET ['menuUsuario'] ) 	? $_GET ['menuUsuario'] : 0;
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a href="/PSI_OUVID/index.php" class="navbar-brand">CAIXA</a>
-			<a href="home.php"><img src="/MinhasAplicacoesFinanceiras/imagens/cifrao.png" height="40" /></a>
+			<a href="/MinhasAplicacoesFinanceiras/visao/home/home.php"><img src="/MinhasAplicacoesFinanceiras/imagens/cifrao.png" height="40" /></a>
 		</div>
 
 		<div id="navbar" class="navbar-collapse collapse">
