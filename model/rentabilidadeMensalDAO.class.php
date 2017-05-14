@@ -65,5 +65,27 @@ from
 		$sql.= ") order by ID_INVESTIMENTO,ANO_MES";
 		return $this->genericoDAO->sqlDireto($sql, "SELECT");
 	}
+	
+	public function consultaRentabilidadePorIdUsuario($idUsuario){
+		$sql .= "SELECT
+					I.ID_INVESTIMENTO
+				FROM MAF.tb_investimento AS I
+				WHERE I.ID_PESSOA = ".$idUsuario;
+		
+		$resultListaIdInvestimentos =  $this->genericoDAO->sqlDireto($sql, "select");
+		$listaIdInvestimento = array();
+		while ($linha = mysqli_fetch_array($resultListaIdInvestimentos, MYSQLI_ASSOC)){
+			$listaIdInvestimento[] = $linha;
+		} // /while
+		return $this->consultaRentabilidadesPorListaInvestimentos($listaIdInvestimentos);
+	} // /function consultaRentabilidadePorIdUsuario
+	
+	public function consultarRentabilidadeJTable ($sql) {
+		return $this->genericoDAO->sqlDireto($sql, "SELECT");
+	}
+	
 }
+
+
+
 ?>
