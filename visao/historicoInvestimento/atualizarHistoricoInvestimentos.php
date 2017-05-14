@@ -170,7 +170,7 @@ $msgErroData= isset($_GET['msgErroData'])		? $_GET['msgErroData'] 	: 0;
 
 
 	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="../../utils/bootstrap/js/bootstrap.min.js"></script><!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --></script>
 		<script>  function formatar(mascara, documento){   
 					var i = documento.value.length;   
 					var saida = mascara.substring(0,1);   

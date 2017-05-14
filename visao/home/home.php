@@ -25,7 +25,8 @@
 <!-- 		<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
 
 		<!-- bootstrap - link cdn -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css">
+<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 	
 	</head>
 
@@ -56,9 +57,8 @@
 		</div><!-- /container -->
 
 
-	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		
+		<script src="../../utils/bootstrap/js/bootstrap.min.js"></script>
+		<!-- 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 			<script>
 				Radialize the colors
 				Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
