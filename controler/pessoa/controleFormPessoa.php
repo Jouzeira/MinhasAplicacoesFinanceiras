@@ -56,6 +56,6 @@ if($senha_confirmada || $cpf_existe || $email_existe){
 	$_SESSION['EMAIL_PESSOA'] 	= $pessoaBO->getEmail();
 	$_SESSION['ID_PESSOA'] 		= $novoId['ID_PESSOA'];
 	
-	header('Location: ../../home.php');
+	header('Location: ../../visao/home/home.php');
 }
 ?>
