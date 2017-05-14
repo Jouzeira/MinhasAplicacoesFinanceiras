@@ -24,7 +24,7 @@ $menuUsuario 	= isset ( $_GET ['menuUsuario'] ) 	? $_GET ['menuUsuario'] : 0;
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li <?php if($menuRelatorio==1) {?> class="active" <?php }?>><a
-					href="/MinhasAplicacoesFinanceiras/visao/relatorios/relatorio.php?menuRelatorio=1">Relatórios</a></li>
+					href="/MinhasAplicacoesFinanceiras/visao/relatorios/grafMedRentMensTipInvest.php?menuRelatorio=1">Relatórios</a></li>
 				<li <?php if($menuInvest==1) {?> class="active" <?php }?>><a
 					href="/MinhasAplicacoesFinanceiras/visao/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
 				<li <?php if($menuInst==1) {?> class="active" <?php }?>><a

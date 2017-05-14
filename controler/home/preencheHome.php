@@ -173,21 +173,34 @@
 	$listaAnoMes = array_unique($listaAnoMes);
 	asort($listaAnoMes);
 	
-	foreach ($listaAnoMes as $anoMes) {
-		foreach ($listaDaListaRentMensal as $listaRentMensal){
-			foreach ($listaRentMensal as $rentabilidadeMensalBO){
-				if ($anoMes == $rentabilidadeMensalBO->getAnoMes()) {
-					
-					
-					
-					$rentabilidadeMensalBO2 = new RentabilidadeMensalBO();
-					$rentabilidadeMensalBO2->setIdInvestimento($rentabilidadeMensalBO->getIdInvestimento());
-					$rentabilidadeMensalBO2->setAnoMes($anoMes);
-					$rentabilidadeMensalBO2->setValorRendimentoMensal(0);
-					$listaRentMensal[] = $rentabilidadeMensalBO2;
+	$listaDaListaRentMensal2 = array();
+	$listaRentMensal2 = array();
+	$controle = true;
+	
+	foreach ($listaDaListaRentMensal as $listaRentMensal){
+		$controle = true;
+		foreach ($listaRentMensal as $rentabilidadeMensalBO){
+			if ($controle) {
+				foreach ($listaAnoMes as $anoMes) {
+					if ($anoMes != $rentabilidadeMensalBO->getAnoMes()) {
+						
+						$rentabilidadeMensalBO2 = new RentabilidadeMensalBO();
+						$rentabilidadeMensalBO2->setIdInvestimento($rentabilidadeMensalBO->getIdInvestimento());
+						$rentabilidadeMensalBO2->setAnoMes($anoMes);
+						$rentabilidadeMensalBO2->setValorRendimentoMensal(0);
+						$listaRentMensal2[] = $rentabilidadeMensalBO2;
+					}else {
+						$listaRentMensal2[] = $rentabilidadeMensalBO;
+						$controle = false;
+						break 1;
+					}
 				}
+			}else {
+						$listaRentMensal2[] = $rentabilidadeMensalBO;
 			}
 		}
+		$listaDaListaRentMensal2 = $listaRentMensal2;
+		unset($listaRentMensal2);
 	}
 	
 	

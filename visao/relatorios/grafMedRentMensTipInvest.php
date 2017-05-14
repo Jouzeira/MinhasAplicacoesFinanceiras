@@ -58,19 +58,19 @@ require_once '../../controler/relatorios/preencheGrafMedRentMensTipInvest.php';
 			        type: 'column'
 			    },
 			    title: {
-			        text: 'Stacked column chart'
+			        text: 'Média da Rentabilidade Mensal por Tipo de Investimento'
 			    },
 			    xAxis: {
 			        categories: [
 			        	<?php foreach ($listaAnoMes as $valor ) {?>
-						'<?=$valor?>',
+						'<?=substr($valor, 0, 4)."/".substr($valor, 4, 2)?>',
 						<?php }?>
 			            ]
 			    },
 			    yAxis: {
 			        min: 0,
 			        title: {
-			            text: 'Total fruit consumption'
+			            text: 'Valor (R$)'
 			        },
 			        stackLabels: {
 			            enabled: true,
@@ -106,7 +106,7 @@ require_once '../../controler/relatorios/preencheGrafMedRentMensTipInvest.php';
 			    },
 			    series: [
 			    	<?php 
-			    			foreach ($listaDaListaRentMensal as $listaRentMensal) {
+			    			foreach ($listaDaListaRentMensal2 as $listaRentMensal) {
 			    			?>
 			    	        {
 			    	        name: '<?=$listaRentMensal[0]->getIdInvestimento()?>',
