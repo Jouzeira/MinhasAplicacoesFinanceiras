@@ -36,10 +36,7 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 
 	    <div class="container">
 		    <div class="row">
-		    	<div class="col-md-3">
-					<?php require_once 'menuRelatorios.php'; ?>
-		    	</div>
-		    	<div class="col-md-9">
+		    	<div class="col-md-12">
 		    		<div id="consolidadoJTable"></div>
 				</div>
 				<div class="clearfix"></div>
@@ -58,7 +55,7 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 				$('#consolidadoJTable').jtable({
 					title: 'Consolidado de Rentabilidade Mensal',
 					paging: true,
-					pageSize: 5,
+					pageSize: 10,
 					sorting: true,
 					defaultSorting: 'ID_INVESTIMENTO ASC',
 					actions: {
@@ -68,17 +65,29 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 						ID_INVESTIMENTO: {
 							title: 'Código',
 							key: true,
-							width: '20%'
+							visibility: "hidden"
 						},
 						ANO_MES: {
-							title: 'Ano/Mês',
-							width: '20%',
+							title: 'Mês/Ano',
+							width: '10%',
 							create: false,
 							edit: false
 						},
+						NOME_INVESTIMENTO: {
+							title: 'Nome',
+							width: '35%'
+						},
+						VL_APLICACAO_INVESTIMENTO: {
+							title: 'Valor Aplicado',
+							width: '15%'
+						},
+						VL_SALDO_LIQUIDO_INVESTIMENTO: {
+							title: 'Média Rendimento Mensal',
+							width: '25%'
+						},
 						VL_RENDIMENTO_MENSAL: {
-							title: 'Valor Rendimento Mensal',
-							width: '60%'
+							title: 'Média Saldo Líquido',
+							width: '15%'
 						}
 					},
 	

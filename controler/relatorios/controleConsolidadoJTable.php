@@ -17,11 +17,16 @@ try
 		$jtPageSize = $_GET["jtPageSize"];
 		
 		$queryGeral = "SELECT
-							ID_INVESTIMENTO,
-							ANO_MES,
-							VL_RENDIMENTO_MENSAL
-						FROM maf.tb_rentabilidade_mensal
-						where ID_INVESTIMENTO in ( SELECT	I.ID_INVESTIMENTO FROM MAF.tb_investimento AS I	WHERE I.ID_PESSOA = ".$_SESSION['ID_PESSOA']." )";
+							I.NOME_INVESTIMENTO,
+							RM.ID_INVESTIMENTO, 
+						    concat(right(RM.ANO_MES,2),'/',left(RM.ANO_MES,4)) AS ANO_MES, 
+							I.VL_APLICACAO_INVESTIMENTO,		
+							I.VL_SALDO_LIQUIDO_INVESTIMENTO,				    
+							RM.VL_RENDIMENTO_MENSAL 
+						FROM maf.tb_rentabilidade_mensal AS RM
+						JOIN MAF.tb_investimento AS I
+							ON RM.ID_INVESTIMENTO = I.ID_INVESTIMENTO
+						WHERE RM.ID_INVESTIMENTO in ( SELECT	I.ID_INVESTIMENTO FROM MAF.tb_investimento AS I	WHERE I.ID_PESSOA = ".$_SESSION['ID_PESSOA']." )";
 		// echo $queryGeral;
 		// echo "<br>";
 		
