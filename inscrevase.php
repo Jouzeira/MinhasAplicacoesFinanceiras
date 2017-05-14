@@ -33,7 +33,7 @@ $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 		<!-- bootstrap - link cdn -->
-		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css"><!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="utils/bootstrap/css/bootstrap.min.css"><!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 	
 	</head>
 
@@ -140,7 +140,7 @@ $dtNascimento	= isset($_GET['dtNascimento'])	? $_GET['dtNascimento']		: "";
 
 	    </div>
 	
-		<script src="../../utils/bootstrap/js/bootstrap.min.js"></script><!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --></script>
+		<script src="utils/bootstrap/js/bootstrap.min.js"></script><!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --></script>
 		<script>  function formatar(mascara, documento){   
 					var i = documento.value.length;   
 					var saida = mascara.substring(0,1);   
