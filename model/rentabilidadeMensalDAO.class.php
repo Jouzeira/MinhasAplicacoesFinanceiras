@@ -1,5 +1,7 @@
 <?php
 
+require_once 'genericoDao.class.php';
+
 class RentabilidadeMensalDAO {
 	
 	private $genericoDAO;
@@ -87,8 +89,17 @@ from
 		return $this->genericoDAO->sqlDireto($sql, "SELECT");
 	}
 	
+	public function consultaListaAnoMes($idPessoa){
+		$sql = "SELECT DISTINCT RM.ANO_MES
+				FROM MAF.tb_rentabilidade_mensal AS RM
+				JOIN MAF.tb_investimento AS I
+				ON I.ID_INVESTIMENTO = RM.ID_INVESTIMENTO
+				WHERE I.ID_PESSOA = ".$idPessoa." 
+				ORDER BY RM.ANO_MES DESC";
+		return $this->genericoDAO->sqlDireto($sql, "SELECT");
+	}
+	
+	
 }
-
-
 
 ?>

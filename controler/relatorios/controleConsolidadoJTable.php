@@ -17,7 +17,7 @@ try
 		$jtPageSize 		= $_GET["jtPageSize"];
 		
 		$nomeInvestimento	= $_POST["nomeInvestimento"];
-// 		$data				= $_POST["data"];
+ 		$anoMes				= $_POST["anoMes"];
 		
 		$queryGeral = "SELECT
 							I.NOME_INVESTIMENTO,
@@ -37,17 +37,12 @@ try
 			$queryGeral.= " AND I.NOME_INVESTIMENTO LIKE '%" .$nomeInvestimento."%'";
 		}
 		
-// 		if (!is_null($data) && $data!= ""){
-// 			$queryGeral.= " AND R.DATA ='" .$data."'";
-// 		}
-		
-		// echo $queryGeral;
-		// echo "<br>";
+		if (!is_null($anoMes) && $anoMes!= ""){
+			$queryGeral.= " AND RM.ANO_MES = " .$anoMes;
+		}
 		
 		$queryCount = "	SELECT COUNT(ID_INVESTIMENTO) AS RecordCount
 							   	FROM (".$queryGeral.") AS TB";
-		
-		//echo $queryCount;
 		
 		$queryFilter = $queryGeral;
 		$queryFilter .= " ORDER BY $jtSorting LIMIT $jtStartIndex , $jtPageSize ;";
@@ -73,6 +68,9 @@ try
 		$jTableResult['Records'] = $rows;
 		print json_encode($jTableResult);
 	}
+
+	//Close database connection
+	mysqli_close($con);
 } // ============== /try ==================
 catch(Exception $ex)
 {

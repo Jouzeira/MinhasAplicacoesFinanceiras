@@ -5,6 +5,8 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: index.php?erro=1');
 }
 
+require_once '../../controler/relatorios/preencheConsolidadoJTable.php';
+
 ?>
 
 <!DOCTYPE HTML>
@@ -23,7 +25,8 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 		<link href="../../utils/jTable/scripts/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css" />
 		<!-- jTable script file -->
 <!-- 		<script src="../../utils/jTable/scripts/jquery-1.11.3.min.js" type="text/javascript"></script> -->
-		<script src="../../utils/jTable/scripts/jquery-1.6.4.min.js" type="text/javascript"></script> 
+<!-- 		<script src="../../utils/jTable/scripts/jquery-1.6.4.min.js" type="text/javascript"></script>  -->
+		<script src="../../utils/jTable/scripts/jquery-3.2.1.min.js" type="text/javascript"></script> 
 	    <script src="../../utils/jTable/scripts/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 	    <script src="../../utils/jTable/scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
 	
@@ -39,11 +42,17 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 		  		<div class="col-md-12">
 					<form>
 						<div class="form-group col-md-4">
-							<input type="text" name="data" id="data" class="form-control" placeholder="Mês/Ano">
-<!-- 							<div class="input-group"> -->
-<!-- 								<div class="input-group-addon">Mês/Ano</div> -->
-<!-- 								<input type="date" name="data" id="data" class="form-control" placeholder="Mês/Ano"> -->
-<!-- 							</div> -->
+							<select class="form-control" name="anoMes" id="anoMes">
+								<?php  
+									foreach ($listaAnoMes AS $anoMes){?>
+										<option value="<?= $anoMes ?>">						
+											<?= substr($anoMes, 4,2)."/".substr($anoMes, 0,4) ?>
+										</option>
+									
+									<?php 
+									}
+								?>
+							</select>
 						</div>
 						<div class="form-group col-md-4">
 							<input type="text" name="nomeInvestimento" id="nomeInvestimento" class="form-control" placeholder="Nome Investimento">
@@ -151,23 +160,19 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 		        $('#btFiltro').click(function (e) {
 		            e.preventDefault();
 					var valorNomeInvestimento 	= $('#nomeInvestimento').val();
-// 					var valorData 				= $('#data').val();
+					var valorAnoMes				= $('#anoMes').val();
 					//alert(valorData);
 					//document.write(valorOrigem); 	
-// 					console.log(valorNomeInvestimento + " " + valorData);
-					console.log(valorNomeInvestimento);
+					//console.log(valorNomeInvestimento + " " + valorAnoMes);
 		            $('#consolidadoJTable').jtable('load', {
-		            	nomeInvestimento: 	valorNomeInvestimento
-// 			            data:				valorData
+		            	nomeInvestimento: 	valorNomeInvestimento,
+			            anoMes:				valorAnoMes
 			         });
 		        });
 		 
 // 		        Load all records when page is first shown
 		        $('#btFiltro').click();
 
-// 				//Load person list from server
-// 				$('#consolidadoJTable').jtable('load');
-				
 			});
 
 	</script>
