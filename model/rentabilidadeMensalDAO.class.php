@@ -18,11 +18,12 @@ class RentabilidadeMensalDAO {
 
 		
 		
-$sql ="	insert into maf.tb_rentabilidade_mensal (ID_INVESTIMENTO,ANO_MES,VL_RENDIMENTO_MENSAL) 	
+$sql ="	insert into maf.tb_rentabilidade_mensal (ID_INVESTIMENTO,ANO_MES,VL_RENDIMENTO_MENSAL,VL_SALDO_LIQUIDO_MENSAL) 	
 (select 
 	".$historicoInvestimentoBO->getIdInvestimento()." AS ID_INVESTIMENTO,
 	ANO_MES,
-	cast((DIFF_DIA * RENDIMENTO_MENSAL) as decimal(10,2)) as VL_RENDIMENTO_MENSAL
+	cast((DIFF_DIA * RENDIMENTO_MENSAL) as decimal(10,2)) as VL_RENDIMENTO_MENSAL,
+	@valorAplicado := @valorAplicado + cast((DIFF_DIA * RENDIMENTO_MENSAL) as decimal(10,2)) as VL_SALDO_LIQUIDO_MENSAL
 from
 	(select 
 		case when ( Year(dataVar) * 100 ) + ( Month(dataVar) ) = ( Year('".$dataAplicacao."') * 100 ) + ( Month('".$dataAplicacao."') ) THEN 
@@ -48,7 +49,8 @@ from
 					where hi.ID_INVESTIMENTO = ".$historicoInvestimentoBO->getIdInvestimento()." 
 					order by hi.DT_ATUALIZACAO_HISTINVESTIMENTO asc) tb_rent,
 			(select @valorDif := 0) t4) tb_media
-	group by ANO_MES) tb)
+	group by ANO_MES) tb,
+    (select @valorAplicado := 5000) tb_ap)
 ";
 		
 		return $this->genericoDAO->sqlDireto($sql, "INSERT");
