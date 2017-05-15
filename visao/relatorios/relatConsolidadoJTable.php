@@ -57,7 +57,9 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	    
 		    <div class="row">
 		    	<div class="col-md-12">
-		    		<div id="consolidadoJTable"></div>
+			    	<div class="col-md-12">
+			    		<div id="consolidadoJTable"></div>
+					</div>
 				</div>
 				<div class="clearfix"></div>
 				<br />
@@ -89,25 +91,33 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 						},
 						ANO_MES: {
 							title: 'Mês/Ano',
-							width: '10%',
+							width: '5%',
 							create: false,
 							edit: false
 						},
 						NOME_INVESTIMENTO: {
 							title: 'Nome',
-							width: '35%'
+							width: '25%'
 						},
 						VL_APLICACAO_INVESTIMENTO: {
 							title: 'Valor Aplicado',
-							width: '15%'
+							width: '10%'
 						},
 						VL_SALDO_LIQUIDO_INVESTIMENTO: {
-							title: 'Média Rendimento Mensal',
-							width: '25%'
+							title: 'Saldo Líquido Atual',
+							width: '15%'
 						},
 						VL_RENDIMENTO_MENSAL: {
-							title: 'Média Saldo Líquido',
+							title: 'M Rendim. Mensal',
 							width: '15%'
+						},
+						VL_SALDO_LIQUIDO_MENSAL: {
+							title: 'M SL Mensal',
+							width: '15%'
+						},
+						VL_PERCENT_RENTABILIDADE_MENSAL: {
+							title: '% Rentab.	 M Mensal',
+							width: '20%'
 						}
 					},
 	

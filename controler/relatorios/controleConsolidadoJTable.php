@@ -25,7 +25,9 @@ try
 						    concat(right(RM.ANO_MES,2),'/',left(RM.ANO_MES,4)) AS ANO_MES, 
 							I.VL_APLICACAO_INVESTIMENTO,		
 							I.VL_SALDO_LIQUIDO_INVESTIMENTO,				    
-							RM.VL_RENDIMENTO_MENSAL 
+							RM.VL_RENDIMENTO_MENSAL,
+  							RM.VL_SALDO_LIQUIDO_MENSAL,
+    						RM.VL_PERCENT_RENTABILIDADE_MENSAL
 						FROM maf.tb_rentabilidade_mensal AS RM
 						JOIN MAF.tb_investimento AS I
 							ON RM.ID_INVESTIMENTO = I.ID_INVESTIMENTO
