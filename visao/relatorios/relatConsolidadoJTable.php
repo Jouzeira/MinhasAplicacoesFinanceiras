@@ -106,26 +106,26 @@ require_once '../../controler/relatorios/preencheConsolidadoJTable.php';
 						},
 						NOME_INVESTIMENTO: {
 							title: 'Nome',
-							width: '25%'
+							width: '22%'
 						},
 						VL_APLICACAO_INVESTIMENTO: {
 							title: 'Valor Aplicado',
-							width: '10%'
+							width: '10%',
 						},
 						VL_SALDO_LIQUIDO_INVESTIMENTO: {
 							title: 'Saldo Líquido Atual',
 							width: '15%'
 						},
 						VL_RENDIMENTO_MENSAL: {
-							title: 'M Rendim. Mensal',
-							width: '15%'
+							title: 'Média Rendim. Mensal',
+							width: '16%'
 						},
 						VL_SALDO_LIQUIDO_MENSAL: {
-							title: 'M SL Mensal',
-							width: '15%'
+							title: 'Saldo Líq. Médio do Mês',
+							width: '17%'
 						},
 						VL_PERCENT_RENTABILIDADE_MENSAL: {
-							title: '% Rentab.	 M Mensal',
+							title: '% Rentab. Média Mensal',
 							width: '20%'
 						}
 					},
