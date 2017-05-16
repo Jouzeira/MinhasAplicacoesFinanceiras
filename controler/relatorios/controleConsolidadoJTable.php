@@ -22,12 +22,12 @@ try
 		$queryGeral = "SELECT
 							I.NOME_INVESTIMENTO,
 							RM.ID_INVESTIMENTO, 
-						    concat(right(RM.ANO_MES,2),'/',left(RM.ANO_MES,4)) AS ANO_MES, 
-							I.VL_APLICACAO_INVESTIMENTO,		
-							I.VL_SALDO_LIQUIDO_INVESTIMENTO,				    
-							RM.VL_RENDIMENTO_MENSAL,
-  							RM.VL_SALDO_LIQUIDO_MENSAL,
-    						RM.VL_PERCENT_RENTABILIDADE_MENSAL
+					        concat(right(RM.ANO_MES,2),'/',left(RM.ANO_MES,4)) AS ANO_MES, 
+						    concat('R$ ', format(I.VL_APLICACAO_INVESTIMENTO,2,'de_DE')) AS VL_APLICACAO_INVESTIMENTO,
+						    concat('R$ ', format(I.VL_SALDO_LIQUIDO_INVESTIMENTO,2,'de_DE')) AS VL_SALDO_LIQUIDO_INVESTIMENTO,
+						    concat('R$ ', format(RM.VL_RENDIMENTO_MENSAL,2,'de_DE')) AS VL_RENDIMENTO_MENSAL,
+						    concat('R$ ', format(RM.VL_SALDO_LIQUIDO_MENSAL,2,'de_DE')) AS VL_SALDO_LIQUIDO_MENSAL,
+						    concat(CAST(RM.VL_PERCENT_RENTABILIDADE_MENSAL AS DECIMAL(10,2)), '%') AS VL_PERCENT_RENTABILIDADE_MENSAL
 						FROM maf.tb_rentabilidade_mensal AS RM
 						JOIN MAF.tb_investimento AS I
 							ON RM.ID_INVESTIMENTO = I.ID_INVESTIMENTO
