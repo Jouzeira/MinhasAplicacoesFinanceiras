@@ -3,6 +3,7 @@ $menuRelatorio  = isset ( $_GET ['menuRelatorio'] ) ? $_GET ['menuRelatorio'] 	:
 $menuInvest 	= isset ( $_GET ['menuInvest'] ) 	? $_GET ['menuInvest'] 	: 0;
 $menuInst 		= isset ( $_GET ['menuInst'] ) 		? $_GET ['menuInst'] 	: 0;
 $menuUsuario 	= isset ( $_GET ['menuUsuario'] ) 	? $_GET ['menuUsuario'] : 0;
+$ativo = isset($_SESSION['POSSUI_INVESTIMENTO']) ? $_SESSION['POSSUI_INVESTIMENTO'] : 0;
 
 ?>
 
@@ -23,7 +24,7 @@ $menuUsuario 	= isset ( $_GET ['menuUsuario'] ) 	? $_GET ['menuUsuario'] : 0;
 
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li <?php if($menuRelatorio==1) {?> class="active" <?php }?>><a
+				<li class="<?php if($menuRelatorio==1) {?>active<?php }?><?php if($ativo==0) {?>disabled<?php }?>"><a
 					href="/MinhasAplicacoesFinanceiras/visao/relatorios/grafMedRentMensTipInvest.php?menuRelatorio=1">Relatórios</a></li>
 				<li <?php if($menuInvest==1) {?> class="active" <?php }?>><a
 					href="/MinhasAplicacoesFinanceiras/visao/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>

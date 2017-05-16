@@ -93,10 +93,13 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	    </div>
 	    <div class="col-md-2"></div>
 		</div><!-- /container -->
-		<script type="text/javascript">
-			$('carousel-example-generic').carousel({
-				  interval: 2000
-				})
+		
+		
+		
+		<script>
+			$('.carousel').carousel()
 		</script>
+		
+		
 	</body>
 </html>
