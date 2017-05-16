@@ -28,7 +28,7 @@ if ($codInst != 0) {
 		die(); //interrompe a execução do script
 }
 
-$sql = " SELECT * FROM maf.tb_instituicao_financeira ";
+$sql = " SELECT * FROM maf.tb_instituicao_financeira where ID_PESSOA = ".$_SESSION['ID_PESSOA'];
 
 
 //executar a query => a função mysqli_query() espera 2 parÃ¢metros: conexÃ£o e a query

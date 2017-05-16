@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	require_once '../../controler/home/preencheHome.php';
+// 	require_once '../../controler/home/preencheHome.php';
 	if(!isset($_SESSION['NOME_PESSOA'])){
 		header('Location: ../../index.php?erro=1');
 	}

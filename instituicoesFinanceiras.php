@@ -40,7 +40,6 @@
 
 	    	<div class="col-md-2">
 	    		<br />
-	    		<?= $_SESSION['NOME_PESSOA'] ?>
 	    		<br />
 	    		<div>
 	    		<a class="btn btn-primary" href="cadastroInstituicao.php?menuInst=1&" role="button">Nova Instituição</a>
