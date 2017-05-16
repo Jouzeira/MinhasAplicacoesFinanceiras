@@ -61,13 +61,20 @@ from
 	}
 	
 	public  function consultaRentabilidadesPorListaInvestimentos($listaInvestimentos) {
-		$sql = "SELECT * FROM maf.tb_rentabilidade_mensal
-				where ID_INVESTIMENTO in (";
+		$sql = "SELECT 
+					rm.ID_INVESTIMENTO,
+					rm.ANO_MES,
+					rm.VL_RENDIMENTO_MENSAL,
+					i.NOME_INVESTIMENTO
+				FROM maf.tb_rentabilidade_mensal rm,
+				maf.tb_investimento i
+				where i.ID_INVESTIMENTO = rm.ID_INVESTIMENTO
+					and rm.ID_INVESTIMENTO in (";
 		foreach ($listaInvestimentos as $value) {
 			$sql.= $value.",";
 		}
 		$sql = substr($sql, 0,-1);
-		$sql.= ") order by ID_INVESTIMENTO,ANO_MES";
+		$sql.= ") order by rm.ID_INVESTIMENTO,rm.ANO_MES";
 		return $this->genericoDAO->sqlDireto($sql, "SELECT");
 	}
 	

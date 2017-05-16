@@ -109,7 +109,7 @@ require_once '../../controler/relatorios/preencheGrafMedRentMensTipInvest.php';
 			    			foreach ($listaDaListaRentMensal2 as $listaRentMensal) {
 			    			?>
 			    	        {
-			    	        name: '<?=$listaRentMensal[0]->getIdInvestimento()?>',
+			    	        name: '<?=$listaRentMensal[0]->getNomeInvestimento()?>',
 			    	        data: [
 			    				<?php 
 			    				foreach ($listaRentMensal as $rentabilidadeMensalBO) {

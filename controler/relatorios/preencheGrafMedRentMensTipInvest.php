@@ -33,6 +33,7 @@ while ($linha = mysqli_fetch_array($resultListaRentMensal,MYSQLI_ASSOC)) {
 		$rentabilidadeMensalBO->setIdInvestimento($linha['ID_INVESTIMENTO']);
 		$rentabilidadeMensalBO->setAnoMes($linha['ANO_MES']);
 		$rentabilidadeMensalBO->setValorRendimentoMensal($linha['VL_RENDIMENTO_MENSAL']);
+		$rentabilidadeMensalBO->setNomeInvestimento($linha['NOME_INVESTIMENTO']);
 		
 		if ($linha['ID_INVESTIMENTO'] == $codigoInvestimento) {
 			$listaRentMensal[]= $rentabilidadeMensalBO;
@@ -53,6 +54,7 @@ while ($linha = mysqli_fetch_array($resultListaRentMensal,MYSQLI_ASSOC)) {
 		$rentabilidadeMensalBO->setIdInvestimento($linha['ID_INVESTIMENTO']);
 		$rentabilidadeMensalBO->setAnoMes($linha['ANO_MES']);
 		$rentabilidadeMensalBO->setValorRendimentoMensal($linha['VL_RENDIMENTO_MENSAL']);
+		$rentabilidadeMensalBO->setNomeInvestimento($linha['NOME_INVESTIMENTO']);
 		if ($linha['ID_INVESTIMENTO'] == $codigoInvestimento) {
 			$rentabilidadeMensalBOControle->setValorRendimentoMensal(($rentabilidadeMensalBOControle->getValorRendimentoMensal()+$rentabilidadeMensalBO->getValorRendimentoMensal())/2);
 			while ($anoMesControle != $linha['ANO_MES']) {
@@ -92,6 +94,7 @@ function populaNovoRentabilidadeMensalBO($param) {
 	$rentabilidadeMensalBO->setIdInvestimento($param->getIdInvestimento());
 	$rentabilidadeMensalBO->setAnoMes($param->getAnoMes());
 	$rentabilidadeMensalBO->setValorRendimentoMensal($param->getValorRendimentoMensal());
+	$rentabilidadeMensalBO->setNomeInvestimento($param->getNomeInvestimento());
 	return $rentabilidadeMensalBO;
 }
 
@@ -119,6 +122,7 @@ foreach ($listaDaListaRentMensal as $listaRentMensal){
 					$rentabilidadeMensalBO2->setIdInvestimento($rentabilidadeMensalBO->getIdInvestimento());
 					$rentabilidadeMensalBO2->setAnoMes($anoMes);
 					$rentabilidadeMensalBO2->setValorRendimentoMensal(0);
+					$rentabilidadeMensalBO2->setNomeInvestimento($rentabilidadeMensalBO->getNomeInvestimento());
 					$listaRentMensal2[] = $rentabilidadeMensalBO2;
 				}else {
 					$listaRentMensal2[] = $rentabilidadeMensalBO;

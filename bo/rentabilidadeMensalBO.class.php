@@ -8,6 +8,7 @@
 		private $valorRendimentoMensal;
 		private $valorSaldoLiquidoMensal;
 		private $valorPercentRentabilidadeMensal;
+		private $nomeInvestimento;
 		
 		public function setId($id) {
 			$this->id = $id;
@@ -49,6 +50,12 @@
 		}
 		public  function getValorPercentRentabilidadeMensal() {
 			return $this->valorPercentRentabilidadeMensal;
+		}
+		public function setNomeInvestimento($nomeInvestimento) {
+			$this->nomeInvestimento = $nomeInvestimento;
+		}
+		public function getNomeInvestimento() {
+			return $this->nomeInvestimento;
 		}
 	}
 
