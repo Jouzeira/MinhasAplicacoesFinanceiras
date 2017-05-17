@@ -8,7 +8,7 @@
 	$email = $_POST['usuario'];
 	$senha = md5($_POST['senha']);
 
-	$sql = " SELECT NOME_PESSOA,EMAIL_PESSOA, ID_PESSOA FROM maf.tb_pessoa WHERE EMAIL_PESSOA = '$email' AND SENHA = '$senha' ";
+	$sql = " SELECT NOME_PESSOA,EMAIL_PESSOA, ID_PESSOA FROM u859943329_maf.tb_pessoa WHERE EMAIL_PESSOA = '$email' AND SENHA = '$senha' ";
 
 	$objDB = new db();
 	$link = $objDB->getlink();
@@ -34,7 +34,7 @@
 			
 			if (mysqli_fetch_array($resultInvestimento)) {
 				$_SESSION['POSSUI_INVESTIMENTO'] = 1;
-				header('Location: /MinhasAplicacoesFinanceiras/visao/home/home.php');
+				header('Location: /MinhasAplicacoesFinanceiras/visao/relatorios/relatConsolidadoJTable.php');
 			}else {
 				$_SESSION['POSSUI_INVESTIMENTO'] = 0;
 				header('Location: /MinhasAplicacoesFinanceiras/visao/home/passoapasso.php');

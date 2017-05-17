@@ -20,7 +20,7 @@ class RentabilidadeMensalDAO {
 
 		
 		
-$sql ="	insert into maf.tb_rentabilidade_mensal (ID_INVESTIMENTO,ANO_MES,VL_RENDIMENTO_MENSAL,VL_PERCENT_RENTABILIDADE_MENSAL,VL_SALDO_LIQUIDO_MENSAL) 	
+$sql ="	insert into u859943329_maf.tb_rentabilidade_mensal (ID_INVESTIMENTO,ANO_MES,VL_RENDIMENTO_MENSAL,VL_PERCENT_RENTABILIDADE_MENSAL,VL_SALDO_LIQUIDO_MENSAL) 	
 (select 
 	".$historicoInvestimentoBO->getIdInvestimento()." AS ID_INVESTIMENTO,
 	ANO_MES,
@@ -46,7 +46,7 @@ from
 						cast(( CAST((hi.VLLIQUIDO_HISTINVESTIMENTO - @valor) AS decimal(10,2)) / (datediff(hi.DT_ATUALIZACAO_HISTINVESTIMENTO, @data1))  ) AS decimal(10,2) ) as RENT_DIARIA,
 						@valor := hi.VLLIQUIDO_HISTINVESTIMENTO as valorVar,
 						@data1 := hi.DT_ATUALIZACAO_HISTINVESTIMENTO as dataVar
-					from maf.tb_historico_investimento hi,  
+					from u859943329_maf.tb_historico_investimento hi,  
 					( select @valor := ".$valorAplicado.") t2,
 					( select @data1 := '".$dataAplicacao."') t3
 					where hi.ID_INVESTIMENTO = ".$historicoInvestimentoBO->getIdInvestimento()." 
@@ -66,8 +66,8 @@ from
 					rm.ANO_MES,
 					rm.VL_RENDIMENTO_MENSAL,
 					i.NOME_INVESTIMENTO
-				FROM maf.tb_rentabilidade_mensal rm,
-				maf.tb_investimento i
+				FROM u859943329_maf.tb_rentabilidade_mensal rm,
+				u859943329_maf.tb_investimento i
 				where i.ID_INVESTIMENTO = rm.ID_INVESTIMENTO
 					and rm.ID_INVESTIMENTO in (";
 		foreach ($listaInvestimentos as $value) {
@@ -81,7 +81,7 @@ from
 	public function consultaRentabilidadePorIdUsuario($idUsuario){
 		$sql .= "SELECT
 					I.ID_INVESTIMENTO
-				FROM MAF.tb_investimento AS I
+				FROM u859943329_maf.tb_investimento AS I
 				WHERE I.ID_PESSOA = ".$idUsuario;
 		
 		$resultListaIdInvestimentos =  $this->genericoDAO->sqlDireto($sql, "select");
@@ -98,8 +98,8 @@ from
 	
 	public function consultaListaAnoMes($idPessoa){
 		$sql = "SELECT DISTINCT RM.ANO_MES
-				FROM MAF.tb_rentabilidade_mensal AS RM
-				JOIN MAF.tb_investimento AS I
+				FROM u859943329_maf.tb_rentabilidade_mensal AS RM
+				JOIN u859943329_maf.tb_investimento AS I
 				ON I.ID_INVESTIMENTO = RM.ID_INVESTIMENTO
 				WHERE I.ID_PESSOA = ".$idPessoa." 
 				ORDER BY RM.ANO_MES DESC";

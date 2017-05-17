@@ -28,10 +28,10 @@ try
 						    concat('R$ ', format(RM.VL_RENDIMENTO_MENSAL,2,'de_DE')) AS VL_RENDIMENTO_MENSAL,
 						    concat('R$ ', format(RM.VL_SALDO_LIQUIDO_MENSAL,2,'de_DE')) AS VL_SALDO_LIQUIDO_MENSAL,
 						    concat(CAST(RM.VL_PERCENT_RENTABILIDADE_MENSAL AS DECIMAL(10,2)), '%') AS VL_PERCENT_RENTABILIDADE_MENSAL
-						FROM maf.tb_rentabilidade_mensal AS RM
-						JOIN MAF.tb_investimento AS I
+						FROM u859943329_maf.tb_rentabilidade_mensal AS RM
+						JOIN u859943329_maf.tb_investimento AS I
 							ON RM.ID_INVESTIMENTO = I.ID_INVESTIMENTO
-						WHERE RM.ID_INVESTIMENTO in ( SELECT I.ID_INVESTIMENTO FROM MAF.tb_investimento AS I	WHERE I.ID_PESSOA = ".$_SESSION['ID_PESSOA']." )";
+						WHERE RM.ID_INVESTIMENTO in ( SELECT I.ID_INVESTIMENTO FROM u859943329_maf.tb_investimento AS I	WHERE I.ID_PESSOA = ".$_SESSION['ID_PESSOA']." )";
 		
 		if (!is_null($nomeInvestimento) && $nomeInvestimento!= ""){
 			$queryGeral.= " AND I.NOME_INVESTIMENTO LIKE '%" .$nomeInvestimento."%'";

@@ -26,7 +26,7 @@ require_once('model/db.class.php');
 	}
 	
 	//verificar se o CPF já existe
-	$sql = " SELECT * FROM maf.tb_pessoa WHERE cpf_pessoa = '$cpfSemMascara' ";
+	$sql = " SELECT * FROM u859943329_maf.tb_pessoa WHERE cpf_pessoa = '$cpfSemMascara' ";
 	if($resultado_id = mysqli_query($link, $sql)){
 		
 		$dados_usuario = mysqli_fetch_array($resultado_id);
@@ -41,7 +41,7 @@ require_once('model/db.class.php');
 	}
 	
 	//verificar se o email já existe
-	$sql = " SELECT * FROM maf.tb_pessoa WHERE email_pessoa = '$email' ";
+	$sql = " SELECT * FROM u859943329_maf.tb_pessoa WHERE email_pessoa = '$email' ";
 	if($resultado_id = mysqli_query($link, $sql)){
 		
 		$dados_usuario = mysqli_fetch_array($resultado_id);
@@ -74,7 +74,7 @@ require_once('model/db.class.php');
 	}
 	
 	
-	$sql = " INSERT INTO maf.tb_pessoa
+	$sql = " INSERT INTO u859943329_maf.tb_pessoa
 				(
 				CPF_PESSOA,
 				NOME_PESSOA,

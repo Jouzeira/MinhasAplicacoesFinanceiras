@@ -97,7 +97,7 @@ class InvestimentoDAO {
 				sum(invest.VL_SALDO_LIQUIDO_INVESTIMENTO) as SOMA_SALDO_LIQUIDO
 				, invest.ID_TIPO_INVESTIMENTO 
 			    , tipoInvest.NOME_TIPO_INVESTIMENTO
-			from maf.tb_investimento as invest, maf.tb_tipo_investimento as tipoInvest
+			from u859943329_maf.tb_investimento as invest, u859943329_maf.tb_tipo_investimento as tipoInvest
 			where 	invest.ID_PESSOA = ".$idPessoa." and
 					invest.ID_TIPO_INVESTIMENTO = tipoInvest.ID_TIPO_INVESTIMENTO
 			group by invest.ID_TIPO_INVESTIMENTO";
@@ -111,7 +111,7 @@ class InvestimentoDAO {
 			Select 
 				sum(invest.VL_SALDO_LIQUIDO_INVESTIMENTO) as SOMA_SALDO_LIQUIDO
 			    , instituicao.NOME_INST_FINANCEIRA
-			from maf.tb_investimento as invest, maf.tb_instituicao_financeira as instituicao
+			from u859943329_maf.tb_investimento as invest, u859943329_maf.tb_instituicao_financeira as instituicao
 			where 	invest.ID_PESSOA = ".$idPessoa." and
 					invest.ID_INST_FINANCEIRA = instituicao.ID_INST_FINANCEIRA
 			group by invest.ID_INST_FINANCEIRA";
@@ -121,7 +121,7 @@ class InvestimentoDAO {
 		
 		$sql = "
 			select NOME_INVESTIMENTO,VL_APLICACAO_INVESTIMENTO,VL_SALDO_LIQUIDO_INVESTIMENTO
-			from maf.tb_investimento
+			from u859943329_maf.tb_investimento
 			where ID_PESSOA = ".$idPessoa;
 		return $this->genericoDAO->sqlDireto($sql, "select");
 	}

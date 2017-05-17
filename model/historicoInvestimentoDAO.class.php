@@ -33,10 +33,10 @@ class HistoricoInvestimentoDAO {
 		$sql = "SELECT 
 	DT_ATUALIZACAO_HISTINVESTIMENTO 
     ,VLLIQUIDO_HISTINVESTIMENTO 
-    FROM maf.tb_historico_investimento 
+    FROM u859943329_maf.tb_historico_investimento 
     where ID_INVESTIMENTO = ".$idInvestimento." and
     DT_ATUALIZACAO_HISTINVESTIMENTO = (select  max(DT_ATUALIZACAO_HISTINVESTIMENTO)
-											FROM maf.tb_historico_investimento 
+											FROM u859943329_maf.tb_historico_investimento 
 											where ID_INVESTIMENTO = ".$idInvestimento." ) ";
 		
 		return $this->genericoDAO->sqlDireto($sql, "select");
@@ -62,9 +62,9 @@ class HistoricoInvestimentoDAO {
 								cast(( CAST((hi.VLLIQUIDO_HISTINVESTIMENTO - @valor) AS decimal(10,2)) / (datediff(hi.DT_ATUALIZACAO_HISTINVESTIMENTO, @data1))  ) AS decimal(10,2) ) as VL_RENDIMENTO_DIARIO,
 								@valor := hi.VLLIQUIDO_HISTINVESTIMENTO as valorVar,
 								@data1 := hi.DT_ATUALIZACAO_HISTINVESTIMENTO as dataVar
-							from maf.tb_historico_investimento hi,  
-							( select @valor := (SELECT 	VL_APLICACAO_INVESTIMENTO FROM maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t2,
-							( select @data1 := (SELECT  DT_APLICACAO_INVESTIMENTO FROM maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t3
+							from u859943329_maf.tb_historico_investimento hi,  
+							( select @valor := (SELECT 	VL_APLICACAO_INVESTIMENTO FROM u859943329_maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t2,
+							( select @data1 := (SELECT  DT_APLICACAO_INVESTIMENTO FROM u859943329_maf.tb_investimento WHERE ID_INVESTIMENTO = ".$idInvestimento." )) t3
 							where hi.ID_INVESTIMENTO = ".$idInvestimento."
 							order by hi.DT_ATUALIZACAO_HISTINVESTIMENTO asc 
 						) tabCalc
@@ -113,7 +113,7 @@ class HistoricoInvestimentoDAO {
 				hi.DT_ATUALIZACAO_HISTINVESTIMENTO AS DATA_1,
 				hi.VLLIQUIDO_HISTINVESTIMENTO AS VALOR,
 				i.NOME_INVESTIMENTO AS NOME
-				FROM maf.tb_historico_investimento hi, maf.tb_investimento i
+				FROM u859943329_maf.tb_historico_investimento hi, u859943329_maf.tb_investimento i
 				where hi.ID_INVESTIMENTO = i.ID_INVESTIMENTO
 				and i.ID_PESSOA = ".$idPessoa."
 				union
@@ -122,7 +122,7 @@ class HistoricoInvestimentoDAO {
 				DT_APLICACAO_INVESTIMENTO AS DATA_1,
 				VL_APLICACAO_INVESTIMENTO AS VALOR,
 				NOME_INVESTIMENTO AS NOME
-				from maf.tb_investimento
+				from u859943329_maf.tb_investimento
 				where ID_PESSOA = ".$idPessoa.") TB_UNIAO
 				order by TB_UNIAO.ID_INVESTIMENTO, DATA_1";
 		

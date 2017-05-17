@@ -9,7 +9,7 @@ $link = $objDB->conecta_mysql();
 
 
 if ($codInst != 0) {
-	$sql = " SELECT * FROM maf.tb_instituicao_financeira where ID_INST_FINANCEIRA = $codInst";
+	$sql = " SELECT * FROM u859943329_maf.tb_instituicao_financeira where ID_INST_FINANCEIRA = $codInst";
 	$resultado_id= (mysqli_query($link,$sql)); 
 	$instituicao= mysqli_fetch_array($resultado_id);
 	
@@ -28,7 +28,7 @@ if ($codInst != 0) {
 		die(); //interrompe a execução do script
 }
 
-$sql = " SELECT * FROM maf.tb_instituicao_financeira where ID_PESSOA = ".$_SESSION['ID_PESSOA'];
+$sql = " SELECT * FROM u859943329_maf.tb_instituicao_financeira where ID_PESSOA = ".$_SESSION['ID_PESSOA'];
 
 
 //executar a query => a função mysqli_query() espera 2 parÃ¢metros: conexÃ£o e a query

@@ -25,7 +25,7 @@ require_once('model/db.class.php');
 	$vlTaxa = !is_null($vlTaxa) && $vlTaxa != ""? $vlTaxa:0;
 	
 	if (!is_null($seqInst) && $seqInst != "" && $seqInst!=0){
-		$sql = " UPDATE maf.tb_instituicao_financeira
+		$sql = " UPDATE u859943329_maf.tb_instituicao_financeira
 		SET
 		NOME_INST_FINANCEIRA = '$nomeInst',
 		COD_INST_FINANCEIRA = $codigo,
@@ -53,7 +53,7 @@ require_once('model/db.class.php');
 	$cnpj_existe = false;
 	
 	//verificar se o CNPJ já existe
-	$sql = " SELECT * FROM maf.tb_instituicao_financeira where CNPJ_INST_FINANCEIRA = '$cnpjSemMascara' ";
+	$sql = " SELECT * FROM u859943329_maf.tb_instituicao_financeira where CNPJ_INST_FINANCEIRA = '$cnpjSemMascara' ";
 	if($resultado_id = mysqli_query($link, $sql)){
 		
 		$dados_usuario = mysqli_fetch_array($resultado_id);
@@ -91,7 +91,7 @@ require_once('model/db.class.php');
 	
 	echo $nuVerifAgencia."agencia <br/>";
 	
-	$sql = " INSERT INTO maf.tb_instituicao_financeira
+	$sql = " INSERT INTO u859943329_maf.tb_instituicao_financeira
 			(ID_PESSOA,
 			NOME_INST_FINANCEIRA,
 			CNPJ_INST_FINANCEIRA,

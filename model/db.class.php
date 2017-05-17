@@ -3,17 +3,17 @@
 class db {
 
 	//host
-// 	private $host = 'localhost';
-	private $host = '192.168.0.100';
+	private $host = 'localhost';
+// 	private $host = '192.168.0.100';
 
 	//usuario
-	private $usuario = 'root';
+	private $usuario = 'u859943329_root';
 
 	//senha
-	private $senha = 'admin';
+	private $senha = 'admin10';
 
 	//banco de dados
-	private $database = 'maf';
+	private $database = 'u859943329_maf';
 	
 	private $link;
 	

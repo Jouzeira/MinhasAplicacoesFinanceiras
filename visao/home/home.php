@@ -39,19 +39,8 @@
 	    <div class="container">
 	    	
 				<div class="row">
-			    	<div class="col-md-6">
-			    		<div id="grafPizzaTipoInvestimento" ></div>
-			    	</div>
-			    	<div class="col-md-6">
-			    		<div id="grafPizzaInstituicao" ></div>
-			    	</div>
 				</div>
 				<br>
-				<div class="row">
-			    	<div class="col-md-12">
-			    		<div id="capitalSaldoLiquido"></div>
-			    	</div>
-				</div> 
 				<div class="clearfix"></div>
 				<br />
 		</div><!-- /container -->
@@ -59,31 +48,7 @@
 
 		<script src="../../utils/bootstrap/js/bootstrap.min.js"></script>
 		<!-- 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-			<script>
-				Radialize the colors
-				Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-				    return {
-				        radialGradient: {
-				            cx: 0.5,
-				            cy: 0.3,
-				            r: 0.7
-				        },
-				        stops: [
-				            [0, color],
-				            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-				        ]
-				    };
-				});
-	</script>	
 				
-<!-- monta gráfico pizza highcharts do tipo investimento -->
-		<?php require_once '../../visao/relatorios/grafTipoInvestimento.php';?>
-
-<!-- Percentual por Instituição Financeira -->
-		<?php require_once '../../visao/relatorios/grafInstituicaoFinanceira.php';?>
-				
-<!-- Capital Aplicado x Saldo Líquido Atual --> 
-		<?php require_once '../../visao/relatorios/grafCapitalSaldoLiquido.php';?>
 	
 	</body>
 </html>
