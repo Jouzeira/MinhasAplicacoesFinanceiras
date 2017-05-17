@@ -19,21 +19,21 @@ $ativo = isset($_SESSION['POSSUI_INVESTIMENTO']) ? $_SESSION['POSSUI_INVESTIMENT
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a href="/MinhasAplicacoesFinanceiras/visao/relatorios/relatConsolidadoJTable.php"><img src="/MinhasAplicacoesFinanceiras/imagens/cifrao.png" height="40" /></a>
+			<a href="/visao/relatorios/relatConsolidadoJTable.php"><img src="/imagens/cifrao.png" height="40" /></a>
 		</div>
 
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="<?php if($menuRelatorio==1) {?>active<?php }?><?php if($ativo==0) {?>disabled<?php }?>"><a
-					href="/MinhasAplicacoesFinanceiras/visao/relatorios/grafMedRentMensTipInvest.php?menuRelatorio=1">Relatórios</a></li>
+					href="/visao/relatorios/grafMedRentMensTipInvest.php?menuRelatorio=1">Relatórios</a></li>
 				<li <?php if($menuInvest==1) {?> class="active" <?php }?>><a
-					href="/MinhasAplicacoesFinanceiras/visao/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
+					href="/visao/investimentos/investimentos.php?menuInvest=1">Investimentos</a></li>
 				<li <?php if($menuInst==1) {?> class="active" <?php }?>><a
-					href="/MinhasAplicacoesFinanceiras/instituicoesFinanceiras.php?menuInst=1">Instituições
+					href="/instituicoesFinanceiras.php?menuInst=1">Instituições
 						Financeiras</a></li>
 				<li <?php if($menuUsuario==1) {?> class="active" <?php }?>><a
-					href="/MinhasAplicacoesFinanceiras/visao/pessoa/alteraUsuario.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
-				<li><a href="/MinhasAplicacoesFinanceiras/controler/sair.php">Sair</a></li>
+					href="/visao/pessoa/alteraUsuario.php?menuUsuario=1"><?= $_SESSION['NOME_PESSOA'] ?></a></li>
+				<li><a href="/controler/sair.php">Sair</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

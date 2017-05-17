@@ -3,7 +3,7 @@
 class db {
 
 	//host
-	private $host = 'localhost';
+	private $host = 'mysql.hostinger.com.br';
 // 	private $host = '192.168.0.100';
 
 	//usuario

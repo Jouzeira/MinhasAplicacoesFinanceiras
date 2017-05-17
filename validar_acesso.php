@@ -34,10 +34,10 @@
 			
 			if (mysqli_fetch_array($resultInvestimento)) {
 				$_SESSION['POSSUI_INVESTIMENTO'] = 1;
-				header('Location: /MinhasAplicacoesFinanceiras/visao/relatorios/relatConsolidadoJTable.php');
+				header('Location: /visao/relatorios/relatConsolidadoJTable.php');
 			}else {
 				$_SESSION['POSSUI_INVESTIMENTO'] = 0;
-				header('Location: /MinhasAplicacoesFinanceiras/visao/home/passoapasso.php');
+				header('Location: /visao/home/passoapasso.php');
 			}
 
 		} else {
