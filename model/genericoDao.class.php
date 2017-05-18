@@ -49,6 +49,7 @@ class genericoDAO extends db{
 	
 	private function resultado($link, $sql,$tipoQuery) {
 		if($resultado_id = mysqli_query($link, $sql)){
+			mysqli_close($link);
 			return $resultado_id;
 		}else {
 			

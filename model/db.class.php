@@ -4,6 +4,7 @@ class db {
 
 	//host
 	private $host = 'mysql.hostinger.com.br';
+// 	private $host = 'localhost';
 // 	private $host = '192.168.0.100';
 
 	//usuario

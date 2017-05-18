@@ -10,6 +10,35 @@ class InvestimentoDAO {
 		$this->genericoDAO = new genericoDAO();
 	}
 	
+	function consultaListaInvestimentoPersonalizado($idPessoa) {
+		$sql = "SELECT 
+				i.ID_INVESTIMENTO,
+				ti.NOME_TIPO_INVESTIMENTO,
+				i.ID_PESSOA ,
+				tr.NOME_TIPO_RENDA ,
+				i.ID_TIPO_CATEGORIA ,
+				ifi.NOME_INST_FINANCEIRA ,
+				i.NOME_INVESTIMENTO ,
+				i.DT_APLICACAO_INVESTIMENTO,
+				i.DT_MINIMA_RESGATE_INVESTIMENTO ,
+				i.DT_VENCIMENTO_INVESTIMENTO ,
+				i.VL_APLICACAO_INVESTIMENTO,
+				i.TX_CONTRATADA_INVESTIMENTO ,
+				i.TX_CORRETAGEM_INVESTIMENTO,
+				i.VL_SALDO_LIQUIDO_INVESTIMENTO ,
+				(select count(hi.ID_HISTORICO_INVESTIMENTO) from u859943329_maf.tb_historico_investimento hi where hi.ID_INVESTIMENTO = i.ID_INVESTIMENTO) as POSSUI_ATUALIZACOES
+				FROM 	u859943329_maf.tb_investimento i 
+						,u859943329_maf.tb_tipo_investimento ti
+				        ,u859943329_maf.tb_tipo_renda tr
+				        ,u859943329_maf.tb_instituicao_financeira ifi
+				where i.ID_PESSOA = ".$idPessoa."
+				and i.ID_TIPO_INVESTIMENTO = ti.ID_TIPO_INVESTIMENTO 
+				and tr.ID_TIPO_RENDA = i.ID_TIPO_RENDA
+				and ifi.ID_INST_FINANCEIRA = i.ID_INST_FINANCEIRA";
+		
+		return $this->genericoDAO->sqlDireto($sql, "SELECT");
+	}
+	
 	function consultaListaInvestimento($idPessoa) {
 		return $this->genericoDAO->select("tb_investimento","*","ID_PESSOA = ".$idPessoa);
 	}
@@ -52,6 +81,37 @@ class InvestimentoDAO {
 	
 	public function excluirInvestimento($id) {
 		return $this->genericoDAO->delete("tb_investimento", "ID_INVESTIMENTO = ".$id);
+	}
+	
+	public function consultarPorIdPersonalizado($id){
+		$sql = "SELECT 
+				i.ID_INVESTIMENTO,
+				ti.NOME_TIPO_INVESTIMENTO,
+				i.ID_PESSOA ,
+				tr.NOME_TIPO_RENDA ,
+				tc.NOME_TIPO_CATEGORIA ,
+				ifi.NOME_INST_FINANCEIRA ,
+				i.NOME_INVESTIMENTO ,
+				i.DT_APLICACAO_INVESTIMENTO,
+				i.DT_MINIMA_RESGATE_INVESTIMENTO ,
+				i.DT_VENCIMENTO_INVESTIMENTO ,
+				i.VL_APLICACAO_INVESTIMENTO,
+				i.TX_CONTRATADA_INVESTIMENTO ,
+				i.TX_CORRETAGEM_INVESTIMENTO,
+				i.VL_SALDO_LIQUIDO_INVESTIMENTO 
+				FROM 	u859943329_maf.tb_investimento i 
+						,u859943329_maf.tb_tipo_investimento ti
+				        ,u859943329_maf.tb_tipo_renda tr
+				        ,u859943329_maf.tb_instituicao_financeira ifi
+				        ,u859943329_maf.tb_tipo_categoria tc
+				where i.ID_INVESTIMENTO = ".$id."
+				and i.ID_TIPO_INVESTIMENTO = ti.ID_TIPO_INVESTIMENTO 
+				and tr.ID_TIPO_RENDA = i.ID_TIPO_RENDA
+				and ifi.ID_INST_FINANCEIRA = i.ID_INST_FINANCEIRA
+				and tc.ID_TIPO_CATEGORIA = i.ID_TIPO_CATEGORIA";
+		
+		$result = $this->genericoDAO->sqlDireto($sql, "SELECT");
+		return mysqli_fetch_array($result,MYSQLI_ASSOC);
 	}
 	
 	public function consultarPorId ($id) {

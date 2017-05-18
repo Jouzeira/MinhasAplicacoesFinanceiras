@@ -39,7 +39,7 @@ $seqInst		= isset($_GET['seqInst'])		? $_GET['seqInst']			: 0;
 	<body>
 
 		<!-- Static navbar -->
-	    <?php include '/visao/home/navegacao.php';?>
+	    <?php include 'visao/home/navegacao.php';?>
 
 
 	    <div class="container">
