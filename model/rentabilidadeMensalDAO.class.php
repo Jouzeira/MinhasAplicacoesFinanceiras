@@ -16,6 +16,7 @@ class RentabilidadeMensalDAO {
 		$substituir   = array(".");
 		$valorAplicado = str_replace($verificar, $substituir, $valorAplicado);
 		
+		$this->genericoDAO = new genericoDAO();
 		$this->genericoDAO->delete("tb_rentabilidade_mensal", "ID_INVESTIMENTO = ".$historicoInvestimentoBO->getIdInvestimento());
 
 		
@@ -55,7 +56,7 @@ from
 	group by ANO_MES) tb,
     (select @valorAplicado := ".$valorAplicado.") tb_ap)
 ";
-		
+				$this->genericoDAO = new genericoDAO();
 		return $this->genericoDAO->sqlDireto($sql, "INSERT");
 		
 	}

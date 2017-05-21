@@ -13,6 +13,8 @@ class HistoricoInvestimentoDAO {
 	}
 	
 	public function cadastrarHistorico($historicoInvestimentoBO,$valorAplicado,$dataAplicacao) {
+		
+		$this->genericoDAO = new genericoDAO();
 		$this->genericoDAO->insert("tb_historico_investimento",
 											"ID_INVESTIMENTO,DT_ATUALIZACAO_HISTINVESTIMENTO,VLLIQUIDO_HISTINVESTIMENTO", 
 				$historicoInvestimentoBO->getIdInvestimento()
@@ -22,14 +24,17 @@ class HistoricoInvestimentoDAO {
 		$resultMaxDataAtualizacao = $this->consultarSaldoUltimaAtualizacao($historicoInvestimentoBO->getIdInvestimento());
 		
 		$investimentoDao = new InvestimentoDAO();
+		$this->genericoDAO = new genericoDAO();
 		$investimentoDao->alterarValorSaldoLiquido($historicoInvestimentoBO->getIdInvestimento(), mysqli_fetch_array($resultMaxDataAtualizacao,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO']);
 		
 		$rentabilidadeMensalDAO = new RentabilidadeMensalDAO();
+		$this->genericoDAO = new genericoDAO();
 		return $rentabilidadeMensalDAO->atualizarRentabilidadeMensal($historicoInvestimentoBO,$valorAplicado,$dataAplicacao);
 	}
 	
 	public function consultarSaldoUltimaAtualizacao($idInvestimento) {
 		
+		$this->genericoDAO = new genericoDAO();
 		$sql = "SELECT 
 	DT_ATUALIZACAO_HISTINVESTIMENTO 
     ,VLLIQUIDO_HISTINVESTIMENTO 
@@ -51,6 +56,7 @@ class HistoricoInvestimentoDAO {
 	}
 	
 	public function consultarHistoricoPorIdInvestimento($idInvestimento) {
+		$this->genericoDAO = new genericoDAO();
 		return $this->genericoDAO->sqlDireto(
 				"SELECT * 
 					FROM (
@@ -86,8 +92,10 @@ class HistoricoInvestimentoDAO {
 		$investimentoDAO = new InvestimentoDAO();
 		$arrayInvestimento = $investimentoDAO->consultarPorId($idInvestimento);
 		
+		$this->genericoDAO = new genericoDAO();
 		$this->genericoDAO->delete("tb_historico_investimento",
 									"ID_HISTORICO_INVESTIMENTO = ".$idHistorico);
+		
 		$result = $this->consultarHistoricoPorIdInvestimento($idInvestimento);
 		$valor = mysqli_fetch_array($result,MYSQLI_ASSOC)['VLLIQUIDO_HISTINVESTIMENTO'];
 		if ($valor == null) {

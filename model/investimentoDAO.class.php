@@ -145,6 +145,7 @@ class InvestimentoDAO {
 	}
 	
 	public function alterarValorSaldoLiquido($id,$valor) {
+		$this->genericoDAO = new genericoDAO();
 		return $this->genericoDAO->update("tb_investimento", 
 											"VL_SALDO_LIQUIDO_INVESTIMENTO = ".$valor,
 											"ID_INVESTIMENTO = ".$id);
