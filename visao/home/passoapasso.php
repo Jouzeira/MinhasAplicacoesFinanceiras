@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-// 	require_once '../../controler/home/preencheHome.php';
 if(!isset($_SESSION['NOME_PESSOA'])){
 	header('Location: ../../index.php?erro=1');
 }
@@ -15,18 +14,19 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 
 		<title>M.A.F</title>
 		
-		<!-- jquery - link cdn -->
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		
-		<!-- highcharts - link cdn -->
+		<!-- jquery -->
+		<script src="../../utils/jQuery/jquery-3.2.1.min.js"></script>
+<!-- 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
+				
+		<!-- highcharts -->
 		<script src="../../utils/highcharts/code/highcharts.js"></script>
 		<script src="../../utils/highcharts/code/modules/exporting.js"></script>
 <!-- 		<script src="https://code.highcharts.com/highcharts.js"></script> -->
 <!-- 		<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
 
-		<!-- bootstrap - link cdn -->
+		<!-- bootstrap -->
+		<script src="../../utils/bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css">
-<!-- 		<link rel="stylesheet" href="../../utils/bootstrap/css/bootstrap.min.css"><!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 	
 	</head>
 
@@ -39,7 +39,7 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	    <div class="container">
 	    <div class="col-md-2"></div>
 	    <div class="col-md-8">
-				    	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
 			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -94,12 +94,11 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 	    <div class="col-md-2"></div>
 		</div><!-- /container -->
 		
-		
-		
 		<script>
-			$('.carousel').carousel()
+			$('.carousel').carousel({
+				interval: 3000
+			})
 		</script>
-		
 		
 	</body>
 </html>
