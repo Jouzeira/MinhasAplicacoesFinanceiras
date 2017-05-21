@@ -37,8 +37,8 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 
 
 	    <div class="container">
-	    <div class="col-md-2"></div>
-	    <div class="col-md-8">
+	    <div class="col-md-1"></div>
+	    <div class="col-md-10">
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
@@ -91,7 +91,7 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 			  </a>
 			</div>
 	    </div>
-	    <div class="col-md-2"></div>
+	    <div class="col-md-1"></div>
 		</div><!-- /container -->
 		
 		<script>
