@@ -55,28 +55,28 @@ if(!isset($_SESSION['NOME_PESSOA'])){
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
-			      <img src="../../imagens/Slide1.png" alt="Primeiros passos">
+			      <img src="/imagens/Slide1.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide2.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide2.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide3.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide3.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide4.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide4.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide5.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide5.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide6.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide6.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide7.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide7.png" alt="Primeiros passos">
 			    </div>
 			    <div class="item">
-			       <img src="../../imagens/Slide8.png" alt="Primeiros passos">
+			       <img src="/imagens/Slide8.png" alt="Primeiros passos">
 			    </div>
 			  </div>
 			
