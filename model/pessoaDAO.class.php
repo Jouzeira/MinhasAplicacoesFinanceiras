@@ -15,11 +15,13 @@ class PessoaDAO {
 	}
 	
 	public function consultarIdPessoa($email){
+		$this->genericoDAO = new genericoDAO();
 		$resultadoIdPessoa = $this->genericoDAO->select('tb_pessoa','ID_PESSOA', "EMAIL_PESSOA = '".$email."'");
 		return mysqli_fetch_array($resultadoIdPessoa, MYSQLI_ASSOC);
 	}
 
 	public function inserirPessoa($pessoaBO){
+		$this->genericoDAO = new genericoDAO();
 		$this->genericoDAO->insert	(	
 									'tb_pessoa', 
 									'CPF_PESSOA, NOME_PESSOA, EMAIL_PESSOA, DT_NAS_PESSOA, SENHA', 
@@ -41,6 +43,7 @@ class PessoaDAO {
 	}
 	
 	public function Emailexiste($emailConsulta){
+		$this->genericoDAO = new genericoDAO();
 		$resultadoEmailExiste = $this->genericoDAO->select	(
 				'tb_pessoa',
 				'EMAIL_PESSOA',
@@ -50,6 +53,7 @@ class PessoaDAO {
 	}
 	
 	public function EmailExisteOutro($email,$id){
+		$this->genericoDAO = new genericoDAO();
 		$resultadoEmailExisteOutro = $this->genericoDAO->select	(
 				'tb_pessoa',
 				'EMAIL_PESSOA',
@@ -59,7 +63,7 @@ class PessoaDAO {
 	}
 	
 	public function alterarPessoa($pessoaBO){
-		
+		$this->genericoDAO = new genericoDAO();
 		return $this->genericoDAO->update(
 			'tb_pessoa', 
 			"CPF_PESSOA = '".$pessoaBO->getCPFsemMascara().

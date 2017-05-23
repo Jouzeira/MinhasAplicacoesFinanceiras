@@ -57,6 +57,6 @@ if($senha_confirmada || $cpf_existe || $email_existe){
 	$_SESSION['ID_PESSOA'] 		= $novoId['ID_PESSOA'];
 	
 	$_SESSION['POSSUI_INVESTIMENTO'] = 0;
-	header('Location: visao/home/passoapasso.php');
+	header('Location: /visao/home/passoapasso.php');
 }
 ?>
